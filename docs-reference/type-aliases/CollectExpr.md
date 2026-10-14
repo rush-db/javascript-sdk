@@ -8,7 +8,7 @@
 
 > **CollectExpr** = `object`
 
-Defined in: [types/query.ts:221](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L221)
+Defined in: [types/query.ts:220](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L220)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [types/query.ts:221](https://github.com/rush-db/javascript-sdk/blob/
 
 > **from**: `string`
 
-Defined in: [types/query.ts:222](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L222)
+Defined in: [types/query.ts:221](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L221)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [types/query.ts:222](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **limit?**: `number`
 
-Defined in: [types/query.ts:225](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L225)
+Defined in: [types/query.ts:224](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L224)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [types/query.ts:225](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **orderBy?**: [`Order`](Order.md)
 
-Defined in: [types/query.ts:224](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L224)
+Defined in: [types/query.ts:223](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L223)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [types/query.ts:224](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **select?**: [`SelectExprMap`](SelectExprMap.md)
 
-Defined in: [types/query.ts:223](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L223)
+Defined in: [types/query.ts:222](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L222)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [types/query.ts:223](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **skip?**: `number`
 
-Defined in: [types/query.ts:226](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L226)
+Defined in: [types/query.ts:225](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L225)
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: [types/query.ts:226](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **unique?**: `boolean`
 
-Defined in: [types/query.ts:227](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L227)
+Defined in: [types/query.ts:226](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L226)

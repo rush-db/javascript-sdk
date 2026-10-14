@@ -172,20 +172,24 @@ const relationships = await db.relationships.find({
 
 ---
 
-## RushDB Cloud or a standalone engine
+## RushDB Cloud or a self-hosted engine
 
 The SDK works with RushDB in one of two ways:
 
-| | RushDB Cloud (or a self-hosted RushDB platform) | A standalone engine (direct mode) |
+| | RushDB Cloud | Self-hosted RushDB engine (direct mode) |
 | --- | --- | --- |
-| What you run | nothing ([app.rushdb.com](https://app.rushdb.com)), or the platform's Docker image | one `rushdbd` binary |
+| What you run | nothing: the managed service at [app.rushdb.com](https://app.rushdb.com) | one `rushdbd` binary, on your own infrastructure |
 | Connect with | an API key | the engine URL and the engine token |
+
+The engine is what you can self-host. RushDB Cloud runs that engine for you and adds the dashboard,
+managed embeddings and the AI features (natural-language search, relationship-pattern suggestions),
+which exist only in RushDB Cloud.
 
 ```typescript
 // RushDB Cloud
 const db = new RushDB('RUSHDB_API_KEY')
 
-// A standalone engine
+// A self-hosted engine
 const db = new RushDB('ENGINE_TOKEN', {
   direct: true,
   engineUrl: 'http://127.0.0.1:3000',
@@ -195,7 +199,7 @@ const db = new RushDB('ENGINE_TOKEN', {
 
 What each offers:
 
-| Feature | Cloud | Standalone |
+| Feature | Cloud | Self-hosted engine |
 | --- | :---: | :---: |
 | Records: create, read, update, set, upsert, delete, `find` with `where`, `orderBy`, `select`, `groupBy` | ✓ | ✓ |
 | Relationships: `attach`/`detach`, `relationships.createMany`/`deleteMany`/`find` | ✓ | ✓ |
@@ -227,8 +231,8 @@ import { CLOUD_ONLY_METHODS, CloudOnlyError, isCloudOnlyMethod } from '@rushdb/j
 import RushDB from '@rushdb/javascript-sdk'
 
 const db = new RushDB('RUSHDB_API_KEY', {
-  // Override for self-hosted or staging
-  url: 'http://your-rushdb-server.com/api/v1',
+  // A different RushDB Cloud API endpoint (default: https://api.rushdb.com/api/v1)
+  url: 'https://api.rushdb.com/api/v1',
   timeout: 30000
 })
 ```

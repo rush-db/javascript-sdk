@@ -6,6 +6,6 @@
 
 # Interface: Models
 
-Defined in: [types/query.ts:319](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L319)
+Defined in: [types/query.ts:318](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L318)
 
 Redeclare Models type in order to have suggestions over related records fields *

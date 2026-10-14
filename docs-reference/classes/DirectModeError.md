@@ -10,9 +10,9 @@ Defined in: [sdk/errors.ts:57](https://github.com/rush-db/javascript-sdk/blob/ma
 
 A call that a standalone engine supports, made in a form direct mode cannot
 carry out: a write inside a transaction that the engine cannot stage (bulk
-deletes, detach, imports, upserts, inline vectors). The engine stages record
-creates, updates, deletes and links. Thrown before any request is sent, so
-nothing runs half-way.
+deletes, detach, upserts and merge imports, inline vectors). The engine
+stages record creates, updates, deletes, links and imports. Thrown before
+any request is sent, so nothing runs half-way.
 
 ## Extends
 

@@ -8,7 +8,7 @@
 
 > **OrExpression**\<`T`\> = `object`
 
-Defined in: [types/query.ts:64](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L64)
+Defined in: [types/query.ts:63](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L63)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: [types/query.ts:64](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **$or**: [`MaybeArray`](MaybeArray.md)\<[`LogicalExpressionValue`](LogicalExpressionValue.md)\<`T`\>\>
 
-Defined in: [types/query.ts:65](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L65)
+Defined in: [types/query.ts:64](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L64)

@@ -8,7 +8,7 @@
 
 > **AggregateTimeBucketFn** = `object`
 
-Defined in: [types/query.ts:143](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L143)
+Defined in: [types/query.ts:142](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L142)
 
 ## Deprecated
 
@@ -20,7 +20,7 @@ See AggregateCollectFn.
 
 > `optional` **alias?**: `string`
 
-Defined in: [types/query.ts:146](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L146)
+Defined in: [types/query.ts:145](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L145)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [types/query.ts:146](https://github.com/rush-db/javascript-sdk/blob/
 
 > **field**: `string`
 
-Defined in: [types/query.ts:144](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L144)
+Defined in: [types/query.ts:143](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L143)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [types/query.ts:144](https://github.com/rush-db/javascript-sdk/blob/
 
 > **fn**: `"timeBucket"`
 
-Defined in: [types/query.ts:145](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L145)
+Defined in: [types/query.ts:144](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L144)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [types/query.ts:145](https://github.com/rush-db/javascript-sdk/blob/
 
 > **granularity**: `"day"` \| `"week"` \| `"month"` \| `"quarter"` \| `"year"` \| `"months"`
 
-Defined in: [types/query.ts:147](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L147)
+Defined in: [types/query.ts:146](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L146)
 
 ***
 
@@ -52,4 +52,4 @@ Defined in: [types/query.ts:147](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **size?**: `number`
 
-Defined in: [types/query.ts:149](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L149)
+Defined in: [types/query.ts:148](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L148)

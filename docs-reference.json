@@ -3732,7 +3732,7 @@
 				"summary": [
 					{
 						"kind": "text",
-						"text": "A call that a standalone engine supports, made in a form direct mode cannot\ncarry out: a write inside a transaction that the engine cannot stage (bulk\ndeletes, detach, imports, upserts, inline vectors). The engine stages record\ncreates, updates, deletes and links. Thrown before any request is sent, so\nnothing runs half-way."
+						"text": "A call that a standalone engine supports, made in a form direct mode cannot\ncarry out: a write inside a transaction that the engine cannot stage (bulk\ndeletes, detach, upserts and merge imports, inline vectors). The engine\nstages record creates, updates, deletes, links and imports. Thrown before\nany request is sent, so nothing runs half-way."
 					}
 				]
 			},
@@ -35344,9 +35344,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 319,
+					"line": 318,
 					"character": 17,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L319"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L318"
 				}
 			]
 		},
@@ -35373,9 +35373,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 174,
+					"line": 173,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L174"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L173"
 				}
 			],
 			"type": {
@@ -35495,9 +35495,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 212,
+							"line": 211,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L212"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L211"
 						}
 					],
 					"type": {
@@ -35519,9 +35519,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 211,
+					"line": 210,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L211"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L210"
 				}
 			]
 		},
@@ -35555,9 +35555,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 119,
+							"line": 118,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L119"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L118"
 						}
 					],
 					"type": {
@@ -35576,9 +35576,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 120,
+							"line": 119,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L120"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L119"
 						}
 					],
 					"type": {
@@ -35595,9 +35595,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 121,
+							"line": 120,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L121"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L120"
 						}
 					],
 					"type": {
@@ -35616,9 +35616,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 122,
+							"line": 121,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L122"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L121"
 						}
 					],
 					"type": {
@@ -35637,9 +35637,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 123,
+							"line": 122,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L123"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L122"
 						}
 					],
 					"type": {
@@ -35660,9 +35660,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 124,
+							"line": 123,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L124"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L123"
 						}
 					],
 					"type": {
@@ -35681,9 +35681,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 125,
+							"line": 124,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L125"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L124"
 						}
 					],
 					"type": {
@@ -35709,9 +35709,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 118,
+					"line": 117,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L118"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L117"
 				}
 			]
 		},
@@ -35738,9 +35738,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 131,
+					"line": 130,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L131"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L130"
 				}
 			],
 			"type": {
@@ -35788,9 +35788,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 132,
+											"line": 131,
 											"character": 2,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L132"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L131"
 										}
 									],
 									"type": {
@@ -35878,9 +35878,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 138,
+							"line": 137,
 							"character": 80,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137"
 						}
 					],
 					"type": {
@@ -35899,9 +35899,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 138,
+							"line": 137,
 							"character": 33,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137"
 						}
 					],
 					"type": {
@@ -35918,9 +35918,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 138,
+							"line": 137,
 							"character": 49,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137"
 						}
 					],
 					"type": {
@@ -35939,9 +35939,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 138,
+							"line": 137,
 							"character": 62,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137"
 						}
 					],
 					"type": {
@@ -35964,9 +35964,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 138,
+					"line": 137,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137"
 				}
 			]
 		},
@@ -35993,9 +35993,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 156,
+					"line": 155,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L156"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L155"
 				}
 			],
 			"typeParameters": [
@@ -36042,9 +36042,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 157,
+											"line": 156,
 											"character": 32,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L157"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L156"
 										}
 									],
 									"type": {
@@ -36061,9 +36061,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 157,
+											"line": 156,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L157"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L156"
 										}
 									],
 									"type": {
@@ -36080,9 +36080,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 157,
+											"line": 156,
 											"character": 21,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L157"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L156"
 										}
 									],
 									"type": {
@@ -36101,9 +36101,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 157,
+											"line": 156,
 											"character": 48,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L157"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L156"
 										}
 									],
 									"type": {
@@ -36151,9 +36151,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 159,
+											"line": 158,
 											"character": 32,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L159"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L158"
 										}
 									],
 									"type": {
@@ -36170,9 +36170,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 159,
+											"line": 158,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L159"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L158"
 										}
 									],
 									"type": {
@@ -36189,9 +36189,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 159,
+											"line": 158,
 											"character": 21,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L159"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L158"
 										}
 									],
 									"type": {
@@ -36232,9 +36232,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 160,
+											"line": 159,
 											"character": 32,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L160"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L159"
 										}
 									],
 									"type": {
@@ -36251,9 +36251,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 160,
+											"line": 159,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L160"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L159"
 										}
 									],
 									"type": {
@@ -36270,9 +36270,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 160,
+											"line": 159,
 											"character": 21,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L160"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L159"
 										}
 									],
 									"type": {
@@ -36313,9 +36313,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 161,
+											"line": 160,
 											"character": 32,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L161"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L160"
 										}
 									],
 									"type": {
@@ -36332,9 +36332,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 161,
+											"line": 160,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L161"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L160"
 										}
 									],
 									"type": {
@@ -36351,9 +36351,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 161,
+											"line": 160,
 											"character": 21,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L161"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L160"
 										}
 									],
 									"type": {
@@ -36394,9 +36394,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 165,
+											"line": 164,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L165"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L164"
 										}
 									],
 									"type": {
@@ -36413,9 +36413,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 163,
+											"line": 162,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L163"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L162"
 										}
 									],
 									"type": {
@@ -36432,9 +36432,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 164,
+											"line": 163,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L164"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L163"
 										}
 									],
 									"type": {
@@ -36460,9 +36460,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 166,
+											"line": 165,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L166"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L165"
 										}
 									],
 									"type": {
@@ -36534,9 +36534,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 146,
+							"line": 145,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L146"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L145"
 						}
 					],
 					"type": {
@@ -36553,9 +36553,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 144,
+							"line": 143,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L144"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L143"
 						}
 					],
 					"type": {
@@ -36572,9 +36572,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 145,
+							"line": 144,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L145"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L144"
 						}
 					],
 					"type": {
@@ -36591,9 +36591,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 147,
+							"line": 146,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L147"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L146"
 						}
 					],
 					"type": {
@@ -36637,9 +36637,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 149,
+							"line": 148,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L149"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L148"
 						}
 					],
 					"type": {
@@ -36663,9 +36663,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 143,
+					"line": 142,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L143"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L142"
 				}
 			]
 		},
@@ -36685,9 +36685,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 61,
+							"line": 60,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L61"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L60"
 						}
 					],
 					"type": {
@@ -36726,9 +36726,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 60,
+					"line": 59,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L60"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L59"
 				}
 			],
 			"typeParameters": [
@@ -37095,9 +37095,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 222,
+							"line": 221,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L222"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L221"
 						}
 					],
 					"type": {
@@ -37116,9 +37116,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 225,
+							"line": 224,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L225"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L224"
 						}
 					],
 					"type": {
@@ -37137,9 +37137,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 224,
+							"line": 223,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L224"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L223"
 						}
 					],
 					"type": {
@@ -37160,9 +37160,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 223,
+							"line": 222,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L223"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L222"
 						}
 					],
 					"type": {
@@ -37183,9 +37183,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 226,
+							"line": 225,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L226"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L225"
 						}
 					],
 					"type": {
@@ -37204,9 +37204,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 227,
+							"line": 226,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L227"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L226"
 						}
 					],
 					"type": {
@@ -37231,9 +37231,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 221,
+					"line": 220,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L221"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L220"
 				}
 			]
 		},
@@ -37854,9 +37854,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 39,
+					"line": 38,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L39"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L38"
 				}
 			],
 			"type": {
@@ -37886,9 +37886,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 40,
+											"line": 39,
 											"character": 2,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L40"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L39"
 										}
 									],
 									"type": {
@@ -39535,9 +39535,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 251,
+					"line": 250,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L251"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L250"
 				}
 			],
 			"type": {
@@ -39573,9 +39573,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 255,
+											"line": 254,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L255"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L254"
 										}
 									],
 									"type": {
@@ -39612,9 +39612,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 256,
+											"line": 255,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L256"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L255"
 										}
 									],
 									"type": {
@@ -39653,9 +39653,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 257,
+											"line": 256,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L257"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L256"
 										}
 									],
 									"type": {
@@ -39676,9 +39676,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 257,
+											"line": 256,
 											"character": 18,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L257"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L256"
 										}
 									],
 									"type": {
@@ -39716,9 +39716,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 258,
+											"line": 257,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L258"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L257"
 										}
 									],
 									"type": {
@@ -39766,9 +39766,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 259,
+											"line": 258,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L259"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L258"
 										}
 									],
 									"type": {
@@ -39807,9 +39807,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 260,
+											"line": 259,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L260"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L259"
 										}
 									],
 									"type": {
@@ -39848,9 +39848,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 261,
+											"line": 260,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L261"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L260"
 										}
 									],
 									"type": {
@@ -39900,9 +39900,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 262,
+											"line": 261,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L262"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L261"
 										}
 									],
 									"type": {
@@ -39952,9 +39952,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 263,
+											"line": 262,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L263"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L262"
 										}
 									],
 									"type": {
@@ -40004,9 +40004,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 264,
+											"line": 263,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L264"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L263"
 										}
 									],
 									"type": {
@@ -40056,9 +40056,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 265,
+											"line": 264,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L265"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L264"
 										}
 									],
 									"type": {
@@ -40097,9 +40097,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 266,
+											"line": 265,
 											"character": 6,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L266"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L265"
 										}
 									],
 									"type": {
@@ -40132,9 +40132,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 90,
+					"line": 89,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L90"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L89"
 				}
 			],
 			"typeParameters": [
@@ -40544,9 +40544,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 189,
+					"line": 188,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L189"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L188"
 				}
 			],
 			"typeParameters": [
@@ -40638,9 +40638,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 288,
+					"line": 287,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L288"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L287"
 				}
 			],
 			"typeParameters": [
@@ -40857,9 +40857,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 216,
+							"line": 215,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L216"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L215"
 						}
 					],
 					"type": {
@@ -40882,9 +40882,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 215,
+					"line": 214,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L215"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L214"
 				}
 			]
 		},
@@ -40897,9 +40897,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 86,
+					"line": 85,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L86"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L85"
 				}
 			],
 			"type": {
@@ -40933,9 +40933,9 @@
 											"sources": [
 												{
 													"fileName": "types/query.ts",
-													"line": 87,
+													"line": 86,
 													"character": 4,
-													"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L87"
+													"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L86"
 												}
 											],
 											"type": {
@@ -41798,9 +41798,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 80,
+					"line": 79,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L80"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L79"
 				}
 			],
 			"typeParameters": [
@@ -41927,9 +41927,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 52,
+					"line": 51,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L52"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L51"
 				}
 			],
 			"typeParameters": [
@@ -42407,9 +42407,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 77,
+							"line": 76,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L77"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L76"
 						}
 					],
 					"type": {
@@ -42448,9 +42448,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 76,
+					"line": 75,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L76"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L75"
 				}
 			],
 			"typeParameters": [
@@ -42496,9 +42496,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 69,
+							"line": 68,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L69"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L68"
 						}
 					],
 					"type": {
@@ -42537,9 +42537,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 68,
+					"line": 67,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L68"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L67"
 				}
 			],
 			"typeParameters": [
@@ -43128,9 +43128,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 113,
+					"line": 112,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L113"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L112"
 				}
 			],
 			"typeParameters": [
@@ -43225,9 +43225,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 208,
+							"line": 207,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L208"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L207"
 						}
 					],
 					"type": {
@@ -43258,9 +43258,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 207,
+					"line": 206,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L207"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L206"
 				}
 			],
 			"typeParameters": [
@@ -43294,9 +43294,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 112,
+					"line": 111,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L112"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L111"
 				}
 			],
 			"type": {
@@ -43329,9 +43329,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 65,
+							"line": 64,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L65"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L64"
 						}
 					],
 					"type": {
@@ -43370,9 +43370,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 64,
+					"line": 63,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L64"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L63"
 				}
 			],
 			"typeParameters": [
@@ -43420,9 +43420,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 199,
+							"line": 198,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L199"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L198"
 						}
 					],
 					"type": {
@@ -43441,9 +43441,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 200,
+							"line": 199,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L200"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L199"
 						}
 					],
 					"type": {
@@ -43464,9 +43464,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 198,
+					"line": 197,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L198"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L197"
 				}
 			]
 		},
@@ -44442,9 +44442,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 43,
+					"line": 42,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L43"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L42"
 				}
 			],
 			"typeParameters": [
@@ -44551,9 +44551,9 @@
 											"sources": [
 												{
 													"fileName": "types/query.ts",
-													"line": 47,
+													"line": 46,
 													"character": 8,
-													"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L47"
+													"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L46"
 												}
 											],
 											"type": {
@@ -44572,9 +44572,9 @@
 											"sources": [
 												{
 													"fileName": "types/query.ts",
-													"line": 48,
+													"line": 47,
 													"character": 8,
-													"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L48"
+													"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L47"
 												}
 											],
 											"type": {
@@ -45077,9 +45077,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 304,
+					"line": 303,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L304"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L303"
 				}
 			],
 			"typeParameters": [
@@ -46084,9 +46084,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 306,
+					"line": 305,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L306"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L305"
 				}
 			],
 			"typeParameters": [
@@ -46149,9 +46149,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 313,
+											"line": 312,
 											"character": 4,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L313"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L312"
 										}
 									],
 									"type": {
@@ -46172,9 +46172,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 314,
+											"line": 313,
 											"character": 4,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L314"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L313"
 										}
 									],
 									"type": {
@@ -46211,9 +46211,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 312,
+											"line": 311,
 											"character": 4,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L312"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L311"
 										}
 									],
 									"type": {
@@ -46254,9 +46254,9 @@
 															"sources": [
 																{
 																	"fileName": "types/query.ts",
-																	"line": 312,
+																	"line": 311,
 																	"character": 37,
-																	"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L312"
+																	"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L311"
 																}
 															],
 															"type": {
@@ -46284,9 +46284,9 @@
 															"sources": [
 																{
 																	"fileName": "types/query.ts",
-																	"line": 312,
+																	"line": 311,
 																	"character": 25,
-																	"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L312"
+																	"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L311"
 																}
 															],
 															"type": {
@@ -47569,9 +47569,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 296,
+					"line": 295,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L296"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L295"
 				}
 			],
 			"typeParameters": [
@@ -47677,9 +47677,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 204,
+							"line": 203,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L204"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L203"
 						}
 					],
 					"type": {
@@ -47702,9 +47702,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 203,
+					"line": 202,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L203"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L202"
 				}
 			]
 		},
@@ -47726,9 +47726,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 293,
+							"line": 292,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L293"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L292"
 						}
 					],
 					"type": {
@@ -47750,9 +47750,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 292,
+					"line": 291,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L292"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L291"
 				}
 			]
 		},
@@ -47777,9 +47777,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 269,
+					"line": 268,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L269"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L268"
 				}
 			],
 			"type": {
@@ -48971,9 +48971,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 232,
+							"line": 231,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L232"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L231"
 						}
 					],
 					"type": {
@@ -49000,9 +49000,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 248,
+							"line": 247,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L248"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L247"
 						}
 					],
 					"type": {
@@ -49019,9 +49019,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 233,
+							"line": 232,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L233"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L232"
 						}
 					],
 					"type": {
@@ -49096,9 +49096,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 230,
+					"line": 229,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L230"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L229"
 				}
 			]
 		},
@@ -49160,16 +49160,24 @@
 					},
 					{
 						"kind": "text",
-						"text": " requests\nunbounded traversal, which is only allowed on self-hosted deployments and\nprojects with a custom Neo4j instance."
+						"text": " means up to 10\nhops (the engine default); RushDB Cloud also caps "
+					},
+					{
+						"kind": "code",
+						"text": "`max`"
+					},
+					{
+						"kind": "text",
+						"text": " per deployment."
 					}
 				]
 			},
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 22,
+					"line": 21,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L22"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L21"
 				}
 			],
 			"type": {
@@ -49199,9 +49207,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 22,
+											"line": 21,
 											"character": 53,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L22"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L21"
 										}
 									],
 									"type": {
@@ -49220,9 +49228,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 22,
+											"line": 21,
 											"character": 39,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L22"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L21"
 										}
 									],
 									"type": {
@@ -49280,9 +49288,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 28,
+					"line": 27,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L28"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L27"
 				}
 			],
 			"type": {
@@ -49314,9 +49322,9 @@
 									"sources": [
 										{
 											"fileName": "types/query.ts",
-											"line": 29,
+											"line": 28,
 											"character": 2,
-											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L29"
+											"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L28"
 										}
 									],
 									"type": {
@@ -50765,9 +50773,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 107,
+					"line": 106,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L107"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L106"
 				}
 			],
 			"typeParameters": [
@@ -50841,9 +50849,9 @@
 													"sources": [
 														{
 															"fileName": "types/query.ts",
-															"line": 108,
+															"line": 107,
 															"character": 34,
-															"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L108"
+															"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L107"
 														}
 													],
 													"type": {
@@ -50914,9 +50922,9 @@
 															"sources": [
 																{
 																	"fileName": "types/query.ts",
-																	"line": 109,
+																	"line": 108,
 																	"character": 50,
-																	"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L109"
+																	"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L108"
 																}
 															],
 															"type": {
@@ -50993,9 +51001,9 @@
 													"sources": [
 														{
 															"fileName": "types/query.ts",
-															"line": 110,
+															"line": 109,
 															"character": 48,
-															"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L110"
+															"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L109"
 														}
 													],
 													"type": {
@@ -51043,9 +51051,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 195,
+							"line": 194,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L195"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L194"
 						}
 					],
 					"type": {
@@ -51076,9 +51084,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 194,
+					"line": 193,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L194"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L193"
 				}
 			],
 			"typeParameters": [
@@ -51119,9 +51127,9 @@
 					"sources": [
 						{
 							"fileName": "types/query.ts",
-							"line": 73,
+							"line": 72,
 							"character": 2,
-							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L73"
+							"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L72"
 						}
 					],
 					"type": {
@@ -51160,9 +51168,9 @@
 			"sources": [
 				{
 					"fileName": "types/query.ts",
-					"line": 72,
+					"line": 71,
 					"character": 12,
-					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L72"
+					"url": "https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L71"
 				}
 			],
 			"typeParameters": [

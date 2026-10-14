@@ -8,7 +8,7 @@
 
 > **ExtractAggregateFields**\<`A`\> = `{ [K in keyof A]: InferAggregateType<A[K]> }`
 
-Defined in: [types/query.ts:189](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L189)
+Defined in: [types/query.ts:188](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L188)
 
 ## Type Parameters
 

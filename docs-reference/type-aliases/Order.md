@@ -8,7 +8,7 @@
 
 > **Order**\<`S`\> = [`OrderDirection`](OrderDirection.md) \| `Partial`\<`Record`\<keyof `S`, [`OrderDirection`](OrderDirection.md)\>\>
 
-Defined in: [types/query.ts:113](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L113)
+Defined in: [types/query.ts:112](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L112)
 
 ## Type Parameters
 

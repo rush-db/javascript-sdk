@@ -8,7 +8,7 @@
 
 > **XorExpression**\<`T`\> = `object`
 
-Defined in: [types/query.ts:72](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L72)
+Defined in: [types/query.ts:71](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L71)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: [types/query.ts:72](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **$xor**: [`MaybeArray`](MaybeArray.md)\<[`LogicalExpressionValue`](LogicalExpressionValue.md)\<`T`\>\>
 
-Defined in: [types/query.ts:73](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L73)
+Defined in: [types/query.ts:72](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L72)

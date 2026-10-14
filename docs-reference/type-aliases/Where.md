@@ -8,7 +8,7 @@
 
 > **Where**\<`S`\> = [`Expression`](Expression.md)\<`S`\> & [`Related`](Related.md) & `object` & [`LogicalGrouping`](LogicalGrouping.md)\<[`Expression`](Expression.md)\<`S`\> & [`Related`](Related.md) & `object`\> \| [`LogicalGrouping`](LogicalGrouping.md)\<[`Expression`](Expression.md)\<`S`\> & [`Related`](Related.md) & `object`\>
 
-Defined in: [types/query.ts:107](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L107)
+Defined in: [types/query.ts:106](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L106)
 
 ## Type Parameters
 

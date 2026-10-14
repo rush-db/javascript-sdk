@@ -8,7 +8,7 @@
 
 > **OrderClause**\<`S`\> = `object`
 
-Defined in: [types/query.ts:207](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L207)
+Defined in: [types/query.ts:206](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L206)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: [types/query.ts:207](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **orderBy?**: [`Order`](Order.md)\<`S`\>
 
-Defined in: [types/query.ts:208](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L208)
+Defined in: [types/query.ts:207](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L207)

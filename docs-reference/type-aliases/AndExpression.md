@@ -8,7 +8,7 @@
 
 > **AndExpression**\<`T`\> = `object`
 
-Defined in: [types/query.ts:60](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L60)
+Defined in: [types/query.ts:59](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L59)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: [types/query.ts:60](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **$and**: [`MaybeArray`](MaybeArray.md)\<[`LogicalExpressionValue`](LogicalExpressionValue.md)\<`T`\>\>
 
-Defined in: [types/query.ts:61](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L61)
+Defined in: [types/query.ts:60](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L60)

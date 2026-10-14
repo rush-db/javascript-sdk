@@ -15,9 +15,8 @@ import type { AnyObject, MaybeArray, RequireAtLeastOne } from './utils.js'
 /**
  * Variable-length traversal depth for `$relation.hops` and `$cycle.hops`.
  * A number matches exactly that many hops; `{ min?, max? }` matches a range
- * (`min` defaults to 1, or 2 for `$cycle`). Omitting `max` requests
- * unbounded traversal, which is only allowed on self-hosted deployments and
- * projects with a custom Neo4j instance.
+ * (`min` defaults to 1, or 2 for `$cycle`). Omitting `max` means up to 10
+ * hops (the engine default); RushDB Cloud also caps `max` per deployment.
  */
 export type TraversalHops = number | { min?: number; max?: number }
 

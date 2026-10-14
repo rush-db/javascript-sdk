@@ -8,7 +8,7 @@
 
 > **NotExpression**\<`T`\> = `object`
 
-Defined in: [types/query.ts:68](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L68)
+Defined in: [types/query.ts:67](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L67)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: [types/query.ts:68](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **$not**: [`MaybeArray`](MaybeArray.md)\<[`LogicalExpressionValue`](LogicalExpressionValue.md)\<`T`\>\>
 
-Defined in: [types/query.ts:69](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L69)
+Defined in: [types/query.ts:68](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L68)

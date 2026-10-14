@@ -8,7 +8,7 @@
 
 > **TraversalRelationOptions** = [`RelationOptions`](RelationOptions.md) & `object`
 
-Defined in: [types/query.ts:28](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L28)
+Defined in: [types/query.ts:27](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L27)
 
 Relationship constraints for a traversal block in `where`.
 Extends [RelationOptions](RelationOptions.md) with variable-length traversal support.

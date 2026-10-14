@@ -8,7 +8,7 @@
 
 > **NorExpression**\<`T`\> = `object`
 
-Defined in: [types/query.ts:76](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L76)
+Defined in: [types/query.ts:75](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L75)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: [types/query.ts:76](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **$nor**: [`MaybeArray`](MaybeArray.md)\<[`LogicalExpressionValue`](LogicalExpressionValue.md)\<`T`\>\>
 
-Defined in: [types/query.ts:77](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L77)
+Defined in: [types/query.ts:76](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L76)

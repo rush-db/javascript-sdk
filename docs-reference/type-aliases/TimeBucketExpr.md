@@ -8,7 +8,7 @@
 
 > **TimeBucketExpr** = `object`
 
-Defined in: [types/query.ts:230](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L230)
+Defined in: [types/query.ts:229](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L229)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [types/query.ts:230](https://github.com/rush-db/javascript-sdk/blob/
 
 > **field**: `string`
 
-Defined in: [types/query.ts:232](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L232)
+Defined in: [types/query.ts:231](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L231)
 
 Field reference, e.g. "$record.createdAt"
 
@@ -26,7 +26,7 @@ Field reference, e.g. "$record.createdAt"
 
 > `optional` **size?**: `number`
 
-Defined in: [types/query.ts:248](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L248)
+Defined in: [types/query.ts:247](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L247)
 
 Required when unit is months/hours/minutes/seconds/years
 
@@ -36,4 +36,4 @@ Required when unit is months/hours/minutes/seconds/years
 
 > **unit**: `"day"` \| `"week"` \| `"month"` \| `"quarter"` \| `"year"` \| `"months"` \| `"hour"` \| `"minute"` \| `"second"` \| `"hours"` \| `"minutes"` \| `"seconds"` \| `"years"`
 
-Defined in: [types/query.ts:233](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L233)
+Defined in: [types/query.ts:232](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L232)

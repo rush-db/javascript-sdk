@@ -8,7 +8,7 @@
 
 > **PaginationClause** = `object`
 
-Defined in: [types/query.ts:198](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L198)
+Defined in: [types/query.ts:197](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L197)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [types/query.ts:198](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **limit?**: `number`
 
-Defined in: [types/query.ts:199](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L199)
+Defined in: [types/query.ts:198](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L198)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [types/query.ts:199](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **skip?**: `number`
 
-Defined in: [types/query.ts:200](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L200)
+Defined in: [types/query.ts:199](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L199)

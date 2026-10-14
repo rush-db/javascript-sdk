@@ -8,4 +8,4 @@
 
 > **OrderDirection** = `"asc"` \| `"desc"`
 
-Defined in: [types/query.ts:112](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L112)
+Defined in: [types/query.ts:111](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L111)

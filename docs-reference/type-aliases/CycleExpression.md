@@ -8,7 +8,7 @@
 
 > **CycleExpression** = [`RelationOptions`](RelationOptions.md) & `object`
 
-Defined in: [types/query.ts:39](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L39)
+Defined in: [types/query.ts:38](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L38)
 
 Record-level cycle predicate: matches records sitting on a closed path
 (cycle/ring) back to themselves over the described edges. The value is the

@@ -8,6 +8,6 @@
 
 > **SelectExprMap** = `Record`\<`string`, [`Expr`](Expr.md)\>
 
-Defined in: [types/query.ts:269](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L269)
+Defined in: [types/query.ts:268](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L268)
 
 Canonical output-shaping clause — replaces `aggregate`

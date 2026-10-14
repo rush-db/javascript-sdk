@@ -8,7 +8,7 @@
 
 > **LogicalExpression**\<`T`\> = [`RequireAtLeastOne`](RequireAtLeastOne.md)\<[`AndExpression`](AndExpression.md)\<`T`\> & [`OrExpression`](OrExpression.md)\<`T`\> & [`NotExpression`](NotExpression.md)\<`T`\> & [`XorExpression`](XorExpression.md)\<`T`\> & [`NorExpression`](NorExpression.md)\<`T`\>\>
 
-Defined in: [types/query.ts:80](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L80)
+Defined in: [types/query.ts:79](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L79)
 
 ## Type Parameters
 

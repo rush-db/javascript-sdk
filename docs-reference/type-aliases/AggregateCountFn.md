@@ -8,7 +8,7 @@
 
 > **AggregateCountFn** = `object`
 
-Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138)
+Defined in: [types/query.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137)
 
 ## Deprecated
 
@@ -20,7 +20,7 @@ See AggregateCollectFn.
 
 > `optional` **alias?**: `string`
 
-Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138)
+Defined in: [types/query.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **field?**: `string`
 
-Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138)
+Defined in: [types/query.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/
 
 > **fn**: `"count"`
 
-Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138)
+Defined in: [types/query.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137)
 
 ***
 
@@ -44,4 +44,4 @@ Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **unique?**: `boolean`
 
-Defined in: [types/query.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L138)
+Defined in: [types/query.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L137)
