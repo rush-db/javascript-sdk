@@ -14,6 +14,20 @@ esbuild
   })
   .catch(() => process.exit(1))
 
+// ES Module build for Node.js (the Node HTTP client), for `import` under Node
+esbuild
+  .build({
+    entryPoints: ['src/index.node.ts'],
+    outfile: 'dist/index.node.mjs',
+    bundle: true,
+    platform: 'node',
+    format: 'esm',
+    target: ['node18'],
+    tsconfig: 'tsconfig.json',
+    minify: true
+  })
+  .catch(() => process.exit(1))
+
 // ES Module build for modern environments
 esbuild
   .build({

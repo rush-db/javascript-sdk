@@ -15,4 +15,4 @@ coverage
 .rollup.cache
 cjs
 esm
-packages/javascript-sdk/types
+/types

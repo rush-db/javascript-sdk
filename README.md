@@ -172,14 +172,67 @@ const relationships = await db.relationships.find({
 
 ---
 
+## RushDB Cloud or a self-hosted engine
+
+The SDK works with RushDB in one of two ways:
+
+| | RushDB Cloud | Self-hosted RushDB engine (direct mode) |
+| --- | --- | --- |
+| What you run | nothing: the managed service at [app.rushdb.com](https://app.rushdb.com) | one `rushdbd` binary, on your own infrastructure |
+| Connect with | an API key | the engine URL and the engine token |
+
+The engine is what you can self-host. RushDB Cloud runs that engine for you and adds the dashboard,
+managed embeddings and the AI features (natural-language search, relationship-pattern suggestions),
+which exist only in RushDB Cloud.
+
+```typescript
+// RushDB Cloud
+const db = new RushDB('RUSHDB_API_KEY')
+
+// A self-hosted engine
+const db = new RushDB('ENGINE_TOKEN', {
+  direct: true,
+  engineUrl: 'http://127.0.0.1:3000',
+  scope: 'tenant-1' // only for an engine started with --multitenant
+})
+```
+
+What each offers:
+
+| Feature | Cloud | Self-hosted engine |
+| --- | :---: | :---: |
+| Records: create, read, update, set, upsert, delete, `find` with `where`, `orderBy`, `select`, `groupBy` | ✓ | ✓ |
+| Relationships: `attach`/`detach`, `relationships.createMany`/`deleteMany`/`find` | ✓ | ✓ |
+| Labels, properties, property values | ✓ | ✓ |
+| Import JSON and CSV, export CSV | ✓ | ✓ |
+| Text indexes and keyword search (`records.textSearch`) | ✓ | ✓ |
+| External vector indexes; vector and hybrid search with a `queryVector` you supply | ✓ | ✓ |
+| Raw openCypher (`query.raw`; the engine needs `--languages cypher`) | ✓ | ✓ |
+| Schema (`ai.getSchema`, `ai.getSchemaMarkdown`) | ✓ | ✓ |
+| Transactions | ✓ | record creates, updates, sets, deletes by id, attaches and imports are staged; other writes refuse a transaction |
+| Managed embeddings: managed indexes, `records.vectorSearch` by text `query` | ✓ | — |
+| Natural-language search (`ai.search`) | ✓ | — |
+| Relationship-pattern suggestions (`relationships.patterns.*`) | ✓ | — |
+| Project settings (`settings.get`), dashboard, projects, team access, MCP over HTTP with OAuth | ✓ | — |
+
+In direct mode a Cloud-only method throws `CloudOnlyError` (with `method` and `reason`) before
+sending anything, and no request ever goes to RushDB Cloud. A write the engine cannot stage into a
+transaction throws `DirectModeError`, also before sending anything. The list is available in code:
+
+```typescript
+import { CLOUD_ONLY_METHODS, CloudOnlyError, isCloudOnlyMethod } from '@rushdb/javascript-sdk'
+```
+
+---
+
 ## SDK configuration
 
 ```typescript
 import RushDB from '@rushdb/javascript-sdk'
 
 const db = new RushDB('RUSHDB_API_KEY', {
-  // Override for self-hosted or staging
-  url: 'http://your-rushdb-server.com/api/v1',
+  // A different RushDB Cloud API endpoint (default: https://api.rushdb.com/api/v1)
+  url: 'https://api.rushdb.com/api/v1',
   timeout: 30000
 })
 ```
@@ -191,6 +244,7 @@ Key options:
 - `timeout` — request timeout in ms (default: 10000)
 - `httpClient` — custom HTTP client for advanced use
 - `options.allowForceDelete` — allow deleting all records without criteria (default: false)
+- `direct`, `engineUrl`, `scope` — direct mode against a standalone engine (see above)
 
 Full config reference: [docs.rushdb.com/typescript-sdk/introduction#sdk-configuration-options](https://docs.rushdb.com/typescript-sdk/introduction#sdk-configuration-options)
 

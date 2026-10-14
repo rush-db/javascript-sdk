@@ -4,6 +4,7 @@ import { initSDK, RushDB } from './sdk/index.js'
 import {
   type ApiResponse,
   type CreateEmbeddingIndexParams,
+  type CreateTextIndexParams,
   type DeleteRelationshipPatternOptions,
   type EmbeddingIndex,
   type EmbeddingIndexStats,
@@ -20,7 +21,11 @@ import {
   type UpsertEmbeddingVectorItem,
   type UpsertEmbeddingVectorsParams,
   type UpsertEmbeddingVectorsResult,
+  type TextIndex,
+  type TextSearchParams,
+  type TextSearchReport,
   type VectorSearchParams,
+  type VectorSearchReport,
   type VectorSearchResult,
   RestAPI
 } from './api/index.js'
@@ -35,6 +40,7 @@ export {
   type ApiResponse,
   type EmbeddingIndex,
   type CreateEmbeddingIndexParams,
+  type CreateTextIndexParams,
   type DeleteRelationshipPatternOptions,
   type EmbeddingIndexStats,
   type RelationshipPattern,
@@ -50,10 +56,20 @@ export {
   type UpsertEmbeddingVectorItem,
   type UpsertEmbeddingVectorsParams,
   type UpsertEmbeddingVectorsResult,
+  type TextIndex,
+  type TextSearchParams,
+  type TextSearchReport,
   type VectorSearchParams,
+  type VectorSearchReport,
   type VectorSearchResult
 }
 export * from './types/index.js'
 export * from './sdk/index.js'
+export {
+  CLOUD_ONLY_FORMS,
+  CLOUD_ONLY_METHODS,
+  isCloudOnlyMethod,
+  type CloudOnlyMethod
+} from './direct/capabilities.js'
 
 export default RushDB

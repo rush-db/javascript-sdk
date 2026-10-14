@@ -14,11 +14,11 @@ export type State = {
   debug: boolean
   timeout: number
   token?: string
+  direct?: boolean
+  engineUrl?: string
   initialized: boolean
   serverSettings?: {
     selfHosted: boolean
-    customDB?: boolean
-    managedDB?: boolean
   }
 } & Partial<ApiConnectionConfig>
 
@@ -28,6 +28,20 @@ export type SDKConfig = {
   httpClient?: HttpClientInterface
   timeout?: number
   logger?: Logger
+  /**
+   * Direct mode: talk to a standalone RushDB engine (`rushdbd`) instead of
+   * RushDB Cloud. Requires `engineUrl`; the token is the engine token. The
+   * methods listed in `CLOUD_ONLY_METHODS` throw `CloudOnlyError`, and no
+   * request is ever sent to RushDB Cloud.
+   */
+  direct?: boolean
+  /** Standalone engine base URL when `direct` is enabled (e.g. `http://127.0.0.1:3000`). */
+  engineUrl?: string
+  /**
+   * Tenant on a multitenant engine (`rushdbd --multitenant`), sent as
+   * `X-RushDB-Tenant`. Omit for a single-tenant engine.
+   */
+  scope?: string
   options?: {
     /**
      * @description
