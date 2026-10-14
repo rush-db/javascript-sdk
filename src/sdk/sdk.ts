@@ -35,7 +35,9 @@ export class RushDB extends RestAPI {
       initialized: true,
       debug: false,
       timeout: validateInteger('timeout', props?.timeout, DEFAULT_TIMEOUT),
-      token
+      token,
+      direct: props?.direct === true,
+      engineUrl: props?.engineUrl
     }
   }
 

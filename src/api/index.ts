@@ -2,6 +2,7 @@ export { RestAPI } from './api.js'
 export {
   ApiResponse,
   CreateEmbeddingIndexParams,
+  CreateTextIndexParams,
   DeleteRelationshipPatternOptions,
   EmbeddingIndex,
   EmbeddingIndexStats,
@@ -17,9 +18,13 @@ export {
   SemanticSearchResult,
   SmartSearchOptions,
   SmartSearchQueryResponse,
+  TextIndex,
+  TextSearchParams,
+  TextSearchReport,
   UpsertEmbeddingVectorItem,
   UpsertEmbeddingVectorsParams,
   UpsertEmbeddingVectorsResult,
   VectorSearchParams,
+  VectorSearchReport,
   VectorSearchResult
 } from './types.js'

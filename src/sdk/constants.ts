@@ -6,5 +6,9 @@ export const ALLOWED_CONFIG_PROPERTIES = [
   'protocol',
   'url',
   'logger',
-  'options'
+  'options',
+  // Direct mode: a standalone engine, no RushDB Cloud.
+  'direct',
+  'engineUrl',
+  'scope'
 ]

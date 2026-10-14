@@ -10,6 +10,7 @@ import type {
   Schema,
   SearchQuery
 } from '../types/index.js'
+import type { TextSearchReport, VectorSearchReport } from '../api/types.js'
 import type { Transaction } from './transaction.js'
 
 import { idToDate, idToTimestamp } from './utils.js'
@@ -129,6 +130,12 @@ export type DBRecordCreationOptions = {
   relationshipType?: string
   mergeStrategy?: 'append' | 'rewrite'
   mergeBy?: string[]
+  /**
+   * Shorthand for `mergeBy: []` + `mergeStrategy: 'append'`: match existing
+   * records on all incoming keys and merge (upsert) instead of creating
+   * duplicates on re-import.
+   */
+  merge?: boolean
 }
 
 export class DBRecordInstance<S extends Schema = Schema, Q extends SearchQuery<S> = SearchQuery<S>> {
@@ -339,6 +346,12 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
   searchQuery?: SearchQuery<S>
   /** Warnings returned by AI-assisted query generation, when applicable. */
   warnings?: string[]
+  /** For a vector search: how the engine ran it. */
+  vectorSearch?: VectorSearchReport
+  /** For a keyword or hybrid search: how the engine ran its keyword leg. */
+  textSearch?: TextSearchReport
+  /** For a hybrid search: how its legs were combined. */
+  fusion?: 'rrf' | 'dbsf'
 
   /**
    * Creates a new DBRecordsArrayInstance.

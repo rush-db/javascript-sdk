@@ -172,6 +172,55 @@ const relationships = await db.relationships.find({
 
 ---
 
+## RushDB Cloud or a standalone engine
+
+The SDK works with RushDB in one of two ways:
+
+| | RushDB Cloud (or a self-hosted RushDB platform) | A standalone engine (direct mode) |
+| --- | --- | --- |
+| What you run | nothing ([app.rushdb.com](https://app.rushdb.com)), or the platform's Docker image | one `rushdbd` binary |
+| Connect with | an API key | the engine URL and the engine token |
+
+```typescript
+// RushDB Cloud
+const db = new RushDB('RUSHDB_API_KEY')
+
+// A standalone engine
+const db = new RushDB('ENGINE_TOKEN', {
+  direct: true,
+  engineUrl: 'http://127.0.0.1:3000',
+  scope: 'tenant-1' // only for an engine started with --multitenant
+})
+```
+
+What each offers:
+
+| Feature | Cloud | Standalone |
+| --- | :---: | :---: |
+| Records: create, read, update, set, upsert, delete, `find` with `where`, `orderBy`, `select`, `groupBy` | ✓ | ✓ |
+| Relationships: `attach`/`detach`, `relationships.createMany`/`deleteMany`/`find` | ✓ | ✓ |
+| Labels, properties, property values | ✓ | ✓ |
+| Import JSON and CSV, export CSV | ✓ | ✓ |
+| Text indexes and keyword search (`records.textSearch`) | ✓ | ✓ |
+| External vector indexes; vector and hybrid search with a `queryVector` you supply | ✓ | ✓ |
+| Raw openCypher (`query.raw`; the engine needs `--languages cypher`) | ✓ | ✓ |
+| Schema (`ai.getSchema`, `ai.getSchemaMarkdown`) | ✓ | ✓ |
+| Transactions | ✓ | record creates, updates, sets, deletes by id, attaches and imports are staged; other writes refuse a transaction |
+| Managed embeddings: managed indexes, `records.vectorSearch` by text `query` | ✓ | — |
+| Natural-language search (`ai.search`) | ✓ | — |
+| Relationship-pattern suggestions (`relationships.patterns.*`) | ✓ | — |
+| Project settings (`settings.get`), dashboard, projects, team access, MCP over HTTP with OAuth | ✓ | — |
+
+In direct mode a Cloud-only method throws `CloudOnlyError` (with `method` and `reason`) before
+sending anything, and no request ever goes to RushDB Cloud. A write the engine cannot stage into a
+transaction throws `DirectModeError`, also before sending anything. The list is available in code:
+
+```typescript
+import { CLOUD_ONLY_METHODS, CloudOnlyError, isCloudOnlyMethod } from '@rushdb/javascript-sdk'
+```
+
+---
+
 ## SDK configuration
 
 ```typescript
@@ -191,6 +240,7 @@ Key options:
 - `timeout` — request timeout in ms (default: 10000)
 - `httpClient` — custom HTTP client for advanced use
 - `options.allowForceDelete` — allow deleting all records without criteria (default: false)
+- `direct`, `engineUrl`, `scope` — direct mode against a standalone engine (see above)
 
 Full config reference: [docs.rushdb.com/typescript-sdk/introduction#sdk-configuration-options](https://docs.rushdb.com/typescript-sdk/introduction#sdk-configuration-options)
 

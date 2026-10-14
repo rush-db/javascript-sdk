@@ -55,20 +55,46 @@
     "clean": "rm -rf ./dist ./node_modules/.cache ./coverage ./esm ./cjs ./types",
     "flush": "rm -rf node_modules",
     "lint:circularDeps": "madge --circular ./src/*",
-    "lint:circularDepsWithImage": "madge --image graph.svg --circular ./src/*"
+    "lint:circularDepsWithImage": "madge --image graph.svg --circular ./src/*",
+    "test": "vitest run",
+    "prepack": "pnpm build",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.10",
+    "@types/node": "^20.17.23",
     "dotenv": "^16.0.3",
+    "esbuild": "0.21.5",
     "typedoc": "^0.28.19",
-    "typedoc-plugin-markdown": "^4.12.0"
+    "typedoc-plugin-markdown": "^4.12.0",
+    "typescript": "5.7.2",
+    "vitest": "^1.6.1"
   },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
-  "bugs": "https://github.com/rush-db/rushdb/issues",
+  "bugs": "https://github.com/rush-db/javascript-sdk/issues",
   "repository": {
-    "type": "https",
-    "url": "https://github.com/rush-db/rushdb"
+    "type": "git",
+    "url": "git+https://github.com/rush-db/javascript-sdk.git"
+  },
+  "homepage": "https://github.com/rush-db/javascript-sdk#readme",
+  "packageManager": "pnpm@10.1.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.node.d.ts",
+      "node": {
+        "import": "./dist/index.node.mjs",
+        "require": "./dist/index.cjs"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   }
 }
