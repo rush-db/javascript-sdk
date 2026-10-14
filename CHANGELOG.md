@@ -1,5 +1,82 @@
 # @rushdb/javascript-sdk
 
+## 3.0.0
+
+### Major Changes
+
+- 98c2647: Direct mode for 3.0 rust native engine (rc)
+
+### Minor Changes
+
+- 98c2647: Add direct mode for the standalone RushDB engine, including record replacement, deletion by ID, and single-record lookups.
+- 98c2647: Direct mode (a standalone engine) and RushDB Cloud are one SDK with one code path.
+
+  - In direct mode every method is answered from the engine: records (including `find` with
+    `orderBy`, `select` and `groupBy`, `upsert`, `set`, `findOne`/`findUniq`, `findById` of several
+    ids), relationships, labels, properties, JSON and CSV import, CSV export, text indexes and keyword
+    search, external vector indexes, vector and hybrid search with a `queryVector`, raw openCypher, the
+    schema and transactions. Nothing is ever sent to RushDB Cloud: before, a method without direct
+    support sent the engine token to `api.rushdb.com`.
+  - The Cloud-only features (managed embeddings, `ai.search`, `relationships.patterns.*`,
+    `settings.get`) throw `CloudOnlyError` before sending anything. `CLOUD_ONLY_METHODS`,
+    `CLOUD_ONLY_FORMS` and `isCloudOnlyMethod` list them.
+  - In a transaction, direct mode stages record creates, `update`, `set`, `deleteById`, `attach`,
+    `importJson` and `importCsv` (records are named by id; the engine resolves them inside the
+    transaction). Writes the engine cannot stage (bulk deletes, `detach`, upserts and merge imports,
+    inline vectors) throw `DirectModeError` instead of running outside the transaction; the engine
+    refuses a merge import or inline vectors in a staged import.
+  - `records.detach` without `typeOrTypes` removes relationships of every type, and without
+    `direction` removes them both ways, as RushDB 2.x on Neo4j did. `records.attach` and
+    `relationships.createMany` without a type create `__RUSHDB__RELATION__DEFAULT__` relationships,
+    as before, instead of `RELATED_TO`.
+  - `direct: true` without `engineUrl` throws instead of falling back to RushDB Cloud. New `scope`
+    option for a multitenant engine; the unused `engineToken` option is gone.
+  - Fixed: direct mode never sent the request body, so every call failed against a real engine.
+  - Fixed in both modes: `records.findById([...ids])` posted to the create endpoint; it now searches
+    by id.
+  - The package declares `exports`: under Node, `import` gets an ES module build (`dist/index.node.mjs`)
+    whose default export is the `RushDB` class; before, an ESM `import RushDB from` received the
+    CommonJS module object.
+
+- 98c2647: Hybrid search fusion controls. `fusion: 'dbsf'` fuses each leg's scores normalized by its own
+  distribution (mean ± 3σ, as Qdrant defines DBSF) instead of ranks (`rrf`, the default, with
+  `rrfK`). Each leg takes a `weight` (its share of the fused score) and a `prefetchLimit` (hits it
+  ranks before fusion, 1–10,000). On `vectorSearch`, the top-level `weight`/`prefetchLimit` are the
+  vector leg's and `text.weight`/`text.prefetchLimit` the text leg's; the result reports `fusion`.
+- 98c2647: Embedding indexes have names. A name is unique within a project, defaults to
+  `<label>.<property>.<model>.<dimensions>.<similarity>`, and is returned when indexes are listed.
+  Search (`index`), inline vectors (`index`), stats, vector upsert and delete accept an index's name
+  as well as its id. The dashboard asks for the name in a second step when creating an index,
+  prefilled with the default.
+- 98c2647: Keyword (BM25) search. Text indexes cover one property of a label, or every string of it (`*`),
+  and are declared, listed and dropped through `/text-indexes` (`db.textIndexes`, MCP
+  `createTextIndex` / `listTextIndexes` / `deleteTextIndex`), with a default name of
+  `<label>.<property>.text`. `POST /search/text` (`db.records.textSearch`, MCP `textSearch`) ranks
+  matching records among those `labels` and `where` select, and `total` counts every match. A
+  vector search with a `text` leg becomes a hybrid search the engine fuses. The dashboard lists and
+  creates text indexes on the Search Indexes page and adds a Keyword search mode to Records.
+
+### Patch Changes
+
+- 98c2647: The RushDB engine is the only data store; what remained of the Neo4j-backed platform is removed.
+
+  - Projects no longer carry a `customDb` (bring-your-own Neo4j) connection: the `projects.custom_db`
+    column is dropped (migration `0010_drop_project_custom_db`), `GET /sdk/settings` no longer
+    returns `customDb`, `DELETE /projects/:id` no longer takes `shouldStoreCustomDbData`, and the
+    dashboard drops the "External Instance" badge. Every project is metered the same way.
+  - `POST /query/raw` returns `{ records }` (the always-empty `summary` is gone). Raw queries are
+    openCypher run by the engine, which must have the `cypher` language enabled.
+  - A write sent with `x-transaction-id` defers its side effects (recount, schema refresh,
+    relationship automation) to `POST /tx/:txId/commit`, and a failed request inside a transaction
+    rolls the transaction back. Both checks keyed off a Neo4j transaction object that was no longer
+    attached, so neither ran.
+  - `RUSHDB_TRANSACTION_TIMEOUT_MS` no longer falls back to `NEO4J_TRANSACTION_TIMEOUT_MS`.
+  - The CLI `db-restore` command now recounts the project after the restore; it never ran before.
+  - Deploy templates (Compose, Helm, Fly) run the engine with `--multitenant --languages cypher`,
+    which Core requires: it scopes every request to its project. Heroku's `app.json` sets
+    `RUST_ENGINE_URL` / `RUST_ENGINE_TOKEN`, the variables Core reads.
+  - SDK: `serverSettings` drops `customDB` / `managedDB`; doc comments no longer mention Neo4j.
+
 ## 2.11.0
 
 ### Minor Changes
@@ -62,15 +139,19 @@
 
   ```ts
   db.records.find({
-    labels: ['EMPLOYEE'],
+    labels: ["EMPLOYEE"],
     where: {
       EMPLOYEE: {
-        $alias: '$manager',
-        $relation: { type: 'REPORTS_TO', direction: 'out', hops: { min: 1, max: 4 } },
-        name: { $contains: 'Alice' }
-      }
-    }
-  })
+        $alias: "$manager",
+        $relation: {
+          type: "REPORTS_TO",
+          direction: "out",
+          hops: { min: 1, max: 4 },
+        },
+        name: { $contains: "Alice" },
+      },
+    },
+  });
   ```
 
   `hops` accepts an exact count (`hops: 3`) or a range (`{ min?, max? }`, `min` defaults to 1). `type` and `direction` apply to every hop; the nested label and its criteria constrain only the endpoint record. Omitting `type` traverses any relationship — RushDB's internal property metadata edges are automatically excluded, so untyped traversal never leaves the user's data model.
@@ -79,11 +160,15 @@
 
   ```ts
   db.records.find({
-    labels: ['ACCOUNT'],
+    labels: ["ACCOUNT"],
     where: {
-      $cycle: { type: 'TRANSFERRED_TO', direction: 'out', hops: { min: 2, max: 6 } }
-    }
-  })
+      $cycle: {
+        type: "TRANSFERRED_TO",
+        direction: "out",
+        hops: { min: 2, max: 6 },
+      },
+    },
+  });
   ```
 
   `$cycle` is a record-level predicate: its value is the traversal spec itself (`type`, `direction`, `hops` — `hops` mandatory, `min` ≥ 2, defaulting to 2). A cycle has no separate endpoint, so it accepts no `$alias`, no property criteria, and no nested labels. Combine with `$not` to select records not on a cycle.
@@ -380,14 +465,14 @@
 
   ```ts
   const dealsByStage = await db.records.find({
-    labels: ['HS_DEAL'],
+    labels: ["HS_DEAL"],
     select: {
-      count: { $count: '*' },
-      avgAmount: { $avg: '$record.amount' }
+      count: { $count: "*" },
+      avgAmount: { $avg: "$record.amount" },
     },
-    groupBy: ['$record.dealstage'],
-    orderBy: { count: 'desc' }
-  })
+    groupBy: ["$record.dealstage"],
+    orderBy: { count: "desc" },
+  });
   // → rows like: [{ dealstage: 'prospecting', count: 120, avgAmount: 3400 }, ...]
   ```
 
@@ -454,15 +539,20 @@
 
   ```ts
   const deptProjects = await db.records.find({
-    labels: ['DEPARTMENT'],
-    where: { PROJECT: { $alias: '$project' } },
+    labels: ["DEPARTMENT"],
+    where: { PROJECT: { $alias: "$project" } },
     aggregate: {
-      projectCount: { fn: 'count', alias: '$project' },
-      projects: { fn: 'collect', field: 'name', alias: '$project', unique: true }
+      projectCount: { fn: "count", alias: "$project" },
+      projects: {
+        fn: "collect",
+        field: "name",
+        alias: "$project",
+        unique: true,
+      },
     },
-    groupBy: ['$record.name'],
-    orderBy: { projectCount: 'desc' }
-  })
+    groupBy: ["$record.name"],
+    orderBy: { projectCount: "desc" },
+  });
   ```
 
   ***
