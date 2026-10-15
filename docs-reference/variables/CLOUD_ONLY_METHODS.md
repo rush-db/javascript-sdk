@@ -14,7 +14,7 @@ What RushDB Cloud adds over a standalone engine, as SDK methods. One list:
 the direct-mode router refuses these with `CloudOnlyError`, the MCP server
 hides the tools built on them, and the docs mark them.
 
-Everything else the SDK offers runs against a standalone `rushdbd` too.
+Everything else the SDK offers runs against a standalone `rushdb` too.
 
 ## Type Declaration
 

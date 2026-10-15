@@ -16,7 +16,7 @@ export type ProtocolResponse = {
 
 /**
  * Direct engine transport: executes protocol operations against a standalone
- * `rushdbd` (`/protocol/v1/execute`) over HTTP. This is the SDK's "direct
+ * `rushdb` (`/protocol/v1/execute`) over HTTP. This is the SDK's "direct
  * mode" — no RushDB Cloud. `scope` is the tenant on a multitenant engine
  * (`X-RushDB-Tenant`); auth is the engine token.
  */

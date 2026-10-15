@@ -16,7 +16,7 @@ Defined in: [sdk/types.ts:27](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > `optional` **direct?**: `boolean`
 
-Direct mode: talk to a standalone RushDB engine (`rushdbd`) instead of
+Direct mode: talk to a standalone RushDB engine (`rushdb`) instead of
 RushDB Cloud. Requires `engineUrl`; the token is the engine token. The
 methods listed in `CLOUD_ONLY_METHODS` throw `CloudOnlyError`, and no
 request is ever sent to RushDB Cloud.
@@ -53,7 +53,7 @@ which results in deleting all Records in the project.
 
 > `optional` **scope?**: `string`
 
-Tenant on a multitenant engine (`rushdbd --multitenant`), sent as
+Tenant on a multitenant engine (`rushdb serve --multitenant`), sent as
 `X-RushDB-Tenant`. Omit for a single-tenant engine.
 
 ### timeout?
