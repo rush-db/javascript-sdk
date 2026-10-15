@@ -78,7 +78,7 @@ export class RestAPI {
   public options: SDKConfig['options']
   public logger: SDKConfig['logger']
   /**
-   * Direct engine transport (standalone `rushdbd`) when `direct` mode is set.
+   * Direct engine transport (standalone `rushdb`) when `direct` mode is set.
    * In direct mode every request is answered from the engine; nothing is sent
    * to RushDB Cloud.
    */

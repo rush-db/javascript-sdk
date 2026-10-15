@@ -10709,7 +10709,7 @@
 							},
 							{
 								"kind": "code",
-								"text": "`rushdbd`"
+								"text": "`rushdb`"
 							},
 							{
 								"kind": "text",
@@ -23302,7 +23302,7 @@
 							},
 							{
 								"kind": "code",
-								"text": "`rushdbd`"
+								"text": "`rushdb`"
 							},
 							{
 								"kind": "text",
@@ -47236,7 +47236,7 @@
 											},
 											{
 												"kind": "code",
-												"text": "`rushdbd`"
+												"text": "`rushdb`"
 											},
 											{
 												"kind": "text",
@@ -47480,7 +47480,7 @@
 											},
 											{
 												"kind": "code",
-												"text": "`rushdbd --multitenant`"
+												"text": "`rushdb serve --multitenant`"
 											},
 											{
 												"kind": "text",
@@ -51315,7 +51315,7 @@
 					},
 					{
 						"kind": "code",
-						"text": "`rushdbd`"
+						"text": "`rushdb`"
 					},
 					{
 						"kind": "text",

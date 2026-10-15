@@ -3,7 +3,7 @@
  * the direct-mode router refuses these with `CloudOnlyError`, the MCP server
  * hides the tools built on them, and the docs mark them.
  *
- * Everything else the SDK offers runs against a standalone `rushdbd` too.
+ * Everything else the SDK offers runs against a standalone `rushdb` too.
  */
 export const CLOUD_ONLY_METHODS = {
   'ai.search': 'natural-language search turns the prompt into a query with an LLM',

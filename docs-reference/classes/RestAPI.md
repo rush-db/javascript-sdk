@@ -258,7 +258,7 @@ Optional smart-search context and transaction
 
 Defined in: [api/api.ts:85](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L85)
 
-Direct engine transport (standalone `rushdbd`) when `direct` mode is set.
+Direct engine transport (standalone `rushdb`) when `direct` mode is set.
 In direct mode every request is answered from the engine; nothing is sent
 to RushDB Cloud.
 

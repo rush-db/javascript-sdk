@@ -29,7 +29,7 @@ export type SDKConfig = {
   timeout?: number
   logger?: Logger
   /**
-   * Direct mode: talk to a standalone RushDB engine (`rushdbd`) instead of
+   * Direct mode: talk to a standalone RushDB engine (`rushdb`) instead of
    * RushDB Cloud. Requires `engineUrl`; the token is the engine token. The
    * methods listed in `CLOUD_ONLY_METHODS` throw `CloudOnlyError`, and no
    * request is ever sent to RushDB Cloud.
@@ -38,7 +38,7 @@ export type SDKConfig = {
   /** Standalone engine base URL when `direct` is enabled (e.g. `http://127.0.0.1:3000`). */
   engineUrl?: string
   /**
-   * Tenant on a multitenant engine (`rushdbd --multitenant`), sent as
+   * Tenant on a multitenant engine (`rushdb serve --multitenant`), sent as
    * `X-RushDB-Tenant`. Omit for a single-tenant engine.
    */
   scope?: string
