@@ -1,5 +1,11 @@
 # @rushdb/javascript-sdk
 
+## 3.0.1
+
+### Patch Changes
+
+- 95e5a94: Refer to the self-hosted engine binary as `rushdb` (`rushdb serve`) in the README, JSDoc, and generated docs.
+
 ## 3.0.0
 
 ### Major Changes
