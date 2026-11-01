@@ -1,5 +1,11 @@
 # @rushdb/javascript-sdk
 
+## 3.1.1
+
+### Patch Changes
+
+- f9682a5: Docs and package metadata only: the README, description and keywords use RushDB's current wording, and the README has a compatibility table. No code changes.
+
 ## 3.1.0
 
 ### Minor Changes
