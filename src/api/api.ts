@@ -22,8 +22,14 @@ import type {
   OrderDirection,
   Property,
   PropertyDraft,
+  JoinCandidate,
+  NameSuggestion,
   PropertyValuesData,
+  PropertyValuesSearch,
   Schema,
+  SchemaSummaryLabel,
+  SearchValuesParams,
+  ValueMatchesData,
   RelationshipSearchQuery,
   SearchQuery,
   Where
@@ -1256,13 +1262,16 @@ export class RestAPI {
      * Retrieves values for a specific property
      * @param id - The unique identifier of the property
      * @param searchQuery - Query parameters to filter properties
-     * @param searchQuery.query - Filter query for values
+     * @param searchQuery.query - Keep the values whose text matches (`match`: contains,
+     *   prefix, exact, or similar for near spellings); the values then rank by record
+     *   count and come with `counts`. `domainOnMiss: n` lists every value of a property
+     *   holding at most `n` when nothing matches (`searchMissed: true`).
      * @param transaction - Optional transaction for atomic operations
      * @returns Promise with the API response containing the property and its values
      */
     values: async (
       id: string,
-      searchQuery?: SearchQuery & { query?: string; orderBy?: OrderDirection },
+      searchQuery?: SearchQuery & { orderBy?: OrderDirection } & PropertyValuesSearch,
       transaction?: Transaction | string
     ) => {
       const txId = pickTransactionId(transaction)
@@ -1495,6 +1504,71 @@ export class RestAPI {
   }
 
   public ai = {
+    /**
+     * Stored values matching a text across every property, with the label and property
+     * holding each and its record count. Maps a word in a question to the value the data
+     * actually stores (`"positive"` → `KCT = "+"` once combined with `getSchemaSummary`).
+     * `match: 'similar'` finds near spellings (`spiderman` → `Spider-Man`).
+     * @param params - The search text, match mode, labels to search and a limit.
+     */
+    searchValues: async (params: SearchValuesParams) => {
+      const path = `/ai/values/search`
+      const payload = { headers: {}, method: 'POST', requestData: params }
+      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+      this.logger?.({ requestId, path, ...payload })
+      const response = await this.fetcher<ApiResponse<ValueMatchesData>>(path, payload)
+      this.logger?.({ requestId, path, ...payload, responseData: response.data })
+      return response
+    },
+
+    /**
+     * Every label with its properties in one read, from the live catalog: types, record
+     * and exact distinct counts, numeric and date ranges, the values of properties that
+     * hold few (`fewValues`, default 10), and relationship shapes.
+     * @param params - Optional `labels` to summarize and `fewValues`.
+     */
+    getSchemaSummary: async (params?: { labels?: Array<string>; fewValues?: number }) => {
+      const path = `/ai/schema/summary`
+      const payload = { headers: {}, method: 'POST', requestData: params ?? {} }
+      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+      this.logger?.({ requestId, path, ...payload })
+      const response = await this.fetcher<ApiResponse<Array<SchemaSummaryLabel>>>(path, payload)
+      this.logger?.({ requestId, path, ...payload, responseData: response.data })
+      return response
+    },
+
+    /**
+     * Labels and properties spelled like a name, ignoring case, separators and plural
+     * endings: the answer to "no such label or property" (`patients.birthdate` →
+     * `Patient.Birthday`).
+     * @param params - The name (`text`, optionally `Label.property`) and a limit.
+     */
+    resolveNames: async (params: { text: string; limit?: number }) => {
+      const path = `/ai/schema/names`
+      const payload = { headers: {}, method: 'POST', requestData: params }
+      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+      this.logger?.({ requestId, path, ...payload })
+      const response = await this.fetcher<ApiResponse<Array<NameSuggestion>>>(path, payload)
+      this.logger?.({ requestId, path, ...payload, responseData: response.data })
+      return response
+    },
+
+    /**
+     * Properties that look like references to another label's key, found from property
+     * names and exact value containment (no language model), each with its evidence.
+     * RushDB Cloud only: in direct mode it throws `CloudOnlyError`.
+     * @param params - Optional `labels` the candidates must touch and `minConfidence` (default 0.5).
+     */
+    getJoinCandidates: async (params?: { labels?: Array<string>; minConfidence?: number }) => {
+      const path = `/ai/schema/join-candidates`
+      const payload = { headers: {}, method: 'POST', requestData: params ?? {} }
+      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+      this.logger?.({ requestId, path, ...payload })
+      const response = await this.fetcher<ApiResponse<Array<JoinCandidate>>>(path, payload)
+      this.logger?.({ requestId, path, ...payload, responseData: response.data })
+      return response
+    },
+
     /**
      * Returns the full graph schema as structured JSON.
      * Each item contains the label name, record count, properties with value ranges/samples,

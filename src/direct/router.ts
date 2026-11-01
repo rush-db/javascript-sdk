@@ -892,15 +892,32 @@ const routes: Route[] = [
     method: 'POST',
     pattern: new RegExp(`^/properties/${ID}/values$`),
     handle: async ({ body, params: [id], engine }) => {
+      const searched = Boolean(body.query) || Boolean(body.limit)
       const result = await engine.execute({
         kind: 'query',
         query: {
           kind: 'propertyValues',
           property: id,
-          query: queryDocument({ labels: body.labels ?? [], where: body.where ?? {} })
+          query: queryDocument({ labels: body.labels ?? [], where: body.where ?? {} }),
+          ...(searched ? { mode: 'topK', limit: body.limit ?? 100 } : {}),
+          ...(body.query ?
+            {
+              search: {
+                text: body.query,
+                match: body.match ?? 'contains',
+                ...(body.domainOnMiss ? { domainOnMiss: body.domainOnMiss } : {}),
+                ...(body.minSimilarity !== undefined ? { minSimilarity: body.minSimilarity } : {})
+              }
+            }
+          : {})
         }
       })
-      return ok({ values: result.values ?? [] })
+      return ok({
+        values: result.values ?? [],
+        ...(result.counts?.length ? { counts: result.counts } : {}),
+        ...(searched && result.distinctCount !== undefined ? { distinctCount: result.distinctCount } : {}),
+        ...(result.searchMissed ? { searchMissed: true } : {})
+      })
     }
   },
   {
@@ -1144,6 +1161,56 @@ const routes: Route[] = [
       return ok({ updated: result.updated, requested: result.requested })
     }
   },
+
+  // catalog reads (engine CAT-2/3/4); join suggestions are Cloud-only
+  {
+    method: 'POST',
+    pattern: /^\/ai\/values\/search$/,
+    handle: async ({ body, engine }) => {
+      const result = await engine.execute({
+        kind: 'query',
+        query: {
+          kind: 'searchValues',
+          search: {
+            text: body.text,
+            match: body.match ?? 'contains',
+            ...(body.caseSensitive ? { caseSensitive: true } : {}),
+            ...(body.minSimilarity !== undefined ? { minSimilarity: body.minSimilarity } : {})
+          },
+          ...(body.labels?.length ? { labels: body.labels } : {}),
+          ...(body.limit ? { limit: body.limit } : {})
+        }
+      })
+      return ok({ matches: result.matches ?? [], total: result.total ?? 0, ...(result.skipped ? { skipped: result.skipped } : {}) })
+    }
+  },
+  {
+    method: 'POST',
+    pattern: /^\/ai\/schema\/summary$/,
+    handle: async ({ body, engine }) => {
+      const result = await engine.execute({
+        kind: 'describe',
+        describe: {
+          kind: 'schemaSummary',
+          ...(body.labels?.length ? { labels: body.labels } : {}),
+          ...(body.fewValues !== undefined ? { fewValues: body.fewValues } : {})
+        }
+      })
+      return ok(result.labels ?? [])
+    }
+  },
+  {
+    method: 'POST',
+    pattern: /^\/ai\/schema\/names$/,
+    handle: async ({ body, engine }) => {
+      const result = await engine.execute({
+        kind: 'describe',
+        describe: { kind: 'names', text: body.text, ...(body.limit ? { limit: body.limit } : {}) }
+      })
+      return ok(result.names ?? [])
+    }
+  },
+  { method: 'POST', pattern: /^\/ai\/schema\/join-candidates$/, handle: cloudOnly('ai.getJoinCandidates') },
 
   // platform settings
   { method: 'GET', pattern: /^\/sdk\/settings$/, handle: cloudOnly('settings.get') }
