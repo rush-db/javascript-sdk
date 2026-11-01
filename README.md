@@ -4,16 +4,15 @@
 
 # RushDB — JavaScript & TypeScript SDK
 
-### The memory layer for AI agents and apps.
+### RushDB — the database for AI
 
-Push any JSON. Get graph relationships and vector search — automatically.
-No schema. No pipeline. No glue code.
+One database for your records, their relationships, and search over them.
 
 [![NPM Version](https://img.shields.io/npm/v/%40rushdb%2Fjavascript-sdk)](https://www.npmjs.com/package/@rushdb/javascript-sdk)
 [![NPM Downloads](https://img.shields.io/npm/dw/%40rushdb%2Fjavascript-sdk)](https://www.npmjs.com/package/@rushdb/javascript-sdk)
 [![Bundle size](https://img.shields.io/bundlephobia/minzip/%40rushdb%2Fjavascript-sdk)](https://bundlephobia.com/package/@rushdb/javascript-sdk)
 [![License](https://img.shields.io/npm/l/%40rushdb%2Fjavascript-sdk)](#license)
-[![Made with Node](https://img.shields.io/badge/dynamic/json?label=node&query=%24.engines%5B%22node%22%5D&url=https%3A%2F%2Fraw.githubusercontent.com%2Frush-db%2Frushdb%2Fmain%2Fpackage.json)](https://nodejs.org)
+[![Made with Node](https://img.shields.io/badge/dynamic/json?label=node&query=%24.engines%5B%22node%22%5D&url=https%3A%2F%2Fraw.githubusercontent.com%2Frush-db%2Fjavascript-sdk%2Fmain%2Fpackage.json)](https://nodejs.org)
 
 [🌐 Website](https://rushdb.com) • [📖 Documentation](https://docs.rushdb.com) • [☁️ Cloud](https://app.rushdb.com) • [🔍 Examples](https://github.com/rush-db/examples)
 
@@ -43,6 +42,16 @@ npm install @rushdb/javascript-sdk
 # yarn add @rushdb/javascript-sdk
 # pnpm add @rushdb/javascript-sdk
 ```
+
+---
+
+## Compatibility
+
+| Package | RushDB 3.x and RushDB Cloud | RushDB 2.x (legacy) |
+|---|---|---|
+| `@rushdb/javascript-sdk` | 3.x | 2.11.0: `npm i @rushdb/javascript-sdk@2` |
+| `rushdb` (PyPI) | 3.x | 2.10.0: `pip install "rushdb<3"` |
+| `@rushdb/mcp-server` | 3.x | 2.13.0: `npx @rushdb/mcp-server@2` |
 
 ---
 
@@ -247,13 +256,13 @@ Key options:
 - `options.allowForceDelete` — allow deleting all records without criteria (default: false)
 - `direct`, `engineUrl`, `scope` — direct mode against a standalone engine (see above)
 
-Full config reference: [docs.rushdb.com/typescript-sdk/introduction#sdk-configuration-options](https://docs.rushdb.com/typescript-sdk/introduction#sdk-configuration-options)
+Full config reference: [docs.rushdb.com/3.x/learn/reference/typescript/RushDB](https://docs.rushdb.com/3.x/learn/reference/typescript/RushDB/#sdkconfig-options)
 
 ---
 
 ## Documentation
 
-[docs.rushdb.com/typescript-sdk](https://docs.rushdb.com/typescript-sdk/introduction) — full API reference, examples, transactions, CSV import, and more.
+[docs.rushdb.com/3.x/connect/sdks](https://docs.rushdb.com/3.x/connect/sdks/) and the [TypeScript reference](https://docs.rushdb.com/3.x/learn/reference/typescript/) — full API reference, examples, transactions, CSV import, and more.
 
 ---
 
