@@ -196,10 +196,10 @@ which exist only in RushDB Cloud.
 
 ```typescript
 // RushDB Cloud
-const db = new RushDB('RUSHDB_API_KEY')
+const cloud = new RushDB('RUSHDB_API_KEY')
 
 // A self-hosted engine
-const db = new RushDB('ENGINE_TOKEN', {
+const selfHosted = new RushDB('ENGINE_TOKEN', {
   direct: true,
   engineUrl: 'http://127.0.0.1:3000',
   scope: 'tenant-1' // only for an engine started with --multitenant
