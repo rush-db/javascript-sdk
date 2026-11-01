@@ -7,6 +7,8 @@
  */
 export const CLOUD_ONLY_METHODS = {
   'ai.search': 'natural-language search turns the prompt into a query with an LLM',
+  'ai.getJoinCandidates':
+    'join suggestions are computed by the platform (its heuristics over the engine\'s value overlap)',
   'relationships.patterns.list': 'relationship-pattern suggestions are produced and stored by the platform',
   'relationships.patterns.analyze': 'relationship-pattern suggestions are produced and stored by the platform',
   'relationships.patterns.approve': 'relationship-pattern suggestions are produced and stored by the platform',

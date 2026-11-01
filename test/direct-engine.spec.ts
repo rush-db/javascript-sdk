@@ -56,6 +56,19 @@ function engineAnswer(operation: any): any {
         kind: 'properties',
         properties: [{ id: 'p1', name: 'title', type: 'string', recordsCount: 1 }]
       }
+    case 'query.searchValues':
+      return {
+        kind: 'valueMatches',
+        matches: [{ label: 'Book', property: 'title', value: 'Dune', count: 1 }],
+        total: 1
+      }
+    case 'describe.schemaSummary':
+      return {
+        kind: 'schemaSummary',
+        labels: [{ name: 'Book', recordsCount: 1, properties: [{ name: 'title', type: 'string', recordsCount: 1 }] }]
+      }
+    case 'describe.names':
+      return { kind: 'names', names: [{ label: 'Book', score: 1 }] }
     case 'describe.indexes':
       return { kind: 'indexes', indexes: [TEXT_INDEX] }
     case 'describe.vectorIndexes':
@@ -185,7 +198,11 @@ const EVERY_METHOD: Record<string, Call> = {
     db.ai.indexes.upsertVectors('book-vec', { items: [{ recordId: RECORD.id, vector: [1, 0, 0] }] }),
   'ai.indexes.delete': (db) => db.ai.indexes.delete('book-vec'),
   'ai.indexes.stats': (db) => db.ai.indexes.stats('book-vec'),
-  'ai.search': (db) => db.ai.search('books about deserts')
+  'ai.search': (db) => db.ai.search('books about deserts'),
+  'ai.searchValues': (db) => db.ai.searchValues({ text: 'dune' }),
+  'ai.getSchemaSummary': (db) => db.ai.getSchemaSummary(),
+  'ai.resolveNames': (db) => db.ai.resolveNames({ text: 'books' }),
+  'ai.getJoinCandidates': (db) => db.ai.getJoinCandidates()
 }
 
 /** Methods direct mode answers without the engine (it has no operation for them). */
@@ -310,6 +327,36 @@ describe('direct mode answers in the Cloud shapes', () => {
     const found = await directDb().records.findById([RECORD.id, 'other'])
     expect(operations()[0].query.query.predicate).toEqual({ $id: { $in: [RECORD.id, 'other'] } })
     expect(found.data[0].id).toBe(RECORD.id)
+  })
+
+  it('properties.values applies a text query as an engine value search', async () => {
+    const values = await directDb().properties.values('p1', { query: 'positive', domainOnMiss: 20 })
+    expect(operations()[0].query).toMatchObject({
+      kind: 'propertyValues',
+      property: 'p1',
+      mode: 'topK',
+      limit: 100,
+      search: { text: 'positive', match: 'contains', domainOnMiss: 20 }
+    })
+    expect(values.data.values).toEqual(['Dune'])
+  })
+
+  it('catalog suggestions map to their engine reads', async () => {
+    const db = directDb()
+    const found = await db.ai.searchValues({ text: 'spiderman', match: 'similar', labels: ['Book'] })
+    const summary = await db.ai.getSchemaSummary({ fewValues: 5 })
+    const names = await db.ai.resolveNames({ text: 'books', limit: 3 })
+    expect(operations()).toEqual([
+      {
+        kind: 'query',
+        query: { kind: 'searchValues', search: { text: 'spiderman', match: 'similar' }, labels: ['Book'] }
+      },
+      { kind: 'describe', describe: { kind: 'schemaSummary', fewValues: 5 } },
+      { kind: 'describe', describe: { kind: 'names', text: 'books', limit: 3 } }
+    ])
+    expect(found.data.matches[0]).toEqual({ label: 'Book', property: 'title', value: 'Dune', count: 1 })
+    expect(summary.data[0].name).toBe('Book')
+    expect(names.data).toEqual([{ label: 'Book', score: 1 }])
   })
 
   it('labels.find counts records per label', async () => {

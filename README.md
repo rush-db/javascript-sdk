@@ -209,10 +209,11 @@ What each offers:
 | External vector indexes; vector and hybrid search with a `queryVector` you supply | ✓ | ✓ |
 | Raw openCypher (`query.raw`; the engine needs `--languages cypher`) | ✓ | ✓ |
 | Schema (`ai.getSchema`, `ai.getSchemaMarkdown`) | ✓ | ✓ |
+| Catalog lookups: `ai.searchValues` (a value across every property, also near spellings), `ai.getSchemaSummary`, `ai.resolveNames`, and value search in `properties.values` (`query`, `match`, `domainOnMiss`) | ✓ | ✓ |
 | Transactions | ✓ | record creates, updates, sets, deletes by id, attaches and imports are staged; other writes refuse a transaction |
 | Managed embeddings: managed indexes, `records.vectorSearch` by text `query` | ✓ | — |
 | Natural-language search (`ai.search`) | ✓ | — |
-| Relationship-pattern suggestions (`relationships.patterns.*`) | ✓ | — |
+| Relationship-pattern suggestions (`relationships.patterns.*`) and join suggestions (`ai.getJoinCandidates`) | ✓ | — |
 | Project settings (`settings.get`), dashboard, projects, team access, MCP over HTTP with OAuth | ✓ | — |
 
 In direct mode a Cloud-only method throws `CloudOnlyError` (with `method` and `reason`) before
