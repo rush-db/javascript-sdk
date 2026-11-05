@@ -1078,7 +1078,8 @@ const routes: Route[] = [
     handle: async ({ body, engine }) =>
       ok(buildSchemaMarkdown(await buildSchema(engine, body.labels, toEmbeddingIndex)))
   },
-  { method: 'POST', pattern: /^\/ai\/search-query$/, handle: cloudOnly('ai.search') },
+  { method: 'POST', pattern: /^\/ai\/sql-search$/, handle: cloudOnly('ai.search') },
+  { method: 'POST', pattern: /^\/records\/sql-search$/, handle: cloudOnly('ai.runSql') },
   { method: 'POST', pattern: /^\/ai\/search$/, handle: vectorSearch },
   {
     method: 'GET',

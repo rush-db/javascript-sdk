@@ -346,6 +346,12 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
   searchQuery?: SearchQuery<S>
   /** Warnings returned by AI-assisted query generation, when applicable. */
   warnings?: string[]
+  /** For Smart search (`ai.search`): the SQL statement that produced this result. */
+  sql?: string
+  /** For Smart search: a short title of the query. */
+  name?: string
+  /** For Smart search: the page of the statement's rows this result holds. */
+  sqlPage?: { skip: number; limit: number }
   /** For a vector search: how the engine ran it. */
   vectorSearch?: VectorSearchReport
   /** For a keyword or hybrid search: how the engine ran its keyword leg. */
@@ -389,12 +395,27 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
   }
 
   /**
-   * Fetches the next page of results based on the original search query.
+   * Fetches the next page of results: of the original search query, or of the
+   * SQL statement for a Smart search result.
    *
    * @param options - If `preserveData` is true, appends new results to existing data; otherwise replaces.
    * @returns Promise resolving to the next page as a new DBRecordsArrayInstance
    */
   async next(options?: { preserveData?: boolean }): Promise<DBRecordsArrayInstance<S, Q>> {
+    if (this.sql) {
+      const { skip, limit } = this.sqlPage ?? { skip: 0, limit: 100 }
+      const nextPage = { skip: skip + limit, limit }
+      const result = await RushDB.getInstance().ai.runSql<S>(this.sql, nextPage)
+      if (options?.preserveData) {
+        this.data = [...this.data, ...(result.data as Array<DBRecordInstance<S, Q>>)]
+        this.total = result.total
+        this.sqlPage = nextPage
+        return this
+      }
+      result.name = this.name
+      return result as unknown as DBRecordsArrayInstance<S, Q>
+    }
+
     if (!this.searchQuery) {
       throw new Error('DBRecordsArrayInstance: Cannot paginate — no searchQuery was provided.')
     }

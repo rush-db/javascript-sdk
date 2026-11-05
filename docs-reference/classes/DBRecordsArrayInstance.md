@@ -31,7 +31,7 @@ The search query type that was used to retrieve these records
 
 > **new DBRecordsArrayInstance**\<`S`, `Q`\>(`data?`, `total?`, `searchQuery?`, `warnings?`): `DBRecordsArrayInstance`\<`S`, `Q`\>
 
-Defined in: [sdk/record.ts:364](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L364)
+Defined in: [sdk/record.ts:370](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L370)
 
 Creates a new DBRecordsArrayInstance.
 Typically, you don't create these directly but receive them from query results.
@@ -80,9 +80,19 @@ The array of record instances
 
 > `optional` **fusion?**: `"rrf"` \| `"dbsf"`
 
-Defined in: [sdk/record.ts:354](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L354)
+Defined in: [sdk/record.ts:360](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L360)
 
 For a hybrid search: how its legs were combined.
+
+***
+
+### name?
+
+> `optional` **name?**: `string`
+
+Defined in: [sdk/record.ts:352](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L352)
+
+For Smart search: a short title of the query.
 
 ***
 
@@ -96,11 +106,39 @@ The search query that was used to retrieve these records
 
 ***
 
+### sql?
+
+> `optional` **sql?**: `string`
+
+Defined in: [sdk/record.ts:350](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L350)
+
+For Smart search (`ai.search`): the SQL statement that produced this result.
+
+***
+
+### sqlPage?
+
+> `optional` **sqlPage?**: `object`
+
+Defined in: [sdk/record.ts:354](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L354)
+
+For Smart search: the page of the statement's rows this result holds.
+
+#### limit
+
+> **limit**: `number`
+
+#### skip
+
+> **skip**: `number`
+
+***
+
 ### textSearch?
 
 > `optional` **textSearch?**: [`TextSearchReport`](../type-aliases/TextSearchReport.md)
 
-Defined in: [sdk/record.ts:352](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L352)
+Defined in: [sdk/record.ts:358](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L358)
 
 For a keyword or hybrid search: how the engine ran its keyword leg.
 
@@ -120,7 +158,7 @@ The total number of records matching the query (may be more than the number in d
 
 > `optional` **vectorSearch?**: [`VectorSearchReport`](../type-aliases/VectorSearchReport.md)
 
-Defined in: [sdk/record.ts:350](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L350)
+Defined in: [sdk/record.ts:356](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L356)
 
 For a vector search: how the engine ran it.
 
@@ -140,7 +178,7 @@ Warnings returned by AI-assisted query generation, when applicable.
 
 > **deleteAll**(`transaction?`): `Promise`\<\{ `success`: `boolean`; \}\>
 
-Defined in: [sdk/record.ts:382](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L382)
+Defined in: [sdk/record.ts:388](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L388)
 
 Deletes all records in this result set.
 
@@ -164,7 +202,7 @@ Promise resolving to the delete result
 
 > **exportCsv**(): `string`
 
-Defined in: [sdk/record.ts:427](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L427)
+Defined in: [sdk/record.ts:448](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L448)
 
 Exports the records in this result set to a CSV string.
 
@@ -180,9 +218,10 @@ CSV string with headers derived from the first record's properties
 
 > **next**(`options?`): `Promise`\<`DBRecordsArrayInstance`\<`S`, `Q`\>\>
 
-Defined in: [sdk/record.ts:397](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L397)
+Defined in: [sdk/record.ts:404](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L404)
 
-Fetches the next page of results based on the original search query.
+Fetches the next page of results: of the original search query, or of the
+SQL statement for a Smart search result.
 
 #### Parameters
 
@@ -206,7 +245,7 @@ Promise resolving to the next page as a new DBRecordsArrayInstance
 
 > **setProperties**(`patch`, `transaction?`): `Promise`\<`void`\>
 
-Defined in: [sdk/record.ts:455](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L455)
+Defined in: [sdk/record.ts:476](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L476)
 
 Updates properties across all records in this result set.
 Records are updated in batches of 100.

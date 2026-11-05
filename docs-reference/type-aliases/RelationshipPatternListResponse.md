@@ -8,7 +8,7 @@
 
 > **RelationshipPatternListResponse** = `object`
 
-Defined in: [api/types.ts:293](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L293)
+Defined in: [api/types.ts:297](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L297)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/types.ts:293](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **analysis?**: `object`
 
-Defined in: [api/types.ts:299](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L299)
+Defined in: [api/types.ts:303](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L303)
 
 #### lastError?
 
@@ -44,7 +44,7 @@ Defined in: [api/types.ts:299](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **patterns**: [`RelationshipPatternDto`](RelationshipPatternDto.md)[]
 
-Defined in: [api/types.ts:294](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L294)
+Defined in: [api/types.ts:298](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L298)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [api/types.ts:294](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **relationships**: `object`[]
 
-Defined in: [api/types.ts:295](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L295)
+Defined in: [api/types.ts:299](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L299)
 
 #### label
 

@@ -6,7 +6,8 @@
  * Everything else the SDK offers runs against a standalone `rushdb` too.
  */
 export const CLOUD_ONLY_METHODS = {
-  'ai.search': 'natural-language search turns the prompt into a query with an LLM',
+  'ai.search': 'natural-language search turns the prompt into a SQL statement with an LLM',
+  'ai.runSql': 'Smart search SQL runs on the platform, which loads the full records the statement selects',
   'ai.getJoinCandidates':
     'join suggestions are computed by the platform (its heuristics over the engine\'s value overlap)',
   'relationships.patterns.list': 'relationship-pattern suggestions are produced and stored by the platform',

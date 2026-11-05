@@ -43,7 +43,7 @@ import type {
   RelationshipPattern,
   RelationshipPatternListResponse,
   SmartSearchOptions,
-  SmartSearchQueryResponse,
+  SmartSearchSqlResponse,
   UpsertEmbeddingVectorsParams,
   UpsertEmbeddingVectorsResult,
   CreateTextIndexParams,
@@ -1736,37 +1736,28 @@ export class RestAPI {
     /**
      * Performs AI-assisted smart search from natural language.
      *
-     * RushDB converts the prompt into a SearchQuery using the project schema, executes it,
-     * and returns matching records with the generated SearchQuery attached to the result.
+     * RushDB turns the prompt into one read-only SQL statement over the project's schema,
+     * runs it, and returns the result with the statement (`sql`), a short title (`name`) and
+     * any generation warnings attached. Rows that select a record's `__id` come back as full
+     * records; aggregates come back as plain rows. `result.next()` pages through the statement.
      *
      * Use `db.records.vectorSearch({ ... })` for direct vector similarity over embedding indexes.
      *
      * @remarks **RushDB Cloud only.** In direct mode this throws `CloudOnlyError` without sending a request.
      *
-     * @param prompt - Natural-language search request to convert into a SearchQuery and execute
-     * @param options - Optional smart-search context and transaction
+     * @param prompt - Natural-language search request
+     * @param options - Which page of the statement's rows to return
      */
     search: async <S extends Schema = any>(
       prompt: string,
-      options?: SmartSearchOptions<S> & { transaction?: Transaction | string }
+      options?: SmartSearchOptions
     ): Promise<DBRecordsArrayInstance<S>> => {
-      const txId = pickTransactionId(options?.transaction)
-      const generatePath = `/ai/search-query`
-      const generatePayload = {
-        method: 'POST',
-        headers: Object.assign({}, buildTransactionHeader(txId)),
-        requestData: {
-          prompt,
-          currentQuery: options?.currentQuery
-        }
-      }
+      const generatePath = `/ai/sql-search`
+      const generatePayload = { method: 'POST', headers: {}, requestData: { prompt } }
       const generateRequestId = typeof this.logger === 'function' ? generateRandomId() : ''
       this.logger?.({ requestId: generateRequestId, path: generatePath, ...generatePayload })
 
-      const generated = await this.fetcher<ApiResponse<SmartSearchQueryResponse<S>>>(
-        generatePath,
-        generatePayload
-      )
+      const generated = await this.fetcher<ApiResponse<SmartSearchSqlResponse>>(generatePath, generatePayload)
       this.logger?.({
         requestId: generateRequestId,
         path: generatePath,
@@ -1774,31 +1765,42 @@ export class RestAPI {
         responseData: generated.data
       })
 
-      const searchQuery = generated.data.searchQuery
-      const searchPath = `/records/search`
-      const searchPayload = {
-        method: 'POST',
-        headers: Object.assign({}, buildTransactionHeader(txId)),
-        requestData: searchQuery ?? {}
-      }
-      const searchRequestId = typeof this.logger === 'function' ? generateRandomId() : ''
-      this.logger?.({ requestId: searchRequestId, path: searchPath, ...searchPayload })
+      const result = await this.ai.runSql<S>(generated.data.sql, options)
+      result.name = generated.data.name
+      result.warnings = generated.data.warnings
+      return result
+    },
 
-      const response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(searchPath, searchPayload)
-      this.logger?.({
-        requestId: searchRequestId,
-        path: searchPath,
-        ...searchPayload,
-        responseData: response.data
-      })
+    /**
+     * Runs one read-only SQL statement over the project's schema, as Smart search does:
+     * a statement from `ai.search` (its `sql`), or one written by hand. Labels are tables,
+     * relationship types are `rushdb_edges.<type>` tables.
+     *
+     * @remarks **RushDB Cloud only.** In direct mode this throws `CloudOnlyError` without sending a request.
+     *
+     * @param sql - One read-only SELECT statement
+     * @param options - Which page of the statement's rows to return
+     */
+    runSql: async <S extends Schema = any>(
+      sql: string,
+      options?: SmartSearchOptions
+    ): Promise<DBRecordsArrayInstance<S>> => {
+      const page = { skip: options?.skip ?? 0, limit: options?.limit ?? 100 }
+      const path = `/records/sql-search`
+      const payload = { method: 'POST', headers: {}, requestData: { sql, ...page } }
+      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+      this.logger?.({ requestId, path, ...payload })
 
-      const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r))
-      return new DBRecordsArrayInstance<S>(
-        dbRecordInstances,
-        response.total ?? 0,
-        searchQuery,
-        generated.data.warnings
+      const response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(path, payload)
+      this.logger?.({ requestId, path, ...payload, responseData: response.data })
+
+      const result = new DBRecordsArrayInstance<S>(
+        (response.data ?? []).map((r) => new DBRecordInstance<S>(r)),
+        response.total ?? 0
       )
+      result.sql = sql
+      result.sqlPage = page
+      return result
     }
   }
 }

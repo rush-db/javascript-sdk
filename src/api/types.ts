@@ -245,16 +245,20 @@ export type SemanticSearchParams = VectorSearchParams
 /** @deprecated Use VectorSearchResult. */
 export type SemanticSearchResult<S extends Schema = Schema> = VectorSearchResult<S>
 
-export type SmartSearchOptions<S extends Schema = Schema> = {
-  /**
-   * Optional current dashboard/query-builder state. The server may use it as context
-   * when converting the natural-language prompt into a SearchQuery.
-   */
-  currentQuery?: SearchQuery<S>
+/** Paging for Smart search results (`ai.search`, `ai.runSql`). */
+export type SmartSearchOptions = {
+  /** Rows to skip. Defaults to 0. */
+  skip?: number
+  /** Rows to return, at most 1000. Defaults to 100. */
+  limit?: number
 }
 
-export type SmartSearchQueryResponse<S extends Schema = Schema> = {
-  searchQuery: SearchQuery<S>
+/** The SQL statement Smart search generated for a natural-language prompt. */
+export type SmartSearchSqlResponse = {
+  /** One read-only SQL statement over the project's schema. */
+  sql: string
+  /** A short title for the query, e.g. to save it under. */
+  name?: string
   warnings: string[]
 }
 

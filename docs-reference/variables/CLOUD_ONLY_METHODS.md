@@ -18,9 +18,17 @@ Everything else the SDK offers runs against a standalone `rushdb` too.
 
 ## Type Declaration
 
+#### ai.getJoinCandidates
+
+> `readonly` **ai.getJoinCandidates**: `"join suggestions are computed by the platform (its heuristics over the engine's value overlap)"` = 'join suggestions are computed by the platform (its heuristics over the engine\'s value overlap)'
+
+#### ai.runSql
+
+> `readonly` **ai.runSql**: `"Smart search SQL runs on the platform, which loads the full records the statement selects"` = `'Smart search SQL runs on the platform, which loads the full records the statement selects'`
+
 #### ai.search
 
-> `readonly` **ai.search**: `"natural-language search turns the prompt into a query with an LLM"` = `'natural-language search turns the prompt into a query with an LLM'`
+> `readonly` **ai.search**: `"natural-language search turns the prompt into a SQL statement with an LLM"` = `'natural-language search turns the prompt into a SQL statement with an LLM'`
 
 #### relationships.patterns.analyze
 
