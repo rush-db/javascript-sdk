@@ -8,7 +8,7 @@
 
 > `const` **CLOUD\_ONLY\_FORMS**: `object`
 
-Defined in: [direct/capabilities.ts:22](https://github.com/rush-db/javascript-sdk/blob/main/src/direct/capabilities.ts#L22)
+Defined in: [direct/capabilities.ts:25](https://github.com/rush-db/javascript-sdk/blob/main/src/direct/capabilities.ts#L25)
 
 Methods available in direct mode in one form only; the other form needs
 RushDB Cloud.

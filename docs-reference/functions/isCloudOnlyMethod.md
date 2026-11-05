@@ -6,9 +6,9 @@
 
 # Function: isCloudOnlyMethod()
 
-> **isCloudOnlyMethod**(`method`): method is "ai.search" \| "relationships.patterns.list" \| "relationships.patterns.analyze" \| "relationships.patterns.approve" \| "relationships.patterns.ignore" \| "relationships.patterns.delete" \| "settings.get"
+> **isCloudOnlyMethod**(`method`): method is "ai.search" \| "ai.runSql" \| "ai.getJoinCandidates" \| "relationships.patterns.list" \| "relationships.patterns.analyze" \| "relationships.patterns.approve" \| "relationships.patterns.ignore" \| "relationships.patterns.delete" \| "settings.get"
 
-Defined in: [direct/capabilities.ts:32](https://github.com/rush-db/javascript-sdk/blob/main/src/direct/capabilities.ts#L32)
+Defined in: [direct/capabilities.ts:35](https://github.com/rush-db/javascript-sdk/blob/main/src/direct/capabilities.ts#L35)
 
 Whether `method` (e.g. `relationships.patterns.list`) needs RushDB Cloud.
 
@@ -20,4 +20,4 @@ Whether `method` (e.g. `relationships.patterns.list`) needs RushDB Cloud.
 
 ## Returns
 
-method is "ai.search" \| "relationships.patterns.list" \| "relationships.patterns.analyze" \| "relationships.patterns.approve" \| "relationships.patterns.ignore" \| "relationships.patterns.delete" \| "settings.get"
+method is "ai.search" \| "ai.runSql" \| "ai.getJoinCandidates" \| "relationships.patterns.list" \| "relationships.patterns.analyze" \| "relationships.patterns.approve" \| "relationships.patterns.ignore" \| "relationships.patterns.delete" \| "settings.get"

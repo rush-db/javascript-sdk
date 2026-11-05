@@ -6,7 +6,7 @@
 
 # Class: RestAPI
 
-Defined in: [api/api.ts:76](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L76)
+Defined in: [api/api.ts:82](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L82)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [api/api.ts:76](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **new RestAPI**(`token?`, `config?`): `RestAPI`
 
-Defined in: [api/api.ts:87](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L87)
+Defined in: [api/api.ts:93](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L93)
 
 #### Parameters
 
@@ -40,7 +40,33 @@ SDKConfig & \{ httpClient: HttpClient; \}
 
 > **ai**: `object`
 
-Defined in: [api/api.ts:1497](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1497)
+Defined in: [api/api.ts:1506](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1506)
+
+#### getJoinCandidates
+
+> **getJoinCandidates**: (`params?`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`JoinCandidate`](../type-aliases/JoinCandidate.md)[]\>\>
+
+Properties that look like references to another label's key, found from property
+names and exact value containment (no language model), each with its evidence.
+RushDB Cloud only: in direct mode it throws `CloudOnlyError`.
+
+##### Parameters
+
+###### params?
+
+Optional `labels` the candidates must touch and `minConfidence` (default 0.5).
+
+###### labels?
+
+`string`[]
+
+###### minConfidence?
+
+`number`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`JoinCandidate`](../type-aliases/JoinCandidate.md)[]\>\>
 
 #### getSchema
 
@@ -115,6 +141,32 @@ Optional transaction for atomic operations
 ##### Returns
 
 `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<`string`\>\>
+
+#### getSchemaSummary
+
+> **getSchemaSummary**: (`params?`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`SchemaSummaryLabel`](../type-aliases/SchemaSummaryLabel.md)[]\>\>
+
+Every label with its properties in one read, from the live catalog: types, record
+and exact distinct counts, numeric and date ranges, the values of properties that
+hold few (`fewValues`, default 10), and relationship shapes.
+
+##### Parameters
+
+###### params?
+
+Optional `labels` to summarize and `fewValues`.
+
+###### fewValues?
+
+`number`
+
+###### labels?
+
+`string`[]
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`SchemaSummaryLabel`](../type-aliases/SchemaSummaryLabel.md)[]\>\>
 
 #### indexes
 
@@ -211,14 +263,78 @@ The target embedding index ID
 
 `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`UpsertEmbeddingVectorsResult`](../type-aliases/UpsertEmbeddingVectorsResult.md)\>\>
 
+#### resolveNames
+
+> **resolveNames**: (`params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`NameSuggestion`](../type-aliases/NameSuggestion.md)[]\>\>
+
+Labels and properties spelled like a name, ignoring case, separators and plural
+endings: the answer to "no such label or property" (`patients.birthdate` →
+`Patient.Birthday`).
+
+##### Parameters
+
+###### params
+
+The name (`text`, optionally `Label.property`) and a limit.
+
+###### limit?
+
+`number`
+
+###### text
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`NameSuggestion`](../type-aliases/NameSuggestion.md)[]\>\>
+
+#### runSql
+
+> **runSql**: \<`S`\>(`sql`, `options?`) => `Promise`\<[`DBRecordsArrayInstance`](DBRecordsArrayInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
+
+Runs one read-only SQL statement over the project's schema, as Smart search does:
+a statement from `ai.search` (its `sql`), or one written by hand. Labels are tables,
+relationship types are `rushdb_edges.<type>` tables.
+
+##### Type Parameters
+
+###### S
+
+`S` *extends* [`Schema`](../type-aliases/Schema.md) = `any`
+
+##### Parameters
+
+###### sql
+
+`string`
+
+One read-only SELECT statement
+
+###### options?
+
+`SmartSearchOptions`
+
+Which page of the statement's rows to return
+
+##### Returns
+
+`Promise`\<[`DBRecordsArrayInstance`](DBRecordsArrayInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
+
+##### Remarks
+
+**RushDB Cloud only.** In direct mode this throws `CloudOnlyError` without sending a request.
+
 #### search
 
 > **search**: \<`S`\>(`prompt`, `options?`) => `Promise`\<[`DBRecordsArrayInstance`](DBRecordsArrayInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
 Performs AI-assisted smart search from natural language.
 
-RushDB converts the prompt into a SearchQuery using the project schema, executes it,
-and returns matching records with the generated SearchQuery attached to the result.
+RushDB turns the prompt into one read-only SQL statement over the project's schema,
+runs it, and returns the result with the statement (`sql`), a short title (`name`) and
+any generation warnings attached. Rows that select a record's `__id` come back as full
+records; aggregates come back as plain rows. `result.next()` pages through the statement.
 
 Use `db.records.vectorSearch({ ... })` for direct vector similarity over embedding indexes.
 
@@ -234,13 +350,13 @@ Use `db.records.vectorSearch({ ... })` for direct vector similarity over embeddi
 
 `string`
 
-Natural-language search request to convert into a SearchQuery and execute
+Natural-language search request
 
 ###### options?
 
-`SmartSearchOptions`\<`S`\> & `object`
+`SmartSearchOptions`
 
-Optional smart-search context and transaction
+Which page of the statement's rows to return
 
 ##### Returns
 
@@ -250,13 +366,34 @@ Optional smart-search context and transaction
 
 **RushDB Cloud only.** In direct mode this throws `CloudOnlyError` without sending a request.
 
+#### searchValues
+
+> **searchValues**: (`params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ValueMatchesData`](../type-aliases/ValueMatchesData.md)\>\>
+
+Stored values matching a text across every property, with the label and property
+holding each and its record count. Maps a word in a question to the value the data
+actually stores (`"positive"` → `KCT = "+"` once combined with `getSchemaSummary`).
+`match: 'similar'` finds near spellings (`spiderman` → `Spider-Man`).
+
+##### Parameters
+
+###### params
+
+[`SearchValuesParams`](../type-aliases/SearchValuesParams.md)
+
+The search text, match mode, labels to search and a limit.
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ValueMatchesData`](../type-aliases/ValueMatchesData.md)\>\>
+
 ***
 
 ### direct
 
 > **direct**: `DirectEngine` \| `undefined`
 
-Defined in: [api/api.ts:85](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L85)
+Defined in: [api/api.ts:91](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L91)
 
 Direct engine transport (standalone `rushdb`) when `direct` mode is set.
 In direct mode every request is answered from the engine; nothing is sent
@@ -268,7 +405,7 @@ to RushDB Cloud.
 
 > **fetcher**: \<`Data`\>(`input`, `__namedParameters`) => `Promise`\<`Data`\>
 
-Defined in: [api/api.ts:77](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L77)
+Defined in: [api/api.ts:83](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L83)
 
 #### Type Parameters
 
@@ -296,7 +433,7 @@ Defined in: [api/api.ts:77](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **labels**: `object`
 
-Defined in: [api/api.ts:1289](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1289)
+Defined in: [api/api.ts:1298](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1298)
 
 API methods for managing labels in the database
 
@@ -338,7 +475,7 @@ Promise with the API response containing a record of label names and their count
 
 > **logger**: [`Logger`](../type-aliases/Logger.md) \| `undefined`
 
-Defined in: [api/api.ts:79](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L79)
+Defined in: [api/api.ts:85](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L85)
 
 ***
 
@@ -346,7 +483,7 @@ Defined in: [api/api.ts:79](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **options**: \{ `allowForceDelete?`: `boolean`; \} \| `undefined`
 
-Defined in: [api/api.ts:78](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L78)
+Defined in: [api/api.ts:84](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L84)
 
 #### Union Members
 
@@ -374,7 +511,7 @@ which results in deleting all Records in the project.
 
 > **properties**: `object`
 
-Defined in: [api/api.ts:1187](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1187)
+Defined in: [api/api.ts:1193](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1193)
 
 API methods for managing properties in the database
 
@@ -478,7 +615,7 @@ The unique identifier of the property
 
 ###### searchQuery?
 
-[`SearchQueryLabelsClause`](../type-aliases/SearchQueryLabelsClause.md) & [`PaginationClause`](../type-aliases/PaginationClause.md) & [`OrderClause`](../type-aliases/OrderClause.md)\<`any`\> & [`WhereClause`](../type-aliases/WhereClause.md)\<`any`\> & [`SelectClause`](../type-aliases/SelectClause.md) & [`AggregateClause`](../type-aliases/AggregateClause.md) & [`GroupByClause`](../type-aliases/GroupByClause.md) & `object`
+[`SearchQueryLabelsClause`](../type-aliases/SearchQueryLabelsClause.md) & [`PaginationClause`](../type-aliases/PaginationClause.md) & [`OrderClause`](../type-aliases/OrderClause.md)\<`any`\> & [`WhereClause`](../type-aliases/WhereClause.md)\<`any`\> & [`SelectClause`](../type-aliases/SelectClause.md) & [`AggregateClause`](../type-aliases/AggregateClause.md) & [`GroupByClause`](../type-aliases/GroupByClause.md) & `object` & [`PropertyValuesSearch`](../type-aliases/PropertyValuesSearch.md)
 
 Query parameters to filter properties
 
@@ -500,7 +637,7 @@ Promise with the API response containing the property and its values
 
 > **query**: `object`
 
-Defined in: [api/api.ts:1427](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1427)
+Defined in: [api/api.ts:1436](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1436)
 
 #### raw
 
@@ -552,7 +689,7 @@ ApiResponse<any> - Raw result returned by the server (wrapped in ApiResponse)
 
 > **records**: `object`
 
-Defined in: [api/api.ts:167](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L167)
+Defined in: [api/api.ts:173](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L173)
 
 API methods for managing database records
 
@@ -1360,7 +1497,7 @@ with RushDB Cloud's managed model, so it throws `CloudOnlyError` without sending
 
 > **relationships**: `object`
 
-Defined in: [api/api.ts:1008](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1008)
+Defined in: [api/api.ts:1014](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1014)
 
 API methods for managing relations between records
 
@@ -1636,7 +1773,7 @@ Lists inferred relationship patterns, schema relationships, and analysis status.
 
 > **settings**: `object`
 
-Defined in: [api/api.ts:1407](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1407)
+Defined in: [api/api.ts:1416](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1416)
 
 #### get
 
@@ -1658,7 +1795,7 @@ The project's settings.
 
 > **textIndexes**: `object`
 
-Defined in: [api/api.ts:1468](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1468)
+Defined in: [api/api.ts:1477](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1477)
 
 BM25 text indexes, searched with `db.records.textSearch()` or as the
 keyword leg of a hybrid `db.records.vectorSearch({ text })`.
@@ -1728,7 +1865,7 @@ The name a new text index would get by default, unique in the project.
 
 > **tx**: `object`
 
-Defined in: [api/api.ts:1318](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1318)
+Defined in: [api/api.ts:1327](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1327)
 
 API methods for managing database transactions
 
@@ -1834,7 +1971,7 @@ If the transaction cannot be rolled back or doesn't exist
 
 > **\_extractTargetIds**(`target`, `operation`): `string`[]
 
-Defined in: [api/api.ts:122](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L122)
+Defined in: [api/api.ts:128](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L128)
 
 #### Parameters
 

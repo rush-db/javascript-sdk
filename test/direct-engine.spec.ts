@@ -199,6 +199,7 @@ const EVERY_METHOD: Record<string, Call> = {
   'ai.indexes.delete': (db) => db.ai.indexes.delete('book-vec'),
   'ai.indexes.stats': (db) => db.ai.indexes.stats('book-vec'),
   'ai.search': (db) => db.ai.search('books about deserts'),
+  'ai.runSql': (db) => db.ai.runSql('SELECT __id FROM "Book"'),
   'ai.searchValues': (db) => db.ai.searchValues({ text: 'dune' }),
   'ai.getSchemaSummary': (db) => db.ai.getSchemaSummary(),
   'ai.resolveNames': (db) => db.ai.resolveNames({ text: 'books' }),

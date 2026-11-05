@@ -17,7 +17,7 @@ export {
   SemanticSearchParams,
   SemanticSearchResult,
   SmartSearchOptions,
-  SmartSearchQueryResponse,
+  SmartSearchSqlResponse,
   TextIndex,
   TextSearchParams,
   TextSearchReport,
