@@ -8,7 +8,7 @@
 
 > **RelationshipPatternEndpoint** = `object`
 
-Defined in: [api/types.ts:270](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L270)
+Defined in: [api/types.ts:276](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L276)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/types.ts:270](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **key?**: `string`
 
-Defined in: [api/types.ts:272](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L272)
+Defined in: [api/types.ts:278](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L278)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/types.ts:272](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **label**: `string`
 
-Defined in: [api/types.ts:271](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L271)
+Defined in: [api/types.ts:277](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L277)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [api/types.ts:271](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **where?**: [`Where`](Where.md)
 
-Defined in: [api/types.ts:273](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L273)
+Defined in: [api/types.ts:279](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L279)

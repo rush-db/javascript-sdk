@@ -8,7 +8,7 @@
 
 > **DBRecordCreationOptions** = `object`
 
-Defined in: [sdk/record.ts:124](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L124)
+Defined in: [sdk/record.ts:125](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L125)
 
 Options for creating database records.
 
@@ -18,7 +18,7 @@ Options for creating database records.
 
 > `optional` **capitalizeLabels?**: `boolean`
 
-Defined in: [sdk/record.ts:128](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L128)
+Defined in: [sdk/record.ts:129](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L129)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [sdk/record.ts:128](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **convertNumericValuesToNumbers?**: `boolean`
 
-Defined in: [sdk/record.ts:127](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L127)
+Defined in: [sdk/record.ts:128](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L128)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [sdk/record.ts:127](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **merge?**: `boolean`
 
-Defined in: [sdk/record.ts:143](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L143)
+Defined in: [sdk/record.ts:144](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L144)
 
 Shorthand for `mergeBy: []` + `mergeStrategy: 'append'`: match existing
 records on all incoming keys and merge (upsert) instead of creating
@@ -46,7 +46,7 @@ duplicates on re-import.
 
 > `optional` **mergeBy?**: `string`[]
 
-Defined in: [sdk/record.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L137)
+Defined in: [sdk/record.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L138)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [sdk/record.ts:137](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **mergeStrategy?**: `"append"` \| `"rewrite"`
 
-Defined in: [sdk/record.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L136)
+Defined in: [sdk/record.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L137)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [sdk/record.ts:136](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **relationshipType?**: `string`
 
-Defined in: [sdk/record.ts:135](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L135)
+Defined in: [sdk/record.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L136)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [sdk/record.ts:135](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **returnResult?**: `boolean`
 
-Defined in: [sdk/record.ts:125](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L125)
+Defined in: [sdk/record.ts:126](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L126)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [sdk/record.ts:125](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **skipEmptyValues?**: `boolean`
 
-Defined in: [sdk/record.ts:134](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L134)
+Defined in: [sdk/record.ts:135](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L135)
 
 When true, empty strings ('') and empty arrays ([]) are treated as unset and skipped
 (no property is created). Zero (0) and false are real values and are never affected.
@@ -90,4 +90,4 @@ Defaults to false.
 
 > `optional` **suggestTypes?**: `boolean`
 
-Defined in: [sdk/record.ts:126](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L126)
+Defined in: [sdk/record.ts:127](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L127)

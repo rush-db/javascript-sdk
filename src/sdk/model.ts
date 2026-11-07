@@ -7,9 +7,9 @@ import type {
   MaybeArray,
   PropertyDraft
 } from '../types/index.js'
+import type { RestAPI } from '../api/api.js'
 import type {
   DBRecord,
-  DBRecordInstance,
   DBRecordsArrayInstance,
   DBRecordTarget,
   RelationDetachOptions,
@@ -21,8 +21,9 @@ import type { Transaction } from './transaction.js'
 import { isArray, isEmptyObject, toBoolean } from '../common/utils.js'
 import { EmptyTargetError, UniquenessError } from './errors.js'
 import { mergeDefaultsWithPayload, pickUniqFieldsFromRecord, pickUniqFieldsFromRecords } from './utils.js'
-import { isPropertyDraft, pickRecordId } from '../api/utils'
-import { RushDB } from './sdk'
+import { isPropertyDraft, pickRecordId } from '../api/utils.js'
+import { boundClient, resolveClient } from './owner.js'
+import { DBRecordInstance } from './record.js'
 
 /**
  * Configuration options for a Model instance.
@@ -34,6 +35,13 @@ export type ModelConfig = {
    * @default false
    */
   validateTargetLabel?: boolean
+  /**
+   * The client this model's operations are sent through. Set it when more than
+   * one RushDB client lives in the process. When omitted, an operation given a
+   * `Transaction` uses the client that began it; otherwise the most recently
+   * created RushDB instance is used.
+   */
+  client?: RestAPI
 }
 
 /**
@@ -122,35 +130,25 @@ export class Model<S extends Schema = any> {
   }
 
   /**
-   * Retrieves the initialized RushDB instance or waits for initialization to complete.
-   *
-   * This method is called internally by all data access methods in the Model class.
-   * It ensures that the database connection is properly established before executing
-   * any operations. For this to work, make sure you've created a RushDB instance
-   * somewhere in your code and imported that module in your application's entry point.
-   *
-   * Note: If you get "No RushDB instance found" errors, it usually means the module
-   * where you create your RushDB instance hasn't been imported yet.
-   *
-   * @returns Promise resolving to the initialized RushDB instance
-   * @throws Error if no RushDB instance has been created yet
-   */
-
-  /**
    * Converts a database record to a record instance (DBRecordInstance) with additional methods.
    *
    * @param record - The database record to convert
-   * @returns A record instance with additional methods
-   * @throws Error if no RushDB instance was provided during initialization
+   * @returns A record instance with additional methods, bound to the model's client
+   * @throws Error if no client is configured and no RushDB instance has been created
    */
   public async toDBRecordInstance(record: DBRecord<S>) {
-    try {
-      const instance = RushDB.getInstance()
-      return instance.toDBRecordInstance(record)
-    } catch (error) {
-      throw new Error('No RushDB instance was provided during model initialization.')
-    }
+    return new DBRecordInstance<S>(record, this.resolveClient())
   }
+
+  /**
+   * The client an operation is sent through: the model's own `client`, else the
+   * client that began `transaction`, else the most recently created RushDB instance.
+   * @private
+   */
+  private resolveClient(transaction?: Transaction | string) {
+    return resolveClient(this.config.client, boundClient(transaction))
+  }
+
 
   /**
    * Finds records that match the given search criteria.
@@ -164,7 +162,7 @@ export class Model<S extends Schema = any> {
     transaction?: Transaction | string
   ) {
     const query = (searchQuery ?? {}) as Q
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     return instance.records.find<S, Q>({ ...query, labels: [this.label] }, transaction)
   }
 
@@ -188,7 +186,7 @@ export class Model<S extends Schema = any> {
       limit?: never
       skip?: never
     }
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     return instance.records.findOne<S, Q>({ ...query, labels: [this.label] }, transaction)
   }
 
@@ -223,7 +221,7 @@ export class Model<S extends Schema = any> {
       limit?: never
       skip?: never
     }
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     return instance.records.findUniq<S, Q>({ ...query, labels: [this.label] }, transaction)
   }
 
@@ -244,7 +242,7 @@ export class Model<S extends Schema = any> {
 
     const uniqFields = pickUniqFieldsFromRecord(this.schema, data)
     const hasUniqFields = toBoolean(uniqFields)
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
 
     if (hasUniqFields) {
       const tx = transaction ?? (await instance.tx.begin())
@@ -309,7 +307,7 @@ export class Model<S extends Schema = any> {
     },
     transaction?: Transaction | string
   ) {
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     return await instance.records.attach({ source, target, options }, transaction)
   }
 
@@ -332,7 +330,7 @@ export class Model<S extends Schema = any> {
     },
     transaction?: Transaction | string
   ) {
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     return await instance.records.detach({ source, target, options }, transaction)
   }
 
@@ -347,7 +345,7 @@ export class Model<S extends Schema = any> {
     const id = pickRecordId(target)
     if (!id) return
 
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     const record = await instance.records.findById(id, transaction)
     if (!record) {
       throw new Error(`Record with id "${id}" not found.`)
@@ -382,11 +380,11 @@ export class Model<S extends Schema = any> {
 
     // Consider Array as Array<PropertyDraft>
     if (isArray(record) && record.every(isPropertyDraft)) {
-      const instance = RushDB.getInstance()
+      const instance = this.resolveClient(transaction)
       return await instance.records[method]<S>({ label: this.label, target, data: record }, transaction)
     }
 
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     const data = await mergeDefaultsWithPayload<S>(this.schema, record)
     const uniqFields = pickUniqFieldsFromRecord(this.schema, data)
 
@@ -454,7 +452,7 @@ export class Model<S extends Schema = any> {
    * @throws UniquenessError if any record violates uniqueness constraints
    */
   async createMany(records: Array<InferSchemaTypesWrite<S>>, transaction?: Transaction | string) {
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
 
     // Begin a transaction if one isn't provided.
     const hasOwnTransaction = typeof transaction !== 'undefined'
@@ -525,7 +523,7 @@ export class Model<S extends Schema = any> {
         `You must specify criteria to delete records of type '${this.label}'. Empty criteria are not allowed. If this was intentional, use the Dashboard instead.`
       )
     }
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     return await instance.records.delete({ ...searchQuery, labels: [this.label] }, transaction)
   }
 
@@ -537,7 +535,7 @@ export class Model<S extends Schema = any> {
    * @returns Promise resolving to the result of the delete operation
    */
   async deleteById(idOrIds: MaybeArray<string>, transaction?: Transaction | string) {
-    const instance = RushDB.getInstance()
+    const instance = this.resolveClient(transaction)
     return await instance.records.deleteById(idOrIds, transaction)
   }
 }

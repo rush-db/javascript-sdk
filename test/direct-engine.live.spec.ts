@@ -222,6 +222,35 @@ describe.skipIf(!engineUrl)('direct mode against a standalone engine', () => {
     await db.ai.indexes.delete(name)
   })
 
+  it('creates and searches a dot-product vector index', async () => {
+    const created = await db.ai.indexes.create({
+      label: BOOK,
+      propertyName: 'summary',
+      external: true,
+      dimensions: 2,
+      similarityFunction: 'dot'
+    })
+    const name = created.data.name
+    expect(name).toBe(`${BOOK}.summary.external.2.dot`)
+
+    const listed = (await db.ai.indexes.find()).data.find((index) => index.name === name)
+    expect(listed).toMatchObject({ sourceType: 'external', similarityFunction: 'dot', dimensions: 2 })
+
+    await db.records.create({
+      label: BOOK,
+      data: { title: 'Solaris', summary: 'ocean planet' },
+      vectors: [{ propertyName: 'summary', vector: [3, 4], similarityFunction: 'dot' }]
+    })
+    const nearest = await db.records.vectorSearch({
+      index: name,
+      queryVector: [1, 1],
+      similarityFunction: 'dot',
+      limit: 1
+    })
+    expect(nearest.data[0].data.title).toBe('Solaris')
+    await db.ai.indexes.delete(name)
+  })
+
   it('runs raw openCypher', async () => {
     const result = await db.query.raw({
       query: `MATCH (b:${BOOK}) WHERE b.title = 'Dune' RETURN b.pages AS pages`

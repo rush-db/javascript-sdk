@@ -8,7 +8,7 @@
 
 > **InferType**\<`M`\> = [`FlattenTypes`](FlattenTypes.md)\<[`InferSchemaTypesRead`](InferSchemaTypesRead.md)\<`M`\[`"schema"`\]\>\>
 
-Defined in: [sdk/model.ts:550](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L550)
+Defined in: [sdk/model.ts:548](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L548)
 
 Helper type that infers the type structure from a Model instance.
 

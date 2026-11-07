@@ -6,7 +6,7 @@
 
 # Class: Model\<S\>
 
-Defined in: [sdk/model.ts:59](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L59)
+Defined in: [sdk/model.ts:67](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L67)
 
 Represents a model in the RushDB database.
 A model defines the structure and behavior of a specific type of record in the database.
@@ -26,7 +26,7 @@ The schema type that defines the structure of the model's records
 
 > **new Model**\<`S`\>(`modelName`, `schema`, `config?`): `Model`\<`S`\>
 
-Defined in: [sdk/model.ts:71](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L71)
+Defined in: [sdk/model.ts:79](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L79)
 
 Creates a new Model instance.
 
@@ -60,7 +60,7 @@ Optional model configuration
 
 > `readonly` **draft**: [`FlattenTypes`](../type-aliases/FlattenTypes.md)\<[`FlattenTypes`](../type-aliases/FlattenTypes.md)\<\{ \[Key in string \| number \| symbol\]: S\[Key\]\["multiple"\] extends true ? TypeMappingRead\[S\[Key\]\["type"\]\]\[\] : TypeMappingRead\[S\[Key\]\["type"\]\] \} & \{ \[Key in string \| number \| symbol\]?: S\[Key\]\["multiple"\] extends true ? TypeMappingRead\[S\[Key\]\["type"\]\]\[\] : TypeMappingRead\[S\[Key\]\["type"\]\] \}\>\>
 
-Defined in: [sdk/model.ts:84](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L84)
+Defined in: [sdk/model.ts:92](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L92)
 
 #### Description
 
@@ -76,7 +76,7 @@ database side.
 
 > `readonly` **label**: `string`
 
-Defined in: [sdk/model.ts:60](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L60)
+Defined in: [sdk/model.ts:68](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L68)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [sdk/model.ts:60](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > `readonly` **record**: [`FlattenTypes`](../type-aliases/FlattenTypes.md)\<`DBRecordInternalProps`\<`S`\> & [`FlattenTypes`](../type-aliases/FlattenTypes.md)\<[`RecordProps`](../type-aliases/RecordProps.md)\<`S`\>\>\>
 
-Defined in: [sdk/model.ts:99](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L99)
+Defined in: [sdk/model.ts:107](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L107)
 
 #### Description
 
@@ -98,7 +98,7 @@ database-side representation, such as `__id`, `__label`, and `__proptypes`.
 
 > `readonly` **recordInstance**: [`DBRecordInstance`](DBRecordInstance.md)\<`S`\>
 
-Defined in: [sdk/model.ts:106](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L106)
+Defined in: [sdk/model.ts:114](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L114)
 
 #### Description
 
@@ -112,7 +112,7 @@ record, such as saving, updating, or deleting it.
 
 > `readonly` **recordsArrayInstance**: [`DBRecordsArrayInstance`](DBRecordsArrayInstance.md)\<`S`\>
 
-Defined in: [sdk/model.ts:113](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L113)
+Defined in: [sdk/model.ts:121](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L121)
 
 #### Description
 
@@ -126,7 +126,7 @@ allowing efficient management of multiple records simultaneously.
 
 > `readonly` **schema**: `S`
 
-Defined in: [sdk/model.ts:61](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L61)
+Defined in: [sdk/model.ts:69](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L69)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [sdk/model.ts:61](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > `readonly` **searchQuery**: [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>
 
-Defined in: [sdk/model.ts:92](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L92)
+Defined in: [sdk/model.ts:100](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L100)
 
 #### Description
 
@@ -149,7 +149,7 @@ Useful for composing reusable, type-safe search expressions.
 
 > **attach**(`params`, `transaction?`): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/model.ts:300](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L300)
+Defined in: [sdk/model.ts:298](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L298)
 
 Attaches a relationship between records.
 
@@ -189,7 +189,7 @@ Promise resolving to the result of the attach operation
 
 > **create**(`record`, `transaction?`, `options?`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\> \| `null`\>
 
-Defined in: [sdk/model.ts:238](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L238)
+Defined in: [sdk/model.ts:236](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L236)
 
 Creates a new record in the database.
 
@@ -227,7 +227,7 @@ UniquenessError if the record violates uniqueness constraints
 
 > **createMany**(`records`, `transaction?`): `Promise`\<[`DBRecordsArrayInstance`](DBRecordsArrayInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/model.ts:456](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L456)
+Defined in: [sdk/model.ts:454](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L454)
 
 Creates multiple records in a single operation.
 
@@ -261,7 +261,7 @@ UniquenessError if any record violates uniqueness constraints
 
 > **delete**(`searchQuery`, `transaction?`): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/model.ts:522](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L522)
+Defined in: [sdk/model.ts:520](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L520)
 
 Deletes records that match the given search criteria.
 
@@ -295,7 +295,7 @@ EmptyTargetError if no search criteria are provided
 
 > **deleteById**(`idOrIds`, `transaction?`): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/model.ts:539](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L539)
+Defined in: [sdk/model.ts:537](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L537)
 
 Deletes one or more records by their IDs.
 
@@ -325,7 +325,7 @@ Promise resolving to the result of the delete operation
 
 > **detach**(`params`, `transaction?`): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/model.ts:323](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L323)
+Defined in: [sdk/model.ts:321](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L321)
 
 Detaches a relationship between records.
 
@@ -365,7 +365,7 @@ Promise resolving to the result of the detach operation
 
 > **find**\<`Q`\>(`searchQuery?`, `transaction?`): `Promise`\<[`DBRecordsArrayInstance`](DBRecordsArrayInstance.md)\<`S`, `Q`\>\>
 
-Defined in: [sdk/model.ts:162](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L162)
+Defined in: [sdk/model.ts:160](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L160)
 
 Finds records that match the given search criteria.
 
@@ -401,7 +401,7 @@ Promise resolving to matching records
 
 > **findById**(`id`, `transaction?`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/model.ts:202](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L202)
+Defined in: [sdk/model.ts:200](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L200)
 
 Finds a record by its ID.
 
@@ -431,7 +431,7 @@ Promise resolving to the matching record or null if not found
 
 > **findOne**\<`Q`\>(`searchQuery?`, `transaction?`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/model.ts:178](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L178)
+Defined in: [sdk/model.ts:176](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L176)
 
 Finds a single record that matches the given search criteria.
 
@@ -467,7 +467,7 @@ Promise resolving to the matching record or null if not found
 
 > **findUniq**\<`Q`\>(`searchQuery?`, `transaction?`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, `Q`\>\>
 
-Defined in: [sdk/model.ts:213](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L213)
+Defined in: [sdk/model.ts:211](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L211)
 
 Finds a unique record that matches the given search criteria.
 
@@ -503,7 +503,7 @@ Promise resolving to the unique matching record or null if not found
 
 > **getLabel**(): `string`
 
-Defined in: [sdk/model.ts:120](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L120)
+Defined in: [sdk/model.ts:128](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L128)
 
 Retrieves the model's label.
 
@@ -519,7 +519,7 @@ The label/name of the model
 
 > **set**(`target`, `record`, `transaction?`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/model.ts:428](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L428)
+Defined in: [sdk/model.ts:426](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L426)
 
 Sets all fields of a record to the provided values.
 
@@ -553,9 +553,9 @@ Promise resolving to the modified record
 
 ### toDBRecordInstance()
 
-> **toDBRecordInstance**(`record`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<[`Schema`](../type-aliases/Schema.md), [`SearchQuery`](../type-aliases/SearchQuery.md)\<[`Schema`](../type-aliases/Schema.md)\>\>\>
+> **toDBRecordInstance**(`record`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/model.ts:146](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L146)
+Defined in: [sdk/model.ts:139](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L139)
 
 Converts a database record to a record instance (DBRecordInstance) with additional methods.
 
@@ -569,13 +569,13 @@ The database record to convert
 
 #### Returns
 
-`Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<[`Schema`](../type-aliases/Schema.md), [`SearchQuery`](../type-aliases/SearchQuery.md)\<[`Schema`](../type-aliases/Schema.md)\>\>\>
+`Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-A record instance with additional methods
+A record instance with additional methods, bound to the model's client
 
 #### Throws
 
-Error if no RushDB instance was provided during initialization
+Error if no client is configured and no RushDB instance has been created
 
 ***
 
@@ -583,7 +583,7 @@ Error if no RushDB instance was provided during initialization
 
 > **update**(`target`, `record`, `transaction?`): `Promise`\<[`DBRecordInstance`](DBRecordInstance.md)\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/model.ts:440](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L440)
+Defined in: [sdk/model.ts:438](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L438)
 
 Updates specified fields of a record.
 

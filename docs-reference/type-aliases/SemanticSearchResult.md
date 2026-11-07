@@ -8,7 +8,7 @@
 
 > **SemanticSearchResult**\<`S`\> = [`VectorSearchResult`](VectorSearchResult.md)\<`S`\>
 
-Defined in: [api/types.ts:246](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L246)
+Defined in: [api/types.ts:252](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L252)
 
 ## Type Parameters
 

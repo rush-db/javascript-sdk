@@ -8,7 +8,7 @@
 
 > **CreateEmbeddingIndexParams** = `object`
 
-Defined in: [api/types.ts:36](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L36)
+Defined in: [api/types.ts:42](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L42)
 
 Parameters for creating a new embedding index.
 
@@ -18,7 +18,7 @@ Parameters for creating a new embedding index.
 
 > `optional` **dimensions?**: `number`
 
-Defined in: [api/types.ts:53](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L53)
+Defined in: [api/types.ts:59](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L59)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/types.ts:53](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > `optional` **external?**: `boolean`
 
-Defined in: [api/types.ts:51](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L51)
+Defined in: [api/types.ts:57](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L57)
 
 Shorthand for `sourceType: 'external'`.
 When `true`, the index will be created with `sourceType: 'external'` regardless of the `sourceType` field.
@@ -37,7 +37,7 @@ When `true`, the index will be created with `sourceType: 'external'` regardless 
 
 > **label**: `string`
 
-Defined in: [api/types.ts:44](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L44)
+Defined in: [api/types.ts:50](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L50)
 
 Record label to scope this index to (e.g. "Book", "Task").
 
@@ -47,7 +47,7 @@ Record label to scope this index to (e.g. "Book", "Task").
 
 > `optional` **name?**: `string`
 
-Defined in: [api/types.ts:42](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L42)
+Defined in: [api/types.ts:48](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L48)
 
 Index name, unique within the project: 1–64 characters of letters,
 digits, `.`, `_`, `:` or `-`. Defaults to
@@ -59,15 +59,15 @@ digits, `.`, `_`, `:` or `-`. Defaults to
 
 > **propertyName**: `string`
 
-Defined in: [api/types.ts:45](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L45)
+Defined in: [api/types.ts:51](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L51)
 
 ***
 
 ### similarityFunction?
 
-> `optional` **similarityFunction?**: `"cosine"` \| `"euclidean"`
+> `optional` **similarityFunction?**: [`SimilarityFunction`](SimilarityFunction.md)
 
-Defined in: [api/types.ts:52](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L52)
+Defined in: [api/types.ts:58](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L58)
 
 ***
 
@@ -75,4 +75,4 @@ Defined in: [api/types.ts:52](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > `optional` **sourceType?**: `"managed"` \| `"external"`
 
-Defined in: [api/types.ts:46](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L46)
+Defined in: [api/types.ts:52](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L52)

@@ -8,7 +8,7 @@
 
 > **UpsertEmbeddingVectorsParams** = `object`
 
-Defined in: [api/types.ts:79](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L79)
+Defined in: [api/types.ts:85](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L85)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [api/types.ts:79](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > **items**: [`UpsertEmbeddingVectorItem`](UpsertEmbeddingVectorItem.md)[]
 
-Defined in: [api/types.ts:80](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L80)
+Defined in: [api/types.ts:86](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L86)

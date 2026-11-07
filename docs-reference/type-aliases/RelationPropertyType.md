@@ -8,6 +8,6 @@
 
 > **RelationPropertyType** = `"string"` \| `"number"` \| `"boolean"` \| `"datetime"`
 
-Defined in: [sdk/record.ts:96](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L96)
+Defined in: [sdk/record.ts:97](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L97)
 
 Type of a relationship property value.

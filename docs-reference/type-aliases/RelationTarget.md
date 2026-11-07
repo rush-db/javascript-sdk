@@ -8,7 +8,7 @@
 
 > **RelationTarget** = [`DBRecordsArrayInstance`](../classes/DBRecordsArrayInstance.md)\<`any`\> \| [`MaybeArray`](MaybeArray.md)\<[`DBRecord`](DBRecord.md)\<`any`\>\> \| [`MaybeArray`](MaybeArray.md)\<[`DBRecordInstance`](../classes/DBRecordInstance.md)\<`any`\>\> \| [`MaybeArray`](MaybeArray.md)\<`string`\>
 
-Defined in: [sdk/record.ts:74](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L74)
+Defined in: [sdk/record.ts:75](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L75)
 
 Target for relationship operations.
 Can be an array of records, record instances, or record IDs.

@@ -8,7 +8,7 @@
 
 > **DBRecordInferred**\<`S`, `Q`\> = `Q` *extends* `object` ? [`DBRecord`](DBRecord.md)\<`S`\> & [`ExtractAggregateFields`](ExtractAggregateFields.md)\<`Sel`\> : `Q` *extends* `object` ? [`DBRecord`](DBRecord.md)\<`S`\> & [`ExtractAggregateFields`](ExtractAggregateFields.md)\<`A`\> : [`DBRecord`](DBRecord.md)\<`S`\>
 
-Defined in: [sdk/record.ts:50](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L50)
+Defined in: [sdk/record.ts:51](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L51)
 
 DBRecord with possible computed metric fields based on a search query.
 Uses select/groupBy as canonical. The legacy aggregate clause is deprecated and only present for vector similarity until select supports it.

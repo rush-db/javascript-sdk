@@ -7,6 +7,12 @@ export type ApiResponse<T, E = Record<string, any>> = {
   total?: number
 } & E
 
+/**
+ * How an embedding index scores vectors. A standalone engine (direct mode)
+ * supports all three; RushDB Cloud accepts `cosine` and `euclidean`.
+ */
+export type SimilarityFunction = 'cosine' | 'dot' | 'euclidean'
+
 /** An embedding index policy stored in RushDB. */
 export type EmbeddingIndex = {
   id: string
@@ -22,7 +28,7 @@ export type EmbeddingIndex = {
   propertyName: string
   modelKey: string
   sourceType: 'managed' | 'external'
-  similarityFunction: 'cosine' | 'euclidean'
+  similarityFunction: SimilarityFunction
   dimensions: number
   vectorPropertyName: string
   enabled: boolean
@@ -49,7 +55,7 @@ export type CreateEmbeddingIndexParams = {
    * When `true`, the index will be created with `sourceType: 'external'` regardless of the `sourceType` field.
    */
   external?: boolean
-  similarityFunction?: 'cosine' | 'euclidean'
+  similarityFunction?: SimilarityFunction
   dimensions?: number
 }
 
@@ -66,7 +72,7 @@ export type VectorEntry = {
    * Required when two indexes share the same `propertyName` and `dimensions` but differ in
    * `similarityFunction`. Omit when there is only one matching index.
    */
-  similarityFunction?: 'cosine' | 'euclidean'
+  similarityFunction?: SimilarityFunction
   /** The index to write to, by name (or id). Overrides selection by shape. */
   index?: string
 }
@@ -111,7 +117,7 @@ export type VectorSearchParams = {
    */
   labels?: string[]
   sourceType?: 'managed' | 'external'
-  similarityFunction?: 'cosine' | 'euclidean'
+  similarityFunction?: SimilarityFunction
   dimensions?: number
   /**
    * Optional filter applied before cosine scoring.

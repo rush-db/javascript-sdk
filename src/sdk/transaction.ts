@@ -1,4 +1,6 @@
-import { RushDB } from './sdk.js'
+import type { RestAPI } from '../api/api.js'
+
+import { bindClient, boundClient, resolveClient } from './owner.js'
 
 /**
  * Represents a database transaction that groups multiple operations.
@@ -19,9 +21,13 @@ export class Transaction {
    * Instead, use the tx.begin() method from a RushDB instance.
    *
    * @param id - The transaction ID provided by the database
+   * @param client - The client that began the transaction; `commit()` and
+   *   `rollback()` are sent through it. When omitted, the most recently created
+   *   RushDB instance is used.
    */
-  constructor(id: string) {
+  constructor(id: string, client?: RestAPI) {
     this.id = id
+    bindClient(this, client)
   }
 
   /**
@@ -31,8 +37,7 @@ export class Transaction {
    * @returns Promise resolving to the result of the rollback operation
    */
   async rollback() {
-    const instance = RushDB.getInstance()
-    return await instance.tx.rollback(this.id)
+    return await resolveClient(boundClient(this)).tx.rollback(this.id)
   }
 
   /**
@@ -42,7 +47,6 @@ export class Transaction {
    * @returns Promise resolving to the result of the commit operation
    */
   async commit() {
-    const instance = RushDB.getInstance()
-    return await instance.tx.commit(this.id)
+    return await resolveClient(boundClient(this)).tx.commit(this.id)
   }
 }
