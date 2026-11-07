@@ -30,6 +30,16 @@ Defined in: [sdk/record.ts:90](https://github.com/rush-db/javascript-sdk/blob/ma
 
 ***
 
+### propertyTypes?
+
+> `optional` **propertyTypes?**: `Record`\<`string`, [`RelationPropertyType`](RelationPropertyType.md)\>
+
+Defined in: [sdk/record.ts:92](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L92)
+
+Type of each typed property (engines that type relationship properties send it).
+
+***
+
 ### sourceId
 
 > **sourceId**: `string`

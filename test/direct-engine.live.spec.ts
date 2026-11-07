@@ -94,6 +94,27 @@ describe.skipIf(!engineUrl)('direct mode against a standalone engine', () => {
       source: { labels: [AUTHOR] }
     } as any)
     expect(linked.total).toBe(1)
+
+    await db.records.attach({
+      source: herbert,
+      target: dune,
+      options: { type: 'WROTE', properties: { year: 1965, draft: true } }
+    })
+    const changed = await db.relationships.update({
+      source: herbert,
+      target: dune,
+      type: 'WROTE',
+      set: { year: 1966, role: 'author', since: '1965-08-01T10:30:00.000Z' },
+      unset: ['draft'],
+      types: { since: 'datetime' }
+    })
+    expect(changed.data.updated).toBe(1)
+    const [wrote] = (
+      await db.relationships.find({ where: { type: 'WROTE' }, source: { labels: [AUTHOR] } } as any)
+    ).data
+    expect(wrote.properties).toEqual({ year: 1966, role: 'author', since: '1965-08-01T10:30:00.000Z' })
+    expect(wrote.propertyTypes?.since).toBe('datetime')
+
     await db.records.detach({ source: herbert, target: dune, options: { typeOrTypes: 'WROTE' } })
     expect(
       (await db.relationships.find({ where: { type: 'WROTE' }, source: { labels: [AUTHOR] } } as any)).total

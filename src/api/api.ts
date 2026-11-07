@@ -10,6 +10,7 @@ import type {
   RelationDetachOptions,
   RelationDirection,
   RelationOptions,
+  RelationPropertyType,
   RelationTarget
 } from '../sdk/record.js'
 import { DBRecordInstance, DBRecordsArrayInstance } from '../sdk/record.js'
@@ -1155,6 +1156,60 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload })
 
       const response = await this.fetcher<ApiResponse<{ message: string }>>(path, payload)
+      this.logger?.({ requestId, path, ...payload, responseData: response.data })
+
+      return response
+    },
+    /**
+     * Updates the properties of existing relationships of one type, from `source` to each
+     * `target` (or the reverse with `direction: 'in'`). `set` writes values (`null` stores an
+     * explicit null); `unset` removes properties; `types` names a `set` value's type where JSON
+     * can't (`datetime` stores an ISO string as a datetime). Pairs without such a relationship are
+     * skipped; `updated` counts the relationships changed. Not available inside a transaction.
+     * @param source - The source record
+     * @param target - The target record(s)
+     * @param type - The relationship type to update
+     * @param direction - `out` (default) or `in`
+     * @param set - Properties to write
+     * @param unset - Property names to remove
+     * @param types - Type of `set` properties, e.g. `{ since: 'datetime' }`
+     * @returns Promise with the number of relationships updated
+     */
+    update: async ({
+      source,
+      target,
+      type,
+      direction,
+      set,
+      unset,
+      types
+    }: {
+      source: DBRecordTarget
+      target: RelationTarget
+      type: string
+      direction?: RelationDirection
+      set?: Record<string, unknown>
+      unset?: Array<string>
+      types?: Record<string, RelationPropertyType>
+    }) => {
+      const recordId = pickRecordId(source)!
+      const path = `/relationships/${recordId}`
+      const payload = {
+        headers: {},
+        method: 'PATCH',
+        requestData: {
+          targetIds: this._extractTargetIds(target, 'Update'),
+          type,
+          ...(direction && { direction }),
+          ...(set && { set }),
+          ...(unset && { unset }),
+          ...(types && Object.keys(types).length > 0 && { types })
+        }
+      }
+      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+      this.logger?.({ requestId, path, ...payload })
+
+      const response = await this.fetcher<ApiResponse<{ message: string; updated: number }>>(path, payload)
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       return response

@@ -88,7 +88,12 @@ export type Relation = {
   type: string
   direction: RelationDirection
   properties: Record<string, unknown>
+  /** Type of each typed property (engines that type relationship properties send it). */
+  propertyTypes?: Record<string, RelationPropertyType>
 }
+
+/** Type of a relationship property value. */
+export type RelationPropertyType = 'string' | 'number' | 'boolean' | 'datetime'
 
 /**
  * Direction of a relationship.

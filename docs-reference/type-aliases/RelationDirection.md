@@ -8,7 +8,7 @@
 
 > **RelationDirection** = `"in"` \| `"out"`
 
-Defined in: [sdk/record.ts:97](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L97)
+Defined in: [sdk/record.ts:102](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L102)
 
 Direction of a relationship.
 'in' for incoming relationships, 'out' for outgoing relationships.
