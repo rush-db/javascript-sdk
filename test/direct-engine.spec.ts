@@ -77,6 +77,8 @@ function engineAnswer(operation: any): any {
       return { kind: 'vectorIndexStats', stats: { totalRecords: 1, indexedRecords: 1, index: VECTOR_INDEX } }
     case 'mutate.putRecord':
       return { kind: 'record', record: RECORD }
+    case 'mutate.updateRelationshipsById':
+      return { kind: 'mutation', affected: inner.command.targetIds.length }
     case 'index.create':
       return { kind: 'index', index: { ...TEXT_INDEX, name: inner.definition.name } }
     case 'index.createVector':
@@ -174,6 +176,8 @@ const EVERY_METHOD: Record<string, Call> = {
       target: { label: 'Author', key: 'bookId' }
     }),
   'relationships.find': (db) => db.relationships.find({}),
+  'relationships.update': (db) =>
+    db.relationships.update({ source: RECORD.id, target: RECORD.id, type: 'LIKES', set: { weight: 1 } }),
   'properties.delete': (db) => db.properties.delete('p1'),
   'properties.find': (db) => db.properties.find({}),
   'properties.findById': (db) => db.properties.findById('p1'),
@@ -542,6 +546,33 @@ describe('direct mode answers in the Cloud shapes', () => {
     expect(commands).toEqual([
       { relationTypes: [], sourceIds: [RECORD.id], targetIds: ['t1'] },
       { relationTypes: ['A', 'B'], direction: 'out', sourceIds: [RECORD.id], targetIds: ['t1'] }
+    ])
+  })
+
+  it('updates relationship properties by record ids', async () => {
+    const result = await directDb().relationships.update({
+      source: RECORD.id,
+      target: ['t1', 't2'],
+      type: 'PLACES',
+      direction: 'in',
+      set: { channel: 'web', note: null, since: '2026-11-06T10:00:00.000Z' },
+      unset: ['old'],
+      types: { since: 'datetime' }
+    })
+    expect(result.data).toEqual({ message: `2 relationships of Record ${RECORD.id} updated`, updated: 2 })
+    const commands = operations()
+      .filter((operation) => operation.mutation?.kind === 'updateRelationshipsById')
+      .map((operation) => operation.mutation.command)
+    expect(commands).toEqual([
+      {
+        relationType: 'PLACES',
+        direction: 'in',
+        sourceIds: [RECORD.id],
+        targetIds: ['t1', 't2'],
+        set: { channel: 'web', note: null, since: '2026-11-06T10:00:00.000Z' },
+        unset: ['old'],
+        types: { since: 'datetime' }
+      }
     ])
   })
 

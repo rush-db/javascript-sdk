@@ -179,6 +179,22 @@ const relationships = await db.relationships.find({
 })
 ```
 
+`db.relationships.update()` changes the properties of existing relationships: `set` writes values, `unset` removes them.
+`types` marks a value whose type JSON can't carry: `{ since: 'datetime' }` stores an ISO string as a datetime.
+Relationships read back with their datetime values as ISO strings and a `propertyTypes` map.
+It needs RushDB 3.0.4 or newer.
+
+```typescript
+await db.relationships.update({
+  source: user,
+  target: order,
+  type: 'ORDERED',
+  set: { confidence: 0.95, reviewedAt: '2026-11-06T10:00:00.000Z' },
+  unset: ['legacyCode'],
+  types: { reviewedAt: 'datetime' }
+})
+```
+
 ---
 
 ## RushDB Cloud or a self-hosted engine
@@ -211,7 +227,7 @@ What each offers:
 | Feature | Cloud | Self-hosted engine |
 | --- | :---: | :---: |
 | Records: create, read, update, set, upsert, delete, `find` with `where`, `orderBy`, `select`, `groupBy` | ✓ | ✓ |
-| Relationships: `attach`/`detach`, `relationships.createMany`/`deleteMany`/`find` | ✓ | ✓ |
+| Relationships: `attach`/`detach`, `relationships.createMany`/`deleteMany`/`find`/`update` | ✓ | ✓ |
 | Labels, properties, property values | ✓ | ✓ |
 | Import JSON and CSV, export CSV | ✓ | ✓ |
 | Text indexes and keyword search (`records.textSearch`) | ✓ | ✓ |

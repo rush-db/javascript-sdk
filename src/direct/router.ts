@@ -789,6 +789,34 @@ const routes: Route[] = [
     }
   },
   {
+    method: 'PATCH',
+    pattern: new RegExp(`^/relationships/${ID}$`),
+    handle: async ({ body, params: [id], engine, txId }) => {
+      notInTransaction(txId, 'relationships.update')
+      const result = await engine.execute({
+        kind: 'mutate',
+        mutation: {
+          kind: 'updateRelationshipsById',
+          command: {
+            relationType: body.type,
+            direction: String(body.direction ?? '').toLowerCase() === 'in' ? 'in' : 'out',
+            sourceIds: [id],
+            targetIds: asArray(body.targetIds),
+            set: body.set ?? {},
+            unset: body.unset ?? [],
+            // Sent only when used, so untyped updates still work on engines without it.
+            ...(body.types && Object.keys(body.types).length > 0 && { types: body.types })
+          }
+        }
+      })
+      const updated = Number(result?.affected ?? 0)
+      return ok({
+        message: `${updated} relationship${updated === 1 ? '' : 's'} of Record ${id} updated`,
+        updated
+      })
+    }
+  },
+  {
     method: 'POST',
     pattern: /^\/relationships\/create-many$/,
     handle: async ({ body, engine, txId }) => {

@@ -102,6 +102,7 @@
 - [RelationDetachOptions](type-aliases/RelationDetachOptions.md)
 - [RelationDirection](type-aliases/RelationDirection.md)
 - [RelationOptions](type-aliases/RelationOptions.md)
+- [RelationPropertyType](type-aliases/RelationPropertyType.md)
 - [RelationshipEndpointQuery](type-aliases/RelationshipEndpointQuery.md)
 - [RelationshipPattern](type-aliases/RelationshipPattern.md)
 - [RelationshipPatternDirection](type-aliases/RelationshipPatternDirection.md)
