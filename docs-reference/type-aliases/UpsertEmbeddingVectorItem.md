@@ -8,7 +8,7 @@
 
 > **UpsertEmbeddingVectorItem** = `object`
 
-Defined in: [api/types.ts:74](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L74)
+Defined in: [api/types.ts:80](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L80)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/types.ts:74](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > **recordId**: `string`
 
-Defined in: [api/types.ts:75](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L75)
+Defined in: [api/types.ts:81](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L81)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [api/types.ts:75](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > **vector**: `number`[]
 
-Defined in: [api/types.ts:76](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L76)
+Defined in: [api/types.ts:82](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L82)

@@ -6,7 +6,7 @@
 
 # Class: Transaction
 
-Defined in: [sdk/transaction.ts:13](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L13)
+Defined in: [sdk/transaction.ts:15](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L15)
 
 Represents a database transaction that groups multiple operations.
 Transactions ensure that a series of operations are executed atomically,
@@ -21,9 +21,9 @@ that need to be rolled back if any part fails.
 
 ### Constructor
 
-> **new Transaction**(`id`): `Transaction`
+> **new Transaction**(`id`, `client?`): `Transaction`
 
-Defined in: [sdk/transaction.ts:23](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L23)
+Defined in: [sdk/transaction.ts:28](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L28)
 
 Creates a new Transaction instance.
 Typically, you should not create Transaction instances directly.
@@ -37,6 +37,14 @@ Instead, use the tx.begin() method from a RushDB instance.
 
 The transaction ID provided by the database
 
+##### client?
+
+[`RestAPI`](RestAPI.md)
+
+The client that began the transaction; `commit()` and
+  `rollback()` are sent through it. When omitted, the most recently created
+  RushDB instance is used.
+
 #### Returns
 
 `Transaction`
@@ -47,7 +55,7 @@ The transaction ID provided by the database
 
 > `readonly` **id**: `string`
 
-Defined in: [sdk/transaction.ts:14](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L14)
+Defined in: [sdk/transaction.ts:16](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L16)
 
 ## Methods
 
@@ -55,7 +63,7 @@ Defined in: [sdk/transaction.ts:14](https://github.com/rush-db/javascript-sdk/bl
 
 > **commit**(): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/transaction.ts:44](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L44)
+Defined in: [sdk/transaction.ts:49](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L49)
 
 Commits (applies) all operations performed within this transaction.
 This finalizes all changes made within the transaction.
@@ -72,7 +80,7 @@ Promise resolving to the result of the commit operation
 
 > **rollback**(): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/transaction.ts:33](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L33)
+Defined in: [sdk/transaction.ts:39](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/transaction.ts#L39)
 
 Rolls back (cancels) all operations performed within this transaction.
 Use this when an error occurs or when you want to undo changes.

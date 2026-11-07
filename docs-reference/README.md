@@ -129,6 +129,7 @@
 - [SelectExprMap](type-aliases/SelectExprMap.md)
 - [~~SemanticSearchParams~~](type-aliases/SemanticSearchParams.md)
 - [~~SemanticSearchResult~~](type-aliases/SemanticSearchResult.md)
+- [SimilarityFunction](type-aliases/SimilarityFunction.md)
 - [State](type-aliases/State.md)
 - [StringExpression](type-aliases/StringExpression.md)
 - [StringValue](type-aliases/StringValue.md)

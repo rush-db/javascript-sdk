@@ -8,4 +8,4 @@
 
 > **RelationshipPatternOrigin** = `"llm"` \| `"manual"`
 
-Defined in: [api/types.ts:266](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L266)
+Defined in: [api/types.ts:272](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L272)

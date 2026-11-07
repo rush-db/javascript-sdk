@@ -8,7 +8,7 @@
 
 > **CreateOptions** = `object`
 
-Defined in: [sdk/model.ts:42](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L42)
+Defined in: [sdk/model.ts:50](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L50)
 
 Options for the `create` method.
 
@@ -18,7 +18,7 @@ Options for the `create` method.
 
 > `optional` **onConflict?**: `"throw"` \| `"upsert"` \| `"skip"`
 
-Defined in: [sdk/model.ts:49](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L49)
+Defined in: [sdk/model.ts:57](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/model.ts#L57)
 
 Behavior when a uniqueness conflict is detected.
 - `'throw'` (default) — throws `UniquenessError`

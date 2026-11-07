@@ -44,7 +44,7 @@ Defined in: [sdk/sdk.ts:24](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **ai**: `object`
 
-Defined in: [api/api.ts:1561](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1561)
+Defined in: [api/api.ts:1567](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1567)
 
 #### getJoinCandidates
 
@@ -449,7 +449,7 @@ Defined in: [api/api.ts:84](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **labels**: `object`
 
-Defined in: [api/api.ts:1353](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1353)
+Defined in: [api/api.ts:1359](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1359)
 
 API methods for managing labels in the database
 
@@ -539,7 +539,7 @@ which results in deleting all Records in the project.
 
 > **properties**: `object`
 
-Defined in: [api/api.ts:1248](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1248)
+Defined in: [api/api.ts:1254](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1254)
 
 API methods for managing properties in the database
 
@@ -669,7 +669,7 @@ Promise with the API response containing the property and its values
 
 > **query**: `object`
 
-Defined in: [api/api.ts:1491](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1491)
+Defined in: [api/api.ts:1497](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1497)
 
 #### raw
 
@@ -1537,7 +1537,7 @@ with RushDB Cloud's managed model, so it throws `CloudOnlyError` without sending
 
 > **relationships**: `object`
 
-Defined in: [api/api.ts:1015](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1015)
+Defined in: [api/api.ts:1021](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1021)
 
 API methods for managing relations between records
 
@@ -1867,7 +1867,7 @@ Promise with the number of relationships updated
 
 > **settings**: `object`
 
-Defined in: [api/api.ts:1471](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1471)
+Defined in: [api/api.ts:1477](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1477)
 
 #### get
 
@@ -1893,7 +1893,7 @@ The project's settings.
 
 > **textIndexes**: `object`
 
-Defined in: [api/api.ts:1532](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1532)
+Defined in: [api/api.ts:1538](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1538)
 
 BM25 text indexes, searched with `db.records.textSearch()` or as the
 keyword leg of a hybrid `db.records.vectorSearch({ text })`.
@@ -1967,7 +1967,7 @@ The name a new text index would get by default, unique in the project.
 
 > **tx**: `object`
 
-Defined in: [api/api.ts:1382](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1382)
+Defined in: [api/api.ts:1388](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1388)
 
 API methods for managing database transactions
 

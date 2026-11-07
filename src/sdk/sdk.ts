@@ -62,7 +62,7 @@ export class RushDB extends RestAPI {
   }
 
   public toDBRecordInstance<S extends Schema = Schema>(record: DBRecord<S>) {
-    return new DBRecordInstance<S>(record)
+    return new DBRecordInstance<S>(record, this)
   }
 }
 

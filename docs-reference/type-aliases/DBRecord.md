@@ -8,7 +8,7 @@
 
 > **DBRecord**\<`S`\> = [`FlattenTypes`](FlattenTypes.md)\<`DBRecordInternalProps`\<`S`\> & [`FlattenTypes`](FlattenTypes.md)\<[`RecordProps`](RecordProps.md)\<`S`\>\>\>
 
-Defined in: [sdk/record.ts:60](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L60)
+Defined in: [sdk/record.ts:61](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L61)
 
 Represents a database record with both system fields and user-defined fields.
 This is the raw data structure returned from database queries.

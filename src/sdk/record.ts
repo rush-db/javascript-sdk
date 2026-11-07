@@ -11,11 +11,12 @@ import type {
   SearchQuery
 } from '../types/index.js'
 import type { TextSearchReport, VectorSearchReport } from '../api/types.js'
+import type { RestAPI } from '../api/api.js'
 import type { Transaction } from './transaction.js'
 
 import { idToDate, idToTimestamp } from './utils.js'
-import { toBoolean } from '../common/utils'
-import { RushDB } from './sdk.js'
+import { toBoolean } from '../common/utils.js'
+import { bindClient, boundClient, resolveClient } from './owner.js'
 
 /**
  * Internal properties that are present on all database records.
@@ -151,9 +152,13 @@ export class DBRecordInstance<S extends Schema = Schema, Q extends SearchQuery<S
    * Typically, you don't create these directly but receive them from query results.
    *
    * @param data - The raw record data
+   * @param client - The client the record was read through; the instance's
+   *   methods are sent through it. When omitted, the most recently created
+   *   RushDB instance is used.
    */
-  constructor(data: DBRecordInferred<S, Q> = {} as DBRecordInferred<S, Q>) {
+  constructor(data: DBRecordInferred<S, Q> = {} as DBRecordInferred<S, Q>, client?: RestAPI) {
     this.data = data
+    bindClient(this, client)
   }
 
   /**
@@ -253,7 +258,7 @@ export class DBRecordInstance<S extends Schema = Schema, Q extends SearchQuery<S
       throw new Error('DBRecordInstance: Unable to delete Record. The Record data is undefined.')
     }
 
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
     return await instance.records.deleteById(this.id, transaction)
   }
 
@@ -273,7 +278,7 @@ export class DBRecordInstance<S extends Schema = Schema, Q extends SearchQuery<S
       throw new Error('DBRecordInstance: Unable to update Record. The Record data is undefined.')
     }
 
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
     return instance.records.update({ label: this.label, target: this.id, data }, transaction)
   }
 
@@ -294,7 +299,7 @@ export class DBRecordInstance<S extends Schema = Schema, Q extends SearchQuery<S
       throw new Error('DBRecordInstance: Unable to set. The Record data is undefined.')
     }
 
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
     return instance.records.set({ label: this.label, target: this.id, data }, transaction)
   }
 
@@ -312,7 +317,7 @@ export class DBRecordInstance<S extends Schema = Schema, Q extends SearchQuery<S
       throw new Error('DBRecordInstance: Unable to attach Record. The Record data is undefined.')
     }
 
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
     return instance.records.attach({ source: this.id, target, options }, transaction)
   }
 
@@ -330,7 +335,7 @@ export class DBRecordInstance<S extends Schema = Schema, Q extends SearchQuery<S
       throw new Error('DBRecordInstance: Unable to detach Record. The Record data is undefined.')
     }
 
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
     return instance.records.detach({ source: this.id, target, options }, transaction)
   }
 }
@@ -371,17 +376,23 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
    * @param data - The array of record instances
    * @param total - The total number of records matching the query
    * @param searchQuery - The search query that was used to retrieve these records
+   * @param warnings - Warnings returned by AI-assisted query generation
+   * @param client - The client the records were read through; batch methods and
+   *   pagination are sent through it. When omitted, the most recently created
+   *   RushDB instance is used.
    */
   constructor(
     data: Array<DBRecordInstance<S, Q>> = [],
     total: number = 0,
     searchQuery?: SearchQuery<S>,
-    warnings?: string[]
+    warnings?: string[],
+    client?: RestAPI
   ) {
     this.data = data
     this.total = total
     this.searchQuery = searchQuery
     this.warnings = warnings
+    bindClient(this, client)
   }
 
   /**
@@ -395,7 +406,7 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
     if (!ids.length) {
       return { success: true }
     }
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
     return await instance.records.deleteById(ids, transaction)
   }
 
@@ -410,7 +421,7 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
     if (this.sql) {
       const { skip, limit } = this.sqlPage ?? { skip: 0, limit: 100 }
       const nextPage = { skip: skip + limit, limit }
-      const result = await RushDB.getInstance().ai.runSql<S>(this.sql, nextPage)
+      const result = await resolveClient(boundClient(this)).ai.runSql<S>(this.sql, nextPage)
       if (options?.preserveData) {
         this.data = [...this.data, ...(result.data as Array<DBRecordInstance<S, Q>>)]
         this.total = result.total
@@ -432,7 +443,7 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
       skip: currentSkip + currentLimit
     }
 
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
     const result = await instance.records.find<S, Q>(nextQuery as Q, undefined)
 
     if (options?.preserveData) {
@@ -483,7 +494,7 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
     transaction?: Transaction | string
   ): Promise<void> {
     const BATCH_SIZE = 100
-    const instance = RushDB.getInstance()
+    const instance = resolveClient(boundClient(this))
 
     for (let i = 0; i < this.data.length; i += BATCH_SIZE) {
       const batch = this.data.slice(i, i + BATCH_SIZE)

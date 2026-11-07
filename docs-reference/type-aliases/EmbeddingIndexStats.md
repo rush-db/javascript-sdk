@@ -8,7 +8,7 @@
 
 > **EmbeddingIndexStats** = `object`
 
-Defined in: [api/types.ts:89](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L89)
+Defined in: [api/types.ts:95](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L95)
 
 Indexing statistics for an embedding index.
 
@@ -18,7 +18,7 @@ Indexing statistics for an embedding index.
 
 > **indexedRecords**: `number`
 
-Defined in: [api/types.ts:91](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L91)
+Defined in: [api/types.ts:97](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L97)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [api/types.ts:91](https://github.com/rush-db/javascript-sdk/blob/mai
 
 > **totalRecords**: `number`
 
-Defined in: [api/types.ts:90](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L90)
+Defined in: [api/types.ts:96](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L96)

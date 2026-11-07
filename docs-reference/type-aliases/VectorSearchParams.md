@@ -8,7 +8,7 @@
 
 > **VectorSearchParams** = `object`
 
-Defined in: [api/types.ts:95](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L95)
+Defined in: [api/types.ts:101](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L101)
 
 Parameters for vector search over an embedding index.
 
@@ -18,7 +18,7 @@ Parameters for vector search over an embedding index.
 
 > `optional` **dimensions?**: `number`
 
-Defined in: [api/types.ts:115](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L115)
+Defined in: [api/types.ts:121](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L121)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/types.ts:115](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **ef?**: `number`
 
-Defined in: [api/types.ts:130](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L130)
+Defined in: [api/types.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L136)
 
 ANN gather breadth when the search runs on the ANN graph.
 
@@ -36,7 +36,7 @@ ANN gather breadth when the search runs on the ANN graph.
 
 > `optional` **fusion?**: `"rrf"` \| `"dbsf"`
 
-Defined in: [api/types.ts:159](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L159)
+Defined in: [api/types.ts:165](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L165)
 
 Hybrid only: how the legs combine. `rrf` (default) fuses ranks; `dbsf`
 fuses each leg's scores normalized by its own distribution (mean ± 3σ).
@@ -47,7 +47,7 @@ fuses each leg's scores normalized by its own distribution (mean ± 3σ).
 
 > `optional` **index?**: `string`
 
-Defined in: [api/types.ts:100](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L100)
+Defined in: [api/types.ts:106](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L106)
 
 The index to search, by name (or id). When given, `propertyName` and
 `labels` default to the index's own.
@@ -58,7 +58,7 @@ The index to search, by name (or id). When given, `propertyName` and
 
 > `optional` **labels?**: `string`[]
 
-Defined in: [api/types.ts:112](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L112)
+Defined in: [api/types.ts:118](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L118)
 
 One or more record labels to scope the search.
 The first label is used to resolve which embedding index to use.
@@ -70,7 +70,7 @@ Required unless `index` is given.
 
 > `optional` **limit?**: `number`
 
-Defined in: [api/types.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L138)
+Defined in: [api/types.ts:144](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L144)
 
 Maximum number of results to return (default 20).
 
@@ -80,7 +80,7 @@ Maximum number of results to return (default 20).
 
 > `optional` **mode?**: `"auto"` \| `"exact"` \| `"ann"`
 
-Defined in: [api/types.ts:128](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L128)
+Defined in: [api/types.ts:134](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L134)
 
 How the search ranks candidates. `auto` (default): the engine scores every
 vector of a small index exactly and uses its ANN graph on a large one.
@@ -92,7 +92,7 @@ vector of a small index exactly and uses its ANN graph on a large one.
 
 > `optional` **prefetchLimit?**: `number`
 
-Defined in: [api/types.ts:154](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L154)
+Defined in: [api/types.ts:160](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L160)
 
 Hybrid only: hits the vector leg ranks before fusion (1–10,000).
 
@@ -102,7 +102,7 @@ Hybrid only: hits the vector leg ranks before fusion (1–10,000).
 
 > `optional` **propertyName?**: `string`
 
-Defined in: [api/types.ts:102](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L102)
+Defined in: [api/types.ts:108](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L108)
 
 Name of the indexed property to search against. Required unless `index` is given.
 
@@ -112,7 +112,7 @@ Name of the indexed property to search against. Required unless `index` is given
 
 > `optional` **query?**: `string`
 
-Defined in: [api/types.ts:104](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L104)
+Defined in: [api/types.ts:110](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L110)
 
 Free-text query that will be embedded and compared against indexed vectors.
 
@@ -122,7 +122,7 @@ Free-text query that will be embedded and compared against indexed vectors.
 
 > `optional` **queryVector?**: `number`[]
 
-Defined in: [api/types.ts:106](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L106)
+Defined in: [api/types.ts:112](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L112)
 
 External vector query. Use instead of query text for external indexes.
 
@@ -132,7 +132,7 @@ External vector query. Use instead of query text for external indexes.
 
 > `optional` **rrfK?**: `number`
 
-Defined in: [api/types.ts:161](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L161)
+Defined in: [api/types.ts:167](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L167)
 
 Hybrid only: the RRF smoothing constant (default 60).
 
@@ -142,7 +142,7 @@ Hybrid only: the RRF smoothing constant (default 60).
 
 > `optional` **scoreThreshold?**: `number`
 
-Defined in: [api/types.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L136)
+Defined in: [api/types.ts:142](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L142)
 
 Keep only results scoring at least this much. Scores depend on the
 embedding model, so pick the threshold per model; a page may then hold
@@ -152,9 +152,9 @@ fewer than `limit` results.
 
 ### similarityFunction?
 
-> `optional` **similarityFunction?**: `"cosine"` \| `"euclidean"`
+> `optional` **similarityFunction?**: [`SimilarityFunction`](SimilarityFunction.md)
 
-Defined in: [api/types.ts:114](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L114)
+Defined in: [api/types.ts:120](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L120)
 
 ***
 
@@ -162,7 +162,7 @@ Defined in: [api/types.ts:114](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **skip?**: `number`
 
-Defined in: [api/types.ts:122](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L122)
+Defined in: [api/types.ts:128](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L128)
 
 Number of results to skip for pagination (default 0).
 
@@ -172,7 +172,7 @@ Number of results to skip for pagination (default 0).
 
 > `optional` **sourceType?**: `"managed"` \| `"external"`
 
-Defined in: [api/types.ts:113](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L113)
+Defined in: [api/types.ts:119](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L119)
 
 ***
 
@@ -180,7 +180,7 @@ Defined in: [api/types.ts:113](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **text?**: `Partial`\<`Pick`\<[`TextSearchParams`](TextSearchParams.md), `"query"` \| `"index"` \| `"property"` \| `"allTerms"` \| `"phrase"`\>\> & `object`
 
-Defined in: [api/types.ts:145](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L145)
+Defined in: [api/types.ts:151](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L151)
 
 Adds a BM25 keyword leg, making it a hybrid search: the engine ranks both
 legs among the same filtered records and fuses the two rankings. `query`
@@ -207,7 +207,7 @@ This leg's share of the fused score (≥ 0, default 1).
 
 > `optional` **weight?**: `number`
 
-Defined in: [api/types.ts:152](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L152)
+Defined in: [api/types.ts:158](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L158)
 
 Hybrid only: the vector leg's share of the fused score (≥ 0, default 1).
 
@@ -217,7 +217,7 @@ Hybrid only: the vector leg's share of the fused score (≥ 0, default 1).
 
 > `optional` **where?**: `Record`\<`string`, `unknown`\>
 
-Defined in: [api/types.ts:120](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L120)
+Defined in: [api/types.ts:126](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L126)
 
 Optional filter applied before cosine scoring.
 Candidates are narrowed via MATCH/WHERE and then ranked by similarity.

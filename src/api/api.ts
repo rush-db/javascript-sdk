@@ -312,10 +312,10 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       if (response?.success && response?.data) {
-        return new DBRecordInstance<S>(response.data)
+        return new DBRecordInstance<S>(response.data, this)
       }
 
-      return new DBRecordInstance<S>()
+      return new DBRecordInstance<S>(undefined, this)
     },
 
     /**
@@ -395,13 +395,13 @@ export class RestAPI {
         const dbRecordInstances =
           isArray(response.data) ?
             (<Array<DBRecord<S>>>response.data)?.map((r) => {
-              return new DBRecordInstance<S>(r)
+              return new DBRecordInstance<S>(r, this)
             })
           : []
-        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total)
+        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total, undefined, undefined, this)
       }
 
-      return new DBRecordsArrayInstance<S>([])
+      return new DBRecordsArrayInstance<S>([], 0, undefined, undefined, this)
     },
 
     /**
@@ -461,12 +461,12 @@ export class RestAPI {
       if (response?.success && response?.data) {
         const dbRecordInstances =
           isArray(response.data) ?
-            (<Array<DBRecord<S>>>response.data)?.map((r) => new DBRecordInstance<S>(r))
+            (<Array<DBRecord<S>>>response.data)?.map((r) => new DBRecordInstance<S>(r, this))
           : []
-        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total)
+        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total, undefined, undefined, this)
       }
 
-      return new DBRecordsArrayInstance<S>([])
+      return new DBRecordsArrayInstance<S>([], 0, undefined, undefined, this)
     },
 
     /**
@@ -517,11 +517,11 @@ export class RestAPI {
 
       if (response?.success && response?.data) {
         const dbRecordInstances =
-          isArray(response.data) ? response.data.map((r) => new DBRecordInstance<S>(r)) : []
-        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total)
+          isArray(response.data) ? response.data.map((r) => new DBRecordInstance<S>(r, this)) : []
+        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total, undefined, undefined, this)
       }
 
-      return new DBRecordsArrayInstance<S>([])
+      return new DBRecordsArrayInstance<S>([], 0, undefined, undefined, this)
     },
 
     /**
@@ -636,10 +636,16 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       const dbRecordInstances = (response.data as Array<DBRecord<S>>).map((r) => {
-        return new DBRecordInstance<S>(r)
+        return new DBRecordInstance<S>(r, this)
       })
 
-      return new DBRecordsArrayInstance<S, Q>(dbRecordInstances, response.total, searchQueryWithEntryPoint)
+      return new DBRecordsArrayInstance<S, Q>(
+        dbRecordInstances,
+        response.total,
+        searchQueryWithEntryPoint,
+        undefined,
+        this
+      )
     },
 
     /**
@@ -681,8 +687,8 @@ export class RestAPI {
       >(path, payload)
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
-      const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>))
-      const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0)
+      const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>, this))
+      const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0, undefined, undefined, this)
       result.vectorSearch = response.meta?.vectorSearch
       result.textSearch = response.meta?.textSearch
       result.fusion = response.meta?.fusion
@@ -715,8 +721,8 @@ export class RestAPI {
       >(path, payload)
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
-      const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>))
-      const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0)
+      const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>, this))
+      const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0, undefined, undefined, this)
       result.textSearch = response.meta?.textSearch
       return result
     },
@@ -751,12 +757,12 @@ export class RestAPI {
 
       if (isArray(idOrIds)) {
         const dbRecordInstances = (response.data as Array<DBRecord<S>>).map((r) => {
-          return new DBRecordInstance<S>(r)
+          return new DBRecordInstance<S>(r, this)
         })
 
-        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total) as Result
+        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total, undefined, undefined, this) as Result
       } else {
-        return new DBRecordInstance<S>(response.data as DBRecord<S>) as Result
+        return new DBRecordInstance<S>(response.data as DBRecord<S>, this) as Result
       }
     },
 
@@ -784,7 +790,7 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
       const [record] = response.data
 
-      return new DBRecordInstance<S, Q>(record)
+      return new DBRecordInstance<S, Q>(record, this)
     },
 
     /**
@@ -817,7 +823,7 @@ export class RestAPI {
 
       const [record] = response.data
 
-      return new DBRecordInstance<S, Q>(record)
+      return new DBRecordInstance<S, Q>(record, this)
     },
 
     /**
@@ -873,10 +879,10 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       if (response?.success && response?.data) {
-        return new DBRecordInstance<S>(response.data)
+        return new DBRecordInstance<S>(response.data, this)
       }
 
-      return new DBRecordInstance<S>()
+      return new DBRecordInstance<S>(undefined, this)
     },
 
     /**
@@ -930,10 +936,10 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       if (response?.success && response?.data) {
-        return new DBRecordInstance<S>(response.data)
+        return new DBRecordInstance<S>(response.data, this)
       }
 
-      return new DBRecordInstance<S>()
+      return new DBRecordInstance<S>(undefined, this)
     },
     /**
      * Upserts a record: attempts to find an existing record matching mergeBy property values (and optional label)
@@ -1002,10 +1008,10 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       if (response?.success && response?.data) {
-        return new DBRecordInstance<S>(response.data)
+        return new DBRecordInstance<S>(response.data, this)
       }
 
-      return new DBRecordInstance<S>()
+      return new DBRecordInstance<S>(undefined, this)
     }
   }
 
@@ -1399,7 +1405,7 @@ export class RestAPI {
       const transaction = await this.fetcher<ApiResponse<{ id: string }>>(path, payload)
       this.logger?.({ requestId, path, ...payload, responseData: transaction.data })
 
-      return new Transaction(transaction.data.id)
+      return new Transaction(transaction.data.id, this)
     },
 
     /**
@@ -1442,7 +1448,7 @@ export class RestAPI {
       const transaction = await this.fetcher<ApiResponse<{ id: string }>>(path, payload)
       this.logger?.({ requestId, path, ...payload, responseData: transaction.data })
 
-      return new Transaction(transaction.data.id)
+      return new Transaction(transaction.data.id, this)
     },
 
     /**
@@ -1850,8 +1856,11 @@ export class RestAPI {
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       const result = new DBRecordsArrayInstance<S>(
-        (response.data ?? []).map((r) => new DBRecordInstance<S>(r)),
-        response.total ?? 0
+        (response.data ?? []).map((r) => new DBRecordInstance<S>(r, this)),
+        response.total ?? 0,
+        undefined,
+        undefined,
+        this
       )
       result.sql = sql
       result.sqlPage = page

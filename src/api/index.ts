@@ -16,6 +16,7 @@ export {
   RelationshipPatternStatus,
   SemanticSearchParams,
   SemanticSearchResult,
+  SimilarityFunction,
   SmartSearchOptions,
   SmartSearchSqlResponse,
   TextIndex,
