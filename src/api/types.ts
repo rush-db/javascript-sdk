@@ -8,8 +8,8 @@ export type ApiResponse<T, E = Record<string, any>> = {
 } & E
 
 /**
- * How an embedding index scores vectors. A standalone engine (direct mode)
- * supports all three; RushDB Cloud accepts `cosine` and `euclidean`.
+ * How an embedding index scores vectors. RushDB Cloud and a standalone engine
+ * (direct mode) support all three.
  */
 export type SimilarityFunction = 'cosine' | 'dot' | 'euclidean'
 
