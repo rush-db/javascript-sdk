@@ -1,5 +1,11 @@
 # @rushdb/javascript-sdk
 
+## 3.3.2
+
+### Patch Changes
+
+- 5be44c4: RushDB Cloud accepts `similarityFunction: 'dot'`; the `SimilarityFunction` docs no longer say dot is engine-only.
+
 ## 3.3.1
 
 ### Patch Changes
