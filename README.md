@@ -197,6 +197,112 @@ await db.relationships.update({
 
 ---
 
+## File imports and connections (RushDB Cloud)
+
+Large files and SaaS data load in the background: the client hands the data over and the run
+continues on the server. Every file import and every connection sync is an **import run**; follow it
+with `db.imports.get(id)` or `db.imports.wait(id)` until its status is `completed`, `partial`,
+`failed` or `cancelled`.
+
+### Import files
+
+```typescript
+import { createReadStream, statSync } from 'node:fs'
+
+// One call: create → upload every file → start (→ wait)
+const run = await db.imports.importFiles(
+  [
+    { data: customersFile, label: 'Customer' }, // a browser File: name and size come from it
+    { data: createReadStream('orders.csv.gz'), name: 'orders.csv.gz', size: statSync('orders.csv.gz').size }
+  ],
+  {
+    mappings: { 0: { keyColumn: 'id' } }, // re-importing upserts by `id`
+    links: [{ source: 1, sourceColumn: 'customer_id', target: 0, targetColumn: 'id', type: 'PLACED_BY' }],
+    parallelism: 4,
+    wait: { intervalMs: 2000 },
+    onProgress: (p) => console.log(p.phase === 'upload' ? `${p.loaded}/${p.total}` : p.run.status)
+  }
+)
+console.log(run.data.recordsWritten, run.data.summary)
+```
+
+Or step by step, to show a preview before starting:
+
+```typescript
+const { data: created } = await db.imports.create({ files: [{ name: 'orders.csv', size: file.size }] })
+await db.imports.upload(created.id, created.files[0], file, { parallelism: 4, retries: 3 })
+const { data: preview } = await db.imports.preview(created.id) // column types, suggested key and links, personal data
+const columns = preview.files[0].columns // each has `suggestion` ('include' | 'skip' | 'hash') and `pii` when it looks personal
+await db.imports.start(created.id, {
+  files: [
+    {
+      id: created.files[0].id,
+      mapping: {
+        keyColumn: preview.files[0].suggestedKey,
+        skip: columns.filter((c) => c.suggestion === 'skip').map((c) => c.name),
+        hash: columns.filter((c) => c.suggestion === 'hash').map((c) => c.name) // keyed hash: joins, not readable
+      }
+    }
+  ]
+})
+const { data: finished } = await db.imports.wait(created.id, { timeoutMs: 30 * 60_000 })
+```
+
+`upload` follows the upload mode the server returns: `s3-multipart` sends parts to their presigned
+URLs (`parallelism` at a time, default 4; each failed part retried, `retries` default 3) and completes
+with their ETags; `direct` sends the bytes through the API. Upload data can be a `Blob`/`File`,
+`Uint8Array`/`Buffer`, `ArrayBuffer`, a web `ReadableStream`, or a Node `Readable`
+(`fs.createReadStream`); file paths are not accepted. A stream needs its `size` up front. In the
+browser the storage bucket's CORS rules must expose the `ETag` header.
+
+Also: `imports.list({ kind, connectionId, limit, skip })`, `cancel`, `retry`, `delete`,
+`addFiles`, `removeFile`.
+
+### Connections
+
+```typescript
+const { data: catalog } = await db.connections.catalog() // connectors with their streams and config fields
+
+const { data: created } = await db.connections.create({
+  connectorId: 'hubspot',
+  auth: { type: 'bearer', token: process.env.HUBSPOT_TOKEN! },
+  mode: 'scheduled',
+  scheduleMinutes: 60,
+  streams: [{ stream: 'contacts', policy: { mode: 'auto', exclude: ['mobilephone'] } }]
+})
+await db.connections.test(created.connection.id)
+await db.connections.preview(created.connection.id, 'contacts') // first records, nothing written
+
+// Field review: profiles with personal-data findings (masked examples), the policy, unreviewed fields
+const { data: review } = await db.connections.fields(created.connection.id, { stream: 'contacts', limit: 100 })
+await db.connections.reviewFields(
+  created.connection.id,
+  'contacts',
+  review.fields.map((field) => ({ name: field.name, action: field.suggestion })) // or your own choices
+)
+
+const { data: syncRun } = await db.connections.sync(created.connection.id) // or { streams: ['contacts'], full: true }
+await db.imports.wait(syncRun.id)
+```
+
+A stream's `policy` decides which fields reach the graph: `auto` keeps everything except `exclude`
+and `hash`; `reviewFields` switches it to an `allowlist` of the fields marked `include` or `hash`, and
+fields that appear later wait in the stream's `unreviewed` list until the next review.
+
+On-prem databases sync through `rushdb-agent`: create an agent connection and hand the token
+(shown once) to the agent.
+
+```typescript
+const { data: agent } = await db.connections.create({ connectorId: 'agent', name: 'Warehouse', agent: { intervalMinutes: 15 } })
+console.log(agent.agentToken) // connection.agent shows what the agent last reported
+```
+
+Also: `list`, `get`, `update`, `delete(id, { deleteData })`, `runs(id)`, `pause`, `resume`,
+`rotateWebhookToken` (a new webhook URL, or a new agent token), `pushTemplates()` (Zapier, Make and
+n8n recipes for push connections). Credentials are sealed on the server and never returned.
+
+---
+
 ## RushDB Cloud or a self-hosted engine
 
 The SDK works with RushDB in one of two ways:
@@ -239,6 +345,7 @@ What each offers:
 | Managed embeddings: managed indexes, `records.vectorSearch` by text `query` | ✓ | — |
 | Natural-language search on SQL (`ai.search`, `ai.runSql`) | ✓ | — |
 | Relationship-pattern suggestions (`relationships.patterns.*`) and join suggestions (`ai.getJoinCandidates`) | ✓ | — |
+| Background file imports (`imports.*`) and SaaS connections (`connections.*`) | ✓ | — |
 | Project settings (`settings.get`), dashboard, projects, team access, MCP over HTTP with OAuth | ✓ | — |
 
 In direct mode a Cloud-only method throws `CloudOnlyError` (with `method` and `reason`) before

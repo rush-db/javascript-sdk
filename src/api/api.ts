@@ -69,6 +69,9 @@ import {
   toBoolean
 } from '../common/utils.js'
 import { createFetcher } from '../network/index.js'
+import { createConnectionsApi } from './connections.js'
+import { createImportsApi } from './imports.js'
+import type { UploadTransport } from './uploads.js'
 import { EmptyTargetError, NonUniqueResultError } from '../sdk/errors.js'
 import { Transaction } from '../sdk/transaction.js'
 import {
@@ -90,6 +93,11 @@ export class RestAPI {
    * to RushDB Cloud.
    */
   public direct: DirectEngine | undefined
+  /**
+   * @internal Raw requests for file uploads (presigned part URLs and direct
+   * uploads through the API); unset in direct mode.
+   */
+  public uploadTransport: UploadTransport | undefined
 
   constructor(token?: string, config?: SDKConfig & { httpClient: HttpClient }) {
     this.fetcher = null as unknown as ReturnType<typeof createFetcher>
@@ -115,6 +123,7 @@ export class RestAPI {
         token,
         url
       })
+      this.uploadTransport = { httpClient: config.httpClient, token, url }
     }
 
     if (config?.options) {
@@ -1473,6 +1482,19 @@ export class RestAPI {
       return response
     }
   }
+
+  /**
+   * Background file imports: `create` → `upload` → `preview` → `start`, or
+   * `importFiles` for all of it; `get`/`wait` follow a run (file imports and
+   * connection syncs alike). **RushDB Cloud only.**
+   */
+  public imports = createImportsApi(this)
+
+  /**
+   * Connections to SaaS tools, custom APIs and webhooks, and their syncs.
+   * **RushDB Cloud only.**
+   */
+  public connections = createConnectionsApi(this)
 
   public settings = {
     /**

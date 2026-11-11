@@ -66,6 +66,9 @@ export {
   type VectorSearchResult
 }
 export * from './types/index.js'
+export * from './api/ingest-types.js'
+export type { ImportsApi } from './api/imports.js'
+export type { ConnectionsApi } from './api/connections.js'
 export * from './sdk/index.js'
 export {
   CLOUD_ONLY_FORMS,

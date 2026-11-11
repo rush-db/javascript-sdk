@@ -1,4 +1,9 @@
-import type { HttpClientInterface, HttpClientResponseInterface, MakeRequestConfig } from './HttpClient.js'
+import type {
+  HttpClientInterface,
+  HttpClientResponseInterface,
+  MakeRequestConfig,
+  RawRequestBody
+} from './HttpClient.js'
 import type { ResponseHeaders } from './types.js'
 
 import { DEFAULT_TIMEOUT } from '../common/constants.js'
@@ -96,13 +101,16 @@ export class FetchHttpClient extends HttpClient implements HttpClientInterface {
 
   async makeRequest(
     url: string,
-    { headers, method, protocol, requestData, timeout }: MakeRequestConfig
+    { headers, method, protocol, requestData, rawBody, timeout }: MakeRequestConfig
   ): Promise<HttpClientResponseInterface> {
     // For methods which expect payloads, we should always pass a body value
     // even when it is empty. Without this, some JS runtimes (eg. Deno) will
     // inject a second Content-Length header.
     const methodHasPayload = method == 'POST' || method == 'PUT' || method == 'PATCH'
-    const body = JSON.stringify(requestData) || (methodHasPayload ? '' : undefined)
+    const body =
+      rawBody !== undefined ?
+        await FetchHttpClient.toFetchBody(rawBody)
+      : JSON.stringify(requestData) || (methodHasPayload ? '' : undefined)
 
     const res = await this._fetchFn(
       url,
@@ -118,6 +126,32 @@ export class FetchHttpClient extends HttpClient implements HttpClientInterface {
       timeout ?? DEFAULT_TIMEOUT
     )
     return new FetchHttpClientResponse(res)
+  }
+
+  /**
+   * Streaming request bodies are not supported by every `fetch` (browsers
+   * need HTTP/2 and `duplex`), so an async iterable is read into a `Blob`.
+   */
+  private static async toFetchBody(body: RawRequestBody): Promise<Uint8Array | Blob> {
+    if (body instanceof Uint8Array || (typeof Blob !== 'undefined' && body instanceof Blob)) {
+      return body
+    }
+    const chunks: Uint8Array[] = []
+    const iterator = (body as AsyncIterable<Uint8Array>)[Symbol.asyncIterator]()
+    for (;;) {
+      const { done, value } = await iterator.next()
+      if (done) {
+        break
+      }
+      chunks.push(value)
+    }
+    const out = new Uint8Array(chunks.reduce((sum, chunk) => sum + chunk.byteLength, 0))
+    let offset = 0
+    for (const chunk of chunks) {
+      out.set(chunk, offset)
+      offset += chunk.byteLength
+    }
+    return out
   }
 }
 

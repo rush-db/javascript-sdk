@@ -1,7 +1,7 @@
 import * as http_ from 'http'
 import * as https_ from 'https'
 
-import type { HttpClientResponseInterface, MakeRequestConfig } from './HttpClient.js'
+import type { HttpClientResponseInterface, MakeRequestConfig, RawRequestBody } from './HttpClient.js'
 
 import { DEFAULT_TIMEOUT } from '../common/constants.js'
 import { HttpClient, HttpClientGenericResponse } from './HttpClient.js'
@@ -28,9 +28,13 @@ export class NodeHttpClient extends HttpClient {
 
   makeRequest(
     urlString: string,
-    { headers, method, protocol, requestData, timeout }: MakeRequestConfig
+    { headers, method, protocol, requestData, rawBody, timeout }: MakeRequestConfig
   ): Promise<HttpClientResponseInterface> {
     const url = new URL(urlString)
+    if (rawBody instanceof Uint8Array && headers) {
+      // Presigned part uploads need a length; a chunked body is refused.
+      headers = { ...headers, 'Content-Length': rawBody.byteLength }
+    }
 
     const isInsecureConnection = protocol === 'http' || url.protocol === 'http:'
 
@@ -63,22 +67,48 @@ export class NodeHttpClient extends HttpClient {
       })
 
       req.once('socket', (socket) => {
-        const payload = requestData ? JSON.stringify(requestData) : ''
+        const send = () => {
+          if (rawBody !== undefined) {
+            writeRawBody(req, rawBody).catch((error) => req.destroy(error))
+            return
+          }
+          req.write(requestData ? JSON.stringify(requestData) : '')
+          req.end()
+        }
 
         if (socket.connecting) {
-          socket.once(isInsecureConnection ? 'connect' : 'secureConnect', () => {
-            // Send payload; we're safe:
-            req.write(payload)
-            req.end()
-          })
+          // Send payload once connected; we're safe:
+          socket.once(isInsecureConnection ? 'connect' : 'secureConnect', send)
         } else {
           // we're already connected
-          req.write(payload)
-          req.end()
+          send()
         }
       })
     })
   }
+}
+
+/** Writes a raw body, waiting for the socket to drain between chunks. */
+async function writeRawBody(req: http_.ClientRequest, body: RawRequestBody): Promise<void> {
+  if (body instanceof Uint8Array) {
+    req.end(body)
+    return
+  }
+  if (typeof Blob !== 'undefined' && body instanceof Blob) {
+    req.end(new Uint8Array(await body.arrayBuffer()))
+    return
+  }
+  const iterator = (body as AsyncIterable<Uint8Array>)[Symbol.asyncIterator]()
+  for (;;) {
+    const { done, value } = await iterator.next()
+    if (done) {
+      break
+    }
+    if (!req.write(value)) {
+      await new Promise<void>((resolve) => req.once('drain', resolve))
+    }
+  }
+  req.end()
 }
 
 export class NodeHttpClientResponse extends HttpClientGenericResponse implements HttpClientResponseInterface {
