@@ -6,12 +6,21 @@ export interface HttpClientInterface {
   makeRequest: (url: string, config: MakeRequestConfig) => Promise<HttpClientResponseInterface>
 }
 
+/**
+ * A body sent as is instead of JSON `requestData` (file uploads): bytes, a
+ * `Blob`, or an async iterable of bytes (streamed by the Node client, read
+ * into memory first by the fetch client).
+ */
+export type RawRequestBody = Uint8Array | Blob | AsyncIterable<Uint8Array>
+
 export interface MakeRequestConfig<T extends Record<string, any> = Record<string, any>> {
   credentials?: RequestCredentials
   headers?: RequestHeaders
   method: string
   protocol?: string
   requestData?: RequestData
+  /** Raw body; when set, `requestData` is ignored. */
+  rawBody?: RawRequestBody
   timeout?: number
 }
 

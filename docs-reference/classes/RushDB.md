@@ -44,7 +44,7 @@ Defined in: [sdk/sdk.ts:24](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **ai**: `object`
 
-Defined in: [api/api.ts:1567](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1567)
+Defined in: [api/api.ts:1589](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1589)
 
 #### getJoinCandidates
 
@@ -397,11 +397,312 @@ The search text, match mode, labels to search and a limit.
 
 ***
 
+### connections
+
+> **connections**: `object`
+
+Defined in: [api/api.ts:1497](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1497)
+
+Connections to SaaS tools, custom APIs and webhooks, and their syncs.
+**RushDB Cloud only.**
+
+#### catalog
+
+> **catalog**: () => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`CatalogConnector`](../type-aliases/CatalogConnector.md)[]\>\>
+
+Built-in connectors and the workspace's own, with their streams, auth types and config fields.
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`CatalogConnector`](../type-aliases/CatalogConnector.md)[]\>\>
+
+#### create
+
+> **create**: (`params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`CreatedConnection`](../type-aliases/CreatedConnection.md)\>\>
+
+Creates a connection. Credentials are sealed server-side and never
+returned; a push or trigger connection's `webhookToken` and an agent
+connection's (`connectorId: 'agent'`) `agentToken` are returned once.
+
+##### Parameters
+
+###### params
+
+[`CreateConnectionParams`](../type-aliases/CreateConnectionParams.md)
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`CreatedConnection`](../type-aliases/CreatedConnection.md)\>\>
+
+#### delete
+
+> **delete**: (`connectionId`, `options`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`DeletedConnection`](../type-aliases/DeletedConnection.md)\>\>
+
+Deletes a connection; `deleteData: true` also deletes the records it wrote.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+###### options?
+
+[`DeleteConnectionOptions`](../type-aliases/DeleteConnectionOptions.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`DeletedConnection`](../type-aliases/DeletedConnection.md)\>\>
+
+#### fields
+
+> **fields**: (`connectionId`, `params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionFieldsReview`](../type-aliases/ConnectionFieldsReview.md)\>\>
+
+The field review of one stream: sampled field profiles with personal-data
+findings (values of fields that look personal are masked), the stream's
+current policy and the fields held back since the last review. Writes nothing.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+###### params
+
+[`ConnectionFieldsParams`](../type-aliases/ConnectionFieldsParams.md)
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionFieldsReview`](../type-aliases/ConnectionFieldsReview.md)\>\>
+
+#### get
+
+> **get**: (`connectionId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+#### list
+
+> **list**: () => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)[]\>\>
+
+The project's connections with their streams, status and last sync.
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)[]\>\>
+
+#### pause
+
+> **pause**: (`connectionId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+Stops scheduled and webhook-triggered syncs until resumed.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+#### preview
+
+> **preview**: (`connectionId`, `stream`, `options`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionPreview`](../type-aliases/ConnectionPreview.md)\>\>
+
+The first records of a stream as they would be written (up to 50). Writes nothing.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+###### stream
+
+`string`
+
+###### options?
+
+###### limit?
+
+`number`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionPreview`](../type-aliases/ConnectionPreview.md)\>\>
+
+#### pushTemplates
+
+> **pushTemplates**: () => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`PushTemplate`](../type-aliases/PushTemplate.md)[]\>\>
+
+Zapier, Make and n8n recipes for pushing records into a webhook (push) connection.
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`PushTemplate`](../type-aliases/PushTemplate.md)[]\>\>
+
+#### resume
+
+> **resume**: (`connectionId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+#### reviewFields
+
+> **reviewFields**: (`connectionId`, `stream`, `choices`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+Saves a field review: the stream switches to an allowlist of the fields
+marked `include` or `hash` (hashed ones are kept as a keyed hash);
+`exclude`d fields are left out, and new fields wait for the next review.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+###### stream
+
+`string`
+
+###### choices
+
+[`FieldChoice`](../type-aliases/FieldChoice.md)[]
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+#### rotateWebhookToken
+
+> **rotateWebhookToken**: (`connectionId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionWebhookToken`](../type-aliases/ConnectionWebhookToken.md)\>\>
+
+A new token, shown once; the previous one stops working. Trigger and push
+connections get a new webhook URL, agent connections a new agent token.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionWebhookToken`](../type-aliases/ConnectionWebhookToken.md)\>\>
+
+#### runs
+
+> **runs**: (`connectionId`, `options`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)[]\>\>
+
+The connection's sync runs, newest first: `{ data, total }`.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+###### options?
+
+###### limit?
+
+`number`
+
+###### skip?
+
+`number`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)[]\>\>
+
+#### sync
+
+> **sync**: (`connectionId`, `params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+Syncs now: every enabled stream, or the `streams` named; `full` ignores
+stored cursors and reads everything again. Returns the queued run.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+###### params?
+
+[`SyncConnectionParams`](../type-aliases/SyncConnectionParams.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+#### test
+
+> **test**: (`connectionId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionTestResult`](../type-aliases/ConnectionTestResult.md)\>\>
+
+Checks the credentials against the provider.
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ConnectionTestResult`](../type-aliases/ConnectionTestResult.md)\>\>
+
+#### update
+
+> **update**: (`connectionId`, `params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+Changes name, credentials, mode, schedule or stream settings (labels, delete mode, field policy).
+
+##### Parameters
+
+###### connectionId
+
+`string`
+
+###### params
+
+[`UpdateConnectionParams`](../type-aliases/UpdateConnectionParams.md)
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`Connection`](../type-aliases/Connection.md)\>\>
+
+#### Inherited from
+
+[`RestAPI`](RestAPI.md).[`connections`](RestAPI.md#connections)
+
+***
+
 ### direct
 
 > **direct**: `DirectEngine` \| `undefined`
 
-Defined in: [api/api.ts:92](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L92)
+Defined in: [api/api.ts:95](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L95)
 
 Direct engine transport (standalone `rushdb`) when `direct` mode is set.
 In direct mode every request is answered from the engine; nothing is sent
@@ -417,7 +718,7 @@ to RushDB Cloud.
 
 > **fetcher**: \<`Data`\>(`input`, `__namedParameters`) => `Promise`\<`Data`\>
 
-Defined in: [api/api.ts:84](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L84)
+Defined in: [api/api.ts:87](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L87)
 
 #### Type Parameters
 
@@ -445,11 +746,281 @@ Defined in: [api/api.ts:84](https://github.com/rush-db/javascript-sdk/blob/main/
 
 ***
 
+### imports
+
+> **imports**: `object`
+
+Defined in: [api/api.ts:1491](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1491)
+
+Background file imports: `create` → `upload` → `preview` → `start`, or
+`importFiles` for all of it; `get`/`wait` follow a run (file imports and
+connection syncs alike). **RushDB Cloud only.**
+
+#### addFiles
+
+> **addFiles**: (`importId`, `files`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportFileUpload`](../type-aliases/ImportFileUpload.md)[]\>\>
+
+Adds files to a draft import.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+###### files
+
+[`ImportFileInput`](../type-aliases/ImportFileInput.md)[]
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportFileUpload`](../type-aliases/ImportFileUpload.md)[]\>\>
+
+#### cancel
+
+> **cancel**: (`importId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+Asks a queued or running run to stop; it ends `cancelled`.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+#### create
+
+> **create**: (`params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`CreatedImport`](../type-aliases/CreatedImport.md)\>\>
+
+Creates a draft import with its files (name and exact size in bytes; up
+to 50). Each returned file carries its `upload` instructions.
+
+##### Parameters
+
+###### params
+
+[`CreateImportParams`](../type-aliases/CreateImportParams.md)
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`CreatedImport`](../type-aliases/CreatedImport.md)\>\>
+
+#### delete
+
+> **delete**: (`importId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `deleted`: `true`; \}\>\>
+
+Deletes an import and its uploaded files (records already written stay).
+
+##### Parameters
+
+###### importId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `deleted`: `true`; \}\>\>
+
+#### get
+
+> **get**: (`importId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+One import run (a file import or a connection sync) with its progress.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+#### importFiles
+
+> **importFiles**: (`files`, `options`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+Imports files in one call: create → upload every file → start (→ wait
+when `wait` is set). Names and sizes come from `File`/`Blob`/bytes when
+not given; a stream needs both. Links and `mappings` name files by
+position or name.
+
+##### Parameters
+
+###### files
+
+[`ImportFileSource`](../type-aliases/ImportFileSource.md)[]
+
+###### options?
+
+[`ImportFilesOptions`](../type-aliases/ImportFilesOptions.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+#### list
+
+> **list**: (`params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)[]\>\>
+
+Import runs of the project, newest first: `{ data, total }`.
+
+##### Parameters
+
+###### params?
+
+[`ListImportsParams`](../type-aliases/ListImportsParams.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)[]\>\>
+
+#### preview
+
+> **preview**: (`importId`, `params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportPreview`](../type-aliases/ImportPreview.md)\>\>
+
+Column types, samples, a suggested key per file and suggested links between files. Writes nothing.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+###### params?
+
+[`PreviewImportParams`](../type-aliases/PreviewImportParams.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportPreview`](../type-aliases/ImportPreview.md)\>\>
+
+#### removeFile
+
+> **removeFile**: (`importId`, `fileId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `deleted`: `true`; \}\>\>
+
+Removes a file from a draft import.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+###### fileId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `deleted`: `true`; \}\>\>
+
+#### retry
+
+> **retry**: (`importId`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+Runs a failed or partial file import again.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+#### start
+
+> **start**: (`importId`, `params`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+Starts the run with the files' labels and mappings and the links between files.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+###### params?
+
+[`StartImportParams`](../type-aliases/StartImportParams.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+#### upload
+
+> **upload**: (`importId`, `file`, `data`, `options`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportFile`](../type-aliases/ImportFile.md)\>\>
+
+Uploads one file's bytes and completes it. `file` is a file from
+`create`/`addFiles` (or its id, when this client created it). With
+`s3-multipart`, parts go to their presigned URLs `parallelism` at a time
+(default 4) and the ETags are sent on completion; with `direct`, the
+bytes go to the API. Failed requests are retried (`retries`, default 3);
+a stream is read once, so a direct stream upload is not retried.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+###### file
+
+`string` \| [`ImportFileUpload`](../type-aliases/ImportFileUpload.md)
+
+###### data
+
+[`ImportUploadData`](../type-aliases/ImportUploadData.md)
+
+###### options?
+
+[`ImportUploadOptions`](../type-aliases/ImportUploadOptions.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportFile`](../type-aliases/ImportFile.md)\>\>
+
+#### wait
+
+> **wait**: (`importId`, `options`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+Polls a run until it is `completed`, `partial`, `failed` or
+`cancelled`, and returns it. Rejects after `timeoutMs`.
+
+##### Parameters
+
+###### importId
+
+`string`
+
+###### options?
+
+[`WaitImportOptions`](../type-aliases/WaitImportOptions.md) = `{}`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`ImportRun`](../type-aliases/ImportRun.md)\>\>
+
+#### Inherited from
+
+[`RestAPI`](RestAPI.md).[`imports`](RestAPI.md#imports)
+
+***
+
 ### labels
 
 > **labels**: `object`
 
-Defined in: [api/api.ts:1359](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1359)
+Defined in: [api/api.ts:1368](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1368)
 
 API methods for managing labels in the database
 
@@ -495,7 +1066,7 @@ Promise with the API response containing a record of label names and their count
 
 > **logger**: [`Logger`](../type-aliases/Logger.md) \| `undefined`
 
-Defined in: [api/api.ts:86](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L86)
+Defined in: [api/api.ts:89](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L89)
 
 #### Inherited from
 
@@ -507,7 +1078,7 @@ Defined in: [api/api.ts:86](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **options**: \{ `allowForceDelete?`: `boolean`; \} \| `undefined`
 
-Defined in: [api/api.ts:85](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L85)
+Defined in: [api/api.ts:88](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L88)
 
 #### Union Members
 
@@ -539,7 +1110,7 @@ which results in deleting all Records in the project.
 
 > **properties**: `object`
 
-Defined in: [api/api.ts:1254](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1254)
+Defined in: [api/api.ts:1263](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1263)
 
 API methods for managing properties in the database
 
@@ -669,7 +1240,7 @@ Promise with the API response containing the property and its values
 
 > **query**: `object`
 
-Defined in: [api/api.ts:1497](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1497)
+Defined in: [api/api.ts:1519](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1519)
 
 #### raw
 
@@ -725,7 +1296,7 @@ ApiResponse<any> - Raw result returned by the server (wrapped in ApiResponse)
 
 > **records**: `object`
 
-Defined in: [api/api.ts:174](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L174)
+Defined in: [api/api.ts:183](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L183)
 
 API methods for managing database records
 
@@ -1537,7 +2108,7 @@ with RushDB Cloud's managed model, so it throws `CloudOnlyError` without sending
 
 > **relationships**: `object`
 
-Defined in: [api/api.ts:1021](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1021)
+Defined in: [api/api.ts:1030](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1030)
 
 API methods for managing relations between records
 
@@ -1867,7 +2438,7 @@ Promise with the number of relationships updated
 
 > **settings**: `object`
 
-Defined in: [api/api.ts:1477](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1477)
+Defined in: [api/api.ts:1499](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1499)
 
 #### get
 
@@ -1893,7 +2464,7 @@ The project's settings.
 
 > **textIndexes**: `object`
 
-Defined in: [api/api.ts:1538](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1538)
+Defined in: [api/api.ts:1560](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1560)
 
 BM25 text indexes, searched with `db.records.textSearch()` or as the
 keyword leg of a hybrid `db.records.vectorSearch({ text })`.
@@ -1967,7 +2538,7 @@ The name a new text index would get by default, unique in the project.
 
 > **tx**: `object`
 
-Defined in: [api/api.ts:1388](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1388)
+Defined in: [api/api.ts:1397](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1397)
 
 API methods for managing database transactions
 
@@ -2093,7 +2664,7 @@ Defined in: [sdk/sdk.ts:18](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **\_extractTargetIds**(`target`, `operation`): `string`[]
 
-Defined in: [api/api.ts:129](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L129)
+Defined in: [api/api.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L138)
 
 #### Parameters
 

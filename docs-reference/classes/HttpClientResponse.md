@@ -6,7 +6,7 @@
 
 # Class: HttpClientResponse\<T\>
 
-Defined in: [network/HttpClient.ts:77](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L77)
+Defined in: [network/HttpClient.ts:86](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L86)
 
 ## Type Parameters
 
@@ -24,7 +24,7 @@ Defined in: [network/HttpClient.ts:77](https://github.com/rush-db/javascript-sdk
 
 > **new HttpClientResponse**\<`T`\>(`response`): `HttpClientResponse`\<`T`\>
 
-Defined in: [network/HttpClient.ts:80](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L80)
+Defined in: [network/HttpClient.ts:89](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L89)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [network/HttpClient.ts:80](https://github.com/rush-db/javascript-sdk
 
 > **\_res**: `T`
 
-Defined in: [network/HttpClient.ts:78](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L78)
+Defined in: [network/HttpClient.ts:87](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L87)
 
 ## Methods
 
@@ -50,7 +50,7 @@ Defined in: [network/HttpClient.ts:78](https://github.com/rush-db/javascript-sdk
 
 > **getHeaders**(): `ResponseHeaders`
 
-Defined in: [network/HttpClient.ts:88](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L88)
+Defined in: [network/HttpClient.ts:97](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L97)
 
 #### Returns
 
@@ -66,7 +66,7 @@ Defined in: [network/HttpClient.ts:88](https://github.com/rush-db/javascript-sdk
 
 > **getRawResponse**(): `unknown`
 
-Defined in: [network/HttpClient.ts:92](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L92)
+Defined in: [network/HttpClient.ts:101](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L101)
 
 #### Returns
 
@@ -82,7 +82,7 @@ Defined in: [network/HttpClient.ts:92](https://github.com/rush-db/javascript-sdk
 
 > **getStatusCode**(): `number`
 
-Defined in: [network/HttpClient.ts:84](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L84)
+Defined in: [network/HttpClient.ts:93](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L93)
 
 #### Returns
 
@@ -98,7 +98,7 @@ Defined in: [network/HttpClient.ts:84](https://github.com/rush-db/javascript-sdk
 
 > **toJSON**(): `any`
 
-Defined in: [network/HttpClient.ts:100](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L100)
+Defined in: [network/HttpClient.ts:109](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L109)
 
 #### Returns
 
@@ -114,7 +114,7 @@ Defined in: [network/HttpClient.ts:100](https://github.com/rush-db/javascript-sd
 
 > **toStream**(`streamCompleteCallback`): `unknown`
 
-Defined in: [network/HttpClient.ts:96](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L96)
+Defined in: [network/HttpClient.ts:105](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L105)
 
 #### Parameters
 

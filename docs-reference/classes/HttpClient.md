@@ -6,7 +6,7 @@
 
 # Class: HttpClient
 
-Defined in: [network/HttpClient.ts:26](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L26)
+Defined in: [network/HttpClient.ts:35](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L35)
 
 ## Implements
 
@@ -28,7 +28,7 @@ Defined in: [network/HttpClient.ts:26](https://github.com/rush-db/javascript-sdk
 
 > `static` **CONNECTION\_CLOSED\_ERROR\_CODES**: `string`[]
 
-Defined in: [network/HttpClient.ts:27](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L27)
+Defined in: [network/HttpClient.ts:36](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L36)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [network/HttpClient.ts:27](https://github.com/rush-db/javascript-sdk
 
 > `static` **TIMEOUT\_ERROR\_CODE**: `string`
 
-Defined in: [network/HttpClient.ts:28](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L28)
+Defined in: [network/HttpClient.ts:37](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L37)
 
 ## Methods
 
@@ -44,7 +44,7 @@ Defined in: [network/HttpClient.ts:28](https://github.com/rush-db/javascript-sdk
 
 > **makeRequest**(`url`, `__namedParameters`): `Promise`\<`HttpClientResponseInterface`\>
 
-Defined in: [network/HttpClient.ts:30](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L30)
+Defined in: [network/HttpClient.ts:39](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L39)
 
 #### Parameters
 
@@ -70,7 +70,7 @@ Defined in: [network/HttpClient.ts:30](https://github.com/rush-db/javascript-sdk
 
 > `static` **makeTimeoutError**(): `TimeoutError`
 
-Defined in: [network/HttpClient.ts:37](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L37)
+Defined in: [network/HttpClient.ts:46](https://github.com/rush-db/javascript-sdk/blob/main/src/network/HttpClient.ts#L46)
 
 #### Returns
 

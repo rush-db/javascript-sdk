@@ -207,7 +207,36 @@ const EVERY_METHOD: Record<string, Call> = {
   'ai.searchValues': (db) => db.ai.searchValues({ text: 'dune' }),
   'ai.getSchemaSummary': (db) => db.ai.getSchemaSummary(),
   'ai.resolveNames': (db) => db.ai.resolveNames({ text: 'books' }),
-  'ai.getJoinCandidates': (db) => db.ai.getJoinCandidates()
+  'ai.getJoinCandidates': (db) => db.ai.getJoinCandidates(),
+  'imports.create': (db) => db.imports.create({ files: [{ name: 'a.csv', size: 1 }] }),
+  'imports.addFiles': (db) => db.imports.addFiles('import-1', [{ name: 'a.csv', size: 1 }]),
+  'imports.removeFile': (db) => db.imports.removeFile('import-1', 'file-1'),
+  'imports.upload': (db) => db.imports.upload('import-1', 'file-1', new Uint8Array(1)),
+  'imports.preview': (db) => db.imports.preview('import-1'),
+  'imports.start': (db) => db.imports.start('import-1'),
+  'imports.get': (db) => db.imports.get('import-1'),
+  'imports.list': (db) => db.imports.list(),
+  'imports.cancel': (db) => db.imports.cancel('import-1'),
+  'imports.retry': (db) => db.imports.retry('import-1'),
+  'imports.delete': (db) => db.imports.delete('import-1'),
+  'imports.wait': (db) => db.imports.wait('import-1'),
+  'imports.importFiles': (db) => db.imports.importFiles([{ data: new Uint8Array(1), name: 'a.csv' }]),
+  'connections.catalog': (db) => db.connections.catalog(),
+  'connections.list': (db) => db.connections.list(),
+  'connections.pushTemplates': (db) => db.connections.pushTemplates(),
+  'connections.get': (db) => db.connections.get('conn-1'),
+  'connections.create': (db) => db.connections.create({ connectorId: 'stripe' }),
+  'connections.update': (db) => db.connections.update('conn-1', { name: 'Stripe' }),
+  'connections.delete': (db) => db.connections.delete('conn-1'),
+  'connections.test': (db) => db.connections.test('conn-1'),
+  'connections.preview': (db) => db.connections.preview('conn-1', 'customers'),
+  'connections.fields': (db) => db.connections.fields('conn-1', { stream: 'customers' }),
+  'connections.reviewFields': (db) => db.connections.reviewFields('conn-1', 'customers', []),
+  'connections.sync': (db) => db.connections.sync('conn-1'),
+  'connections.runs': (db) => db.connections.runs('conn-1'),
+  'connections.pause': (db) => db.connections.pause('conn-1'),
+  'connections.resume': (db) => db.connections.resume('conn-1'),
+  'connections.rotateWebhookToken': (db) => db.connections.rotateWebhookToken('conn-1')
 }
 
 /** Methods direct mode answers without the engine (it has no operation for them). */
@@ -231,7 +260,9 @@ function sdkMethods(db: RushDB): string[] {
     'settings',
     'query',
     'textIndexes',
-    'ai'
+    'ai',
+    'imports',
+    'connections'
   ]) {
     walk((db as any)[namespace], [namespace])
   }
