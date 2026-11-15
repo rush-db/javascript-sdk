@@ -1,4 +1,5 @@
 import type { HttpClientInterface, HttpClientResponseInterface, RawRequestBody } from '../network/HttpClient.js'
+import { readJsonBody, responseError } from '../network/errors.js'
 import type { ImportFileUpload, ImportUploadData, ImportUploadOptions } from './ingest-types.js'
 
 /** What uploads need besides the JSON fetcher: raw requests to presigned URLs and the API. */
@@ -117,21 +118,9 @@ const sliceOf = (bytes: Bytes, start: number, end: number): Bytes =>
 const byteLength = (bytes: Bytes) => (isBlob(bytes) ? bytes.size : bytes.byteLength)
 
 /** An error as the JSON fetcher reports one: `"<status> <message>"` with `status` and `body`. */
-async function responseError(response: HttpClientResponseInterface, what: string) {
-  const status = response.getStatusCode()
-  let body: unknown
-  let message = ''
-  try {
-    body = await response.toJSON()
-    const raw = (body as Record<string, any>)?.message ?? (body as Record<string, any>)?.error
-    message = Array.isArray(raw) ? raw.join('; ') : typeof raw === 'string' ? raw : ''
-  } catch {
-    // S3 answers XML; the status says enough.
-  }
-  const error = new Error(`${status} ${message || what}`) as Error & { status: number; body?: unknown }
-  error.status = status
-  error.body = body
-  return error
+async function uploadError(response: HttpClientResponseInterface, what: string) {
+  // S3 answers XML; the status and `what` say enough.
+  return responseError(response.getStatusCode(), await readJsonBody(response), what)
 }
 
 /** Lets the connection go back to the pool without reading the body. */
@@ -253,7 +242,7 @@ export async function uploadFileContent(
         timeout
       })
       if (response.getStatusCode() < 200 || response.getStatusCode() >= 300) {
-        throw await responseError(response, 'upload failed')
+        throw await uploadError(response, 'upload failed')
       }
       discard(response)
     }
@@ -310,7 +299,7 @@ export async function uploadFileContent(
         timeout
       })
       if (response.getStatusCode() < 200 || response.getStatusCode() >= 300) {
-        throw await responseError(response, `upload of part ${partNumber} failed`)
+        throw await uploadError(response, `upload of part ${partNumber} failed`)
       }
       const headers = response.getHeaders()
       const value = headers.etag ?? headers.ETag
