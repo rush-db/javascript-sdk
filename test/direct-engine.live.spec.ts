@@ -6,7 +6,13 @@
  *
  *   rushdb serve --data-dir /tmp/rushdb-test --port 3877 --languages cypher
  *   RUSHDB_TEST_ENGINE_URL=http://127.0.0.1:3877 pnpm test
+ *
+ * Start it with `--capability-secret <hex>` and set
+ * `RUSHDB_TEST_ENGINE_CAPABILITY_SECRET` to the same value to also test a
+ * read-only capability.
  */
+import { createHmac } from 'node:crypto'
+
 import { describe, it, expect, beforeAll } from 'vitest'
 
 import { CloudOnlyError, DirectModeError } from '../src/sdk/errors.js'
@@ -308,5 +314,41 @@ describe.skipIf(!engineUrl)('direct mode against a standalone engine', () => {
     await db.records.delete({ labels: [BOOK, AUTHOR], where: {} } as any).catch(() => undefined)
     await db.records.delete({ labels: [BOOK], where: { pages: { $gte: 0 } } })
     expect((await db.records.find({ labels: [BOOK], where: { pages: { $gte: 0 } } })).total).toBe(0)
+  })
+})
+
+/** A signed read-only capability token, as the engine's authentication docs mint one. */
+function readOnlyCapability(secretHex: string) {
+  const now = Math.floor(Date.now() / 1000)
+  const claims = Buffer.from(
+    JSON.stringify({ sub: 'sdk-live-test', scope: 'read', iat: now, exp: now + 600 })
+  ).toString('base64url')
+  const signature = createHmac('sha256', Buffer.from(secretHex, 'hex')).update(claims).digest('base64url')
+  return `${claims}.${signature}`
+}
+
+describe.skipIf(!engineUrl)('direct mode auth failures against a standalone engine', () => {
+  const capabilitySecret = process.env.RUSHDB_TEST_ENGINE_CAPABILITY_SECRET
+
+  // The engine answers `{"error":"unauthorized"}` today and a protocol error
+  // envelope once auth failures move to it; both carry the reason.
+  const unauthorized = {
+    status: 401,
+    message: expect.stringMatching(/^401 \S/)
+  }
+
+  it('surfaces a bad token', async () => {
+    const db = new RushDB('not-a-valid-token', { direct: true, engineUrl })
+    const error = await db.records.find({ labels: [BOOK] }).catch((e) => e)
+    expect(error).toMatchObject(unauthorized)
+    expect(error.message).not.toContain('engine request failed')
+  })
+
+  it.skipIf(!capabilitySecret)('surfaces a write with a read-only capability', async () => {
+    const db = new RushDB(readOnlyCapability(capabilitySecret!), { direct: true, engineUrl })
+    await expect(db.records.find({ labels: [BOOK] })).resolves.toBeDefined()
+    const error = await db.records.create({ label: BOOK, data: { title: 'Refused' } }).catch((e) => e)
+    expect(error).toMatchObject(unauthorized)
+    expect(error.message).not.toContain('engine request failed')
   })
 })

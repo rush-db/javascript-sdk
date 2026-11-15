@@ -1,4 +1,5 @@
 import type { HttpClient } from '../network/HttpClient.js'
+import { readJsonBody, responseError } from '../network/errors.js'
 
 /**
  * Protocol operation envelope (v1) sent to `POST /protocol/v1/execute`.
@@ -11,7 +12,8 @@ export type ProtocolEnvelope = {
 
 export type ProtocolResponse = {
   response: { kind: string; [key: string]: any }
-  error?: { code: string; message: string }
+  /** A protocol error, or a bare string on an auth failure (`{"error":"unauthorized"}`). */
+  error?: { code: string; message: string; retryable?: boolean } | string
 }
 
 /**
@@ -35,7 +37,8 @@ export class DirectEngine {
 
   /**
    * Runs one protocol operation and returns its `response`. A refused
-   * operation throws an `Error` with `status` (the engine's HTTP status) and a
+   * operation throws an `Error` with `status` (the engine's HTTP status), the
+   * protocol error `code` and `retryable` when the engine sent them, and a
    * `"<status> <message>"` message, as a RushDB Cloud error does.
    */
   async execute(operation: Record<string, any>): Promise<Record<string, any>> {
@@ -57,13 +60,9 @@ export class DirectEngine {
       requestData: envelope
     })
     const status = response.getStatusCode()
-    const body = (await response.toJSON().catch(() => undefined)) as ProtocolResponse | undefined
+    const body = (await readJsonBody(response)) as ProtocolResponse | undefined
     if (status >= 400 || body?.error || !body?.response) {
-      const message = body?.error?.message ?? 'engine request failed'
-      const error = new Error(`${status} ${message}`) as Error & { status: number; body?: unknown }
-      error.status = status
-      error.body = body
-      throw error
+      throw responseError(status, body, 'engine request failed')
     }
     return body.response
   }
