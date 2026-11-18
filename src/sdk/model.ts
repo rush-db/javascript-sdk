@@ -5,7 +5,8 @@ import type {
   InferSchemaTypesRead,
   InferSchemaTypesWrite,
   MaybeArray,
-  PropertyDraft
+  PropertyDraft,
+  PropertyValue
 } from '../types/index.js'
 import type { RestAPI } from '../api/api.js'
 import type {
@@ -226,6 +227,30 @@ export class Model<S extends Schema = any> {
   }
 
   /**
+   * Checks each `uniq: true` field with its own request and returns every
+   * conflicting record, deduplicated by id. A single combined query would only
+   * match records sharing *all* values at once and miss a conflict on any one
+   * field (issue #21).
+   */
+  private async findUniqConflicts(
+    uniqFields: Record<string, PropertyValue>,
+    transaction: Transaction | string
+  ): Promise<Array<DBRecordInstance<S>>> {
+    const seen = new Set<string>()
+    const conflicts: Array<DBRecordInstance<S>> = []
+    for (const [key, value] of Object.entries(uniqFields)) {
+      const matching = await this.find({ where: { [key]: value } }, transaction)
+      for (const record of matching?.data ?? []) {
+        if (!seen.has(record.id)) {
+          seen.add(record.id)
+          conflicts.push(record)
+        }
+      }
+    }
+    return conflicts
+  }
+
+  /**
    * Creates a new record in the database.
    *
    * @param record - The record data to create
@@ -246,9 +271,9 @@ export class Model<S extends Schema = any> {
 
     if (hasUniqFields) {
       const tx = transaction ?? (await instance.tx.begin())
-      const matchingRecords = await this.find({ where: uniqFields }, tx)
+      const conflicts = await this.findUniqConflicts(uniqFields, tx)
       const hasOwnTransaction = typeof transaction !== 'undefined'
-      const canCreate = !matchingRecords?.data?.length
+      const canCreate = !conflicts.length
 
       if (canCreate) {
         const result = await instance.records.create<S>({ label: this.label, data }, tx)
@@ -262,7 +287,7 @@ export class Model<S extends Schema = any> {
 
         switch (onConflict) {
           case 'upsert': {
-            const conflictingRecord = matchingRecords.data[0]
+            const conflictingRecord = conflicts[0]
             const result = await instance.records.set<S>(
               { target: conflictingRecord.id, label: this.label, data },
               tx
@@ -390,12 +415,12 @@ export class Model<S extends Schema = any> {
 
     if (!isEmptyObject(uniqFields)) {
       const tx = transaction ?? (await instance.tx.begin())
-      const matchingRecords = await this.find({ where: uniqFields }, tx)
+      const conflicts = await this.findUniqConflicts(uniqFields, tx)
       const hasOwnTransaction = typeof transaction !== 'undefined'
 
       const canUpdate =
-        !matchingRecords?.data?.length ||
-        (matchingRecords.data.length === 1 && matchingRecords.data[0]?.id === pickRecordId(target)!)
+        !conflicts.length ||
+        (conflicts.length === 1 && conflicts[0]?.id === pickRecordId(target)!)
 
       if (canUpdate) {
         const result = await instance.records[method]<S>({ target, label: this.label, data }, tx)
