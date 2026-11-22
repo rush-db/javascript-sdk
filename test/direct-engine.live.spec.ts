@@ -118,7 +118,10 @@ describe.skipIf(!engineUrl)('direct mode against a standalone engine', () => {
     const [wrote] = (
       await db.relationships.find({ where: { type: 'WROTE' }, source: { labels: [AUTHOR] } } as any)
     ).data
-    expect(wrote.properties).toEqual({ year: 1966, role: 'author', since: '1965-08-01T10:30:00.000Z' })
+    // 3.0.14 prints the shortest fraction (`10:30:00Z`), earlier releases milliseconds.
+    const { since, ...rest } = wrote.properties as Record<string, any>
+    expect(rest).toEqual({ year: 1966, role: 'author' })
+    expect(new Date(since).toISOString()).toBe('1965-08-01T10:30:00.000Z')
     expect(wrote.propertyTypes?.since).toBe('datetime')
 
     await db.records.detach({ source: herbert, target: dune, options: { typeOrTypes: 'WROTE' } })
