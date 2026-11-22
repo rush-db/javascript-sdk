@@ -8,7 +8,7 @@
 
 > **TextSearchParams** = `object`
 
-Defined in: [api/types.ts:218](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L218)
+Defined in: [api/types.ts:234](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L234)
 
 Parameters for keyword (BM25) search.
 
@@ -18,7 +18,7 @@ Parameters for keyword (BM25) search.
 
 > `optional` **allTerms?**: `boolean`
 
-Defined in: [api/types.ts:232](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L232)
+Defined in: [api/types.ts:248](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L248)
 
 Every keyword must match (AND) instead of any (OR).
 
@@ -28,7 +28,7 @@ Every keyword must match (AND) instead of any (OR).
 
 > `optional` **index?**: `string`
 
-Defined in: [api/types.ts:222](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L222)
+Defined in: [api/types.ts:238](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L238)
 
 The text index, by name; otherwise the one ready text index of the first label.
 
@@ -38,7 +38,7 @@ The text index, by name; otherwise the one ready text index of the first label.
 
 > `optional` **labels?**: `string`[]
 
-Defined in: [api/types.ts:225](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L225)
+Defined in: [api/types.ts:241](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L241)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [api/types.ts:225](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **limit?**: `number`
 
-Defined in: [api/types.ts:230](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L230)
+Defined in: [api/types.ts:246](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L246)
 
 Maximum number of results (default 10).
 
@@ -56,7 +56,7 @@ Maximum number of results (default 10).
 
 > `optional` **phrase?**: `boolean`
 
-Defined in: [api/types.ts:234](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L234)
+Defined in: [api/types.ts:250](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L250)
 
 Match the keywords as one phrase.
 
@@ -66,7 +66,7 @@ Match the keywords as one phrase.
 
 > `optional` **property?**: `string`
 
-Defined in: [api/types.ts:224](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L224)
+Defined in: [api/types.ts:240](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L240)
 
 Narrows the choice of text index to one over this property.
 
@@ -76,7 +76,7 @@ Narrows the choice of text index to one over this property.
 
 > **query**: `string`
 
-Defined in: [api/types.ts:220](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L220)
+Defined in: [api/types.ts:236](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L236)
 
 Keywords; `"a phrase"`, `-excluded` and `+required` follow the query syntax.
 
@@ -86,7 +86,7 @@ Keywords; `"a phrase"`, `-excluded` and `+required` follow the query syntax.
 
 > `optional` **skip?**: `number`
 
-Defined in: [api/types.ts:228](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L228)
+Defined in: [api/types.ts:244](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L244)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [api/types.ts:228](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **waitForPending?**: [`WaitForPending`](WaitForPending.md)
 
-Defined in: [api/types.ts:241](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L241)
+Defined in: [api/types.ts:257](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L257)
 
 Read your own writes from an `eventual` text index: repeat the search
 while the index reports `pending` changes, until none are left or the
@@ -107,6 +107,6 @@ to 2 seconds. Not sent to the server. An `immediate` index never needs it.
 
 > `optional` **where?**: `Record`\<`string`, `unknown`\>
 
-Defined in: [api/types.ts:227](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L227)
+Defined in: [api/types.ts:243](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L243)
 
 Filter applied before ranking.

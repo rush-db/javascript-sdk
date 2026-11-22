@@ -41,9 +41,10 @@ export const ORDERED_PROPERTY_TYPES: ReadonlyArray<string> = [
 ]
 
 /**
- * Rows per request when `records.createMany` and `records.importCsv` split a
- * large write: about 5,000 flat rows per request loads fastest.
+ * The recommended `chunkSize` for large flat writes (`records.createMany`,
+ * `records.importCsv`): about 5,000 rows per request loads fastest. Writes are
+ * split only when a chunk size is set.
  */
-export const DEFAULT_INGEST_CHUNK_SIZE = 5000
-/** Documents per request when `records.importJson` splits a large array of nested documents. */
-export const DEFAULT_NESTED_INGEST_CHUNK_SIZE = 10000
+export const RECOMMENDED_INGEST_CHUNK_SIZE = 5000
+/** The recommended `chunkSize` for large arrays of nested documents (`records.importJson`). */
+export const RECOMMENDED_NESTED_INGEST_CHUNK_SIZE = 10000

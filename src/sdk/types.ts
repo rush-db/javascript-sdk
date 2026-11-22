@@ -51,14 +51,16 @@ export type SDKConfig = {
      */
     allowForceDelete?: boolean
     /**
-     * Flat rows per request when `records.createMany`, `records.importCsv` and
-     * `records.importJson` (with flat rows) split a large write. Defaults to
-     * 5,000, where ingest loads fastest; `0` sends every write in one request.
+     * Split `records.createMany`, `records.importCsv` and `records.importJson`
+     * (flat rows) into requests of this many rows. Unset (the default) or `0`
+     * sends each write in one all-or-nothing request. 5,000 is recommended for
+     * large writes; chunked, each request commits on its own unless the call
+     * passes a transaction.
      */
     ingestChunkSize?: number
     /**
-     * Documents per request when `records.importJson` splits a large array of
-     * nested documents. Defaults to 10,000; `0` sends one request.
+     * Split `records.importJson` arrays of nested documents into requests of
+     * this many documents. Unset or `0` sends one request; 10,000 is recommended.
      */
     nestedIngestChunkSize?: number
   }

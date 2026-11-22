@@ -8,7 +8,7 @@
 
 > **PropertyIndex** = `object`
 
-Defined in: [api/types.ts:196](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L196)
+Defined in: [api/types.ts:212](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L212)
 
 An ordered or unique property index (`db.indexes`).
 
@@ -18,7 +18,7 @@ An ordered or unique property index (`db.indexes`).
 
 > **kind**: `"ordered"` \| `"unique"`
 
-Defined in: [api/types.ts:202](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L202)
+Defined in: [api/types.ts:218](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L218)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/types.ts:202](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **label**: `string`
 
-Defined in: [api/types.ts:199](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L199)
+Defined in: [api/types.ts:215](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L215)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [api/types.ts:199](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **name**: `string`
 
-Defined in: [api/types.ts:198](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L198)
+Defined in: [api/types.ts:214](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L214)
 
 Index name, unique within the project.
 
@@ -44,7 +44,7 @@ Index name, unique within the project.
 
 > **property**: `string`
 
-Defined in: [api/types.ts:201](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L201)
+Defined in: [api/types.ts:217](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L217)
 
 The indexed property, stored normalized (`unitPrice` is listed as `unitprice`).
 
@@ -54,7 +54,7 @@ The indexed property, stored normalized (`unitPrice` is listed as `unitprice`).
 
 > **status**: `"building"` \| `"ready"` \| `"dropping"`
 
-Defined in: [api/types.ts:205](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L205)
+Defined in: [api/types.ts:221](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L221)
 
 ***
 
@@ -62,6 +62,6 @@ Defined in: [api/types.ts:205](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **unique**: `boolean`
 
-Defined in: [api/types.ts:204](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L204)
+Defined in: [api/types.ts:220](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L220)
 
 Whether the index refuses a second record of the label with the same value.

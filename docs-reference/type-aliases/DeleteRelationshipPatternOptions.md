@@ -8,7 +8,7 @@
 
 > **DeleteRelationshipPatternOptions** = `object`
 
-Defined in: [api/types.ts:352](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L352)
+Defined in: [api/types.ts:368](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L368)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [api/types.ts:352](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **deleteExisting?**: `boolean`
 
-Defined in: [api/types.ts:353](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L353)
+Defined in: [api/types.ts:369](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L369)

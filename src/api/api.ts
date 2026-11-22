@@ -50,6 +50,7 @@ import type {
   UpsertEmbeddingVectorsResult,
   CreateTextIndexParams,
   CreatePropertyIndexParams,
+  IngestChunkFailure,
   PropertyIndex,
   TextIndex,
   TextSearchParams,
@@ -71,7 +72,6 @@ import {
   removeUndefinedDeep,
   toBoolean
 } from '../common/utils.js'
-import { DEFAULT_INGEST_CHUNK_SIZE, DEFAULT_NESTED_INGEST_CHUNK_SIZE } from '../common/constants.js'
 import { createFetcher } from '../network/index.js'
 import { createConnectionsApi } from './connections.js'
 import { createImportsApi } from './imports.js'
@@ -364,9 +364,10 @@ export class RestAPI {
          */
         vectors?: VectorEntry[][] | VectorEntry[]
         /**
-         * Rows per request (default `options.ingestChunkSize` of the client, or 5,000). A larger
-         * `data` is sent in several requests, one after another; `0` sends it in one. Each request
-         * commits on its own unless a `transaction` is passed.
+         * Rows per request, to send a large `data` in several requests one after another
+         * (default the client's `options.ingestChunkSize`; unset or `0` sends one request, which
+         * is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its own
+         * unless a `transaction` is passed.
          */
         chunkSize?: number
       },
@@ -400,7 +401,7 @@ export class RestAPI {
           items.map((item, i) => (vectors[i]?.length ? { ...item, $vectors: vectors[i] } : item))
         : items
 
-      const size = chunkSizeOf(data.chunkSize, this.options?.ingestChunkSize, DEFAULT_INGEST_CHUNK_SIZE)
+      const size = chunkSizeOf(data.chunkSize, this.options?.ingestChunkSize)
       return this.importInChunks<S>(
         '/records/import/json',
         chunked(itemsWithVectors, size).map((rows) => ({ label: data.label, data: rows, options: data.options })),
@@ -428,9 +429,10 @@ export class RestAPI {
         label?: string
         options?: DBRecordCreationOptions
         /**
-         * Documents per request when `data` is an array (default the client's
-         * `options.nestedIngestChunkSize`, or 10,000; flat rows use `ingestChunkSize`, or 5,000).
-         * Each request commits on its own unless a `transaction` is passed; `0` sends one request.
+         * Documents per request, to send a large array in several requests (default the client's
+         * `options.nestedIngestChunkSize`, or `ingestChunkSize` for flat rows; unset or `0` sends
+         * one request, which is all-or-nothing). 10,000 nested documents or 5,000 flat rows are
+         * recommended. Chunked, each request commits on its own unless a `transaction` is passed.
          */
         chunkSize?: number
       },
@@ -450,13 +452,14 @@ export class RestAPI {
         }
       }
 
-      // A top-level array is split into chunks of whole documents: about 5,000 flat rows or
-      // 10,000 nested documents per request. A container object is sent as it is.
+      // With a chunk size set, a top-level array is split into chunks of whole documents
+      // (flat rows by `ingestChunkSize`, nested documents by `nestedIngestChunkSize`).
+      // A container object is sent as it is.
       const documents: Array<any> | undefined = label && isArray(payloadData) ? payloadData : undefined
       const size =
         documents?.every((item) => isFlatObject(item)) ?
-          chunkSizeOf(params.chunkSize, this.options?.ingestChunkSize, DEFAULT_INGEST_CHUNK_SIZE)
-        : chunkSizeOf(params.chunkSize, this.options?.nestedIngestChunkSize, DEFAULT_NESTED_INGEST_CHUNK_SIZE)
+          chunkSizeOf(params.chunkSize, this.options?.ingestChunkSize)
+        : chunkSizeOf(params.chunkSize, this.options?.nestedIngestChunkSize)
       const requests =
         documents ?
           chunked(documents, size).map((chunk) => ({ label, data: chunk, options }))
@@ -495,16 +498,17 @@ export class RestAPI {
          */
         vectors?: VectorEntry[][]
         /**
-         * Data rows per request (default the client's `options.ingestChunkSize`, or 5,000). A
-         * larger file is sent in several requests, each with the header row; each commits on its
-         * own unless a `transaction` is passed. `0` sends one request.
+         * Data rows per request, to send a large file in several requests, each with the header
+         * row (default the client's `options.ingestChunkSize`; unset or `0` sends one request,
+         * which is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its
+         * own unless a `transaction` is passed.
          */
         chunkSize?: number
       },
       transaction?: Transaction | string
     ): Promise<DBRecordsArrayInstance<S>> => {
       const { chunkSize, ...request } = params
-      const size = chunkSizeOf(chunkSize, this.options?.ingestChunkSize, DEFAULT_INGEST_CHUNK_SIZE)
+      const size = chunkSizeOf(chunkSize, this.options?.ingestChunkSize)
       return this.importInChunks<S>('/records/import/csv', csvChunks(request, size), transaction)
     },
 
@@ -1545,7 +1549,9 @@ export class RestAPI {
 
   /**
    * Sends import requests one after another (one per chunk) and returns their
-   * records together; `total` adds up the requests' totals.
+   * records together; `total` adds up the requests' totals. When a chunk of a
+   * chunked write fails, its error gets `ingest` ({@link IngestChunkFailure}):
+   * the chunks before it committed (or were staged, in a transaction).
    */
   private async importInChunks<S extends Schema = any>(
     path: string,
@@ -1555,7 +1561,7 @@ export class RestAPI {
     const txId = pickTransactionId(transaction)
     const records: Array<DBRecordInstance<S>> = []
     let total = 0
-    for (const requestData of requests) {
+    for (const [index, requestData] of requests.entries()) {
       const payload = {
         headers: Object.assign({}, buildTransactionHeader(txId)),
         method: 'POST',
@@ -1564,7 +1570,22 @@ export class RestAPI {
       const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
       this.logger?.({ requestId, path, ...payload })
 
-      const response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(path, payload)
+      let response: ApiResponse<Array<DBRecord<S>>>
+      try {
+        response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(path, payload)
+      } catch (error) {
+        if (requests.length > 1 && error && typeof error === 'object') {
+          const ingest: IngestChunkFailure = {
+            chunks: requests.length,
+            failedChunk: index,
+            completedChunks: index,
+            completedRecords: total,
+            inTransaction: Boolean(txId)
+          }
+          Object.assign(error, { ingest })
+        }
+        throw error
+      }
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
       if (response?.success && response?.data) {

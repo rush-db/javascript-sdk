@@ -367,8 +367,19 @@ const ingestAnswer = (body: any) => ({
 describe('ingest chunking', () => {
   beforeEach(() => useServer((body) => ingestAnswer(body)))
 
-  it('sends createMany in requests of 5,000 rows by default', async () => {
+  it('sends one all-or-nothing request by default, however large', async () => {
     const result = await cloudDb().records.createMany({ label: 'Row', data: rows(12001), options: { returnResult: true } })
+    expect(calls.map((call) => call.body.data.length)).toEqual([12001])
+    expect(result.total).toBe(12001)
+  })
+
+  it('splits createMany by chunkSize', async () => {
+    const result = await cloudDb().records.createMany({
+      label: 'Row',
+      data: rows(12001),
+      options: { returnResult: true },
+      chunkSize: 5000
+    })
     expect(calls.map((call) => call.body.data.length)).toEqual([5000, 5000, 2001])
     expect(result.total).toBe(12001)
     expect(result.data).toHaveLength(12001)
@@ -397,17 +408,45 @@ describe('ingest chunking', () => {
   })
 
   it('sends one request when the write fits', async () => {
-    await cloudDb().records.createMany({ label: 'Row', data: rows(5000) })
+    await cloudDb().records.createMany({ label: 'Row', data: rows(5000), chunkSize: 5000 })
     expect(calls).toHaveLength(1)
   })
 
-  it('splits importJson arrays at 10,000 nested documents or 5,000 flat rows', async () => {
+  it('splits importJson arrays by the nested or the flat chunk size', async () => {
+    const options = { ingestChunkSize: 5000, nestedIngestChunkSize: 10000 }
     const nested = Array.from({ length: 20001 }, (_, n) => ({ n, author: { name: 'A' } }))
-    await cloudDb().records.importJson({ label: 'Row', data: nested })
+    await cloudDb(options).records.importJson({ label: 'Row', data: nested })
     expect(calls.map((call) => call.body.data.length)).toEqual([10000, 10000, 1])
     calls.length = 0
-    await cloudDb().records.importJson({ label: 'Row', data: rows(5001) })
+    await cloudDb(options).records.importJson({ label: 'Row', data: rows(5001) })
     expect(calls.map((call) => call.body.data.length)).toEqual([5000, 1])
+    calls.length = 0
+    await cloudDb().records.importJson({ label: 'Row', data: nested })
+    expect(calls).toHaveLength(1)
+  })
+
+  it('says which chunks were written when one fails', async () => {
+    let n = 0
+    useServer((body) =>
+      ++n === 3 ?
+        { status: 503, body: { statusCode: 503, message: 'unavailable', retryable: true } }
+      : ingestAnswer(body)
+    )
+    const error = await cloudDb()
+      .records.createMany({ label: 'Row', data: rows(10), chunkSize: 3 })
+      .catch((e) => e)
+    expect(error).toMatchObject({
+      status: 503,
+      retryable: true,
+      ingest: { chunks: 4, failedChunk: 2, completedChunks: 2, completedRecords: 6, inTransaction: false }
+    })
+    expect(calls).toHaveLength(3)
+  })
+
+  it('adds no chunk report to a single request', async () => {
+    useServer(() => ({ status: 503, body: { statusCode: 503, message: 'unavailable' } }))
+    const error = await cloudDb().records.createMany({ label: 'Row', data: rows(10) }).catch((e) => e)
+    expect(error).not.toHaveProperty('ingest')
   })
 
   it('sends a label-less container as it is', async () => {
@@ -417,6 +456,7 @@ describe('ingest chunking', () => {
   })
 
   it('passes the transaction to every chunk', async () => {
+    useServer((body) => ingestAnswer(body))
     await cloudDb().records.createMany({ label: 'Row', data: rows(3), chunkSize: 2 }, 'tx-1')
     expect(calls).toHaveLength(2)
   })
@@ -457,10 +497,10 @@ describe('CSV chunking', () => {
   })
 
   it('sizes and splits', () => {
-    expect(chunkSizeOf(undefined, undefined, 5000)).toBe(5000)
-    expect(chunkSizeOf(undefined, 7, 5000)).toBe(7)
-    expect(chunkSizeOf(3, 7, 5000)).toBe(3)
-    expect(chunkSizeOf(0, 7, 5000)).toBe(Infinity)
+    expect(chunkSizeOf(undefined, undefined)).toBe(Infinity)
+    expect(chunkSizeOf(undefined, 7)).toBe(7)
+    expect(chunkSizeOf(3, 7)).toBe(3)
+    expect(chunkSizeOf(0, 7)).toBe(Infinity)
     expect(chunked([], 2)).toEqual([[]])
     expect(chunked([1, 2, 3], 2)).toEqual([[1, 2], [3]])
   })

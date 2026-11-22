@@ -5,6 +5,7 @@ export {
   CreateTextIndexParams,
   CreatePropertyIndexParams,
   DeleteRelationshipPatternOptions,
+  IngestChunkFailure,
   EmbeddingIndex,
   EmbeddingIndexStats,
   RelationshipPattern,

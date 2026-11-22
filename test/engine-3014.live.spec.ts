@@ -212,7 +212,7 @@ describe.skipIf(!engineUrl)('RushDB 3.0.14 features against a standalone engine'
 
   it('imports a large write in chunks', async () => {
     const rows = Array.from({ length: 12001 }, (_, n) => ({ n, group: n % 3 }))
-    const created = await db.records.createMany({ label: ROW, data: rows })
+    const created = await db.records.createMany({ label: ROW, data: rows, chunkSize: 5000 })
     expect(created.total).toBe(12001)
     expect((await db.records.find({ labels: [ROW], limit: 1 })).total).toBe(12001)
 

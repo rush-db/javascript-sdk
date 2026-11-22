@@ -8,4 +8,4 @@
 
 > **RelationshipPatternDirection** = `"in"` \| `"out"`
 
-Defined in: [api/types.ts:307](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L307)
+Defined in: [api/types.ts:323](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L323)

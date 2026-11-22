@@ -192,6 +192,22 @@ export type CreateTextIndexParams = {
   consistency?: 'eventual' | 'immediate'
 }
 
+/**
+ * Set as `error.ingest` when a chunk of a chunked import fails. Chunks
+ * `0 … completedChunks - 1` committed (outside a transaction) or were staged
+ * (inside one, where nothing commits until the transaction does); the failed
+ * chunk and the ones after it were not written.
+ */
+export type IngestChunkFailure = {
+  chunks: number
+  /** 0-based index of the chunk whose request failed. */
+  failedChunk: number
+  completedChunks: number
+  /** Records the completed chunks reported (their `total`s). */
+  completedRecords: number
+  inTransaction: boolean
+}
+
 /** An ordered or unique property index (`db.indexes`). */
 export type PropertyIndex = {
   /** Index name, unique within the project. */

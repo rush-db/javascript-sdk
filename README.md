@@ -278,17 +278,18 @@ await db.indexes.delete('USER.email.unique')
 
 Every failed request's error keeps the server's `status`, `code`, `retryable` and `details`.
 
-### Large writes are sent in chunks
+### Sending large writes in chunks
 
-`records.createMany`, `records.importCsv` and `records.importJson` (with a top-level array) send a large write as several requests, one after another: 5,000 rows per request for flat rows and CSV, 10,000 for nested documents, where ingest loads fastest. A CSV chunk repeats the header row, and inline vectors stay with their rows. Results and `total` cover every chunk.
-
-Each chunk commits on its own. If one fails, the chunks before it stay written; pass a transaction to make the whole write all-or-nothing. Set the size per call with `chunkSize`, or for the client with `options.ingestChunkSize` and `options.nestedIngestChunkSize`; `0` sends everything in one request.
+`records.createMany`, `records.importCsv` and `records.importJson` send each call as one request, which commits all or nothing. For a large write, set a chunk size to send it as several requests one after another. About 5,000 rows per request (flat rows and CSV) and 10,000 for nested documents load fastest (`RECOMMENDED_INGEST_CHUNK_SIZE`, `RECOMMENDED_NESTED_INGEST_CHUNK_SIZE`). A CSV chunk repeats the header row, inline vectors stay with their rows, and the result and `total` cover every chunk.
 
 ```typescript
-await db.records.createMany({ label: 'EVENT', data: rows, chunkSize: 2000 })
+await db.records.createMany({ label: 'EVENT', data: rows, chunkSize: 5000 })
 
-const db = new RushDB('RUSHDB_API_KEY', { options: { ingestChunkSize: 2000, nestedIngestChunkSize: 5000 } })
+// or for every call of a client
+const db = new RushDB('RUSHDB_API_KEY', { options: { ingestChunkSize: 5000, nestedIngestChunkSize: 10000 } })
 ```
+
+**A chunked write is not atomic.** Each chunk commits on its own. If one fails, the chunks before it stay written, and the error's `ingest` says how far the write got: `{ chunks, failedChunk, completedChunks, completedRecords, inTransaction }`. Pass a transaction to make the whole write all-or-nothing again.
 
 ### Searching text right after a write
 
@@ -488,7 +489,7 @@ Key options:
 - `timeout` — request timeout in ms (default: 10000)
 - `httpClient` — custom HTTP client for advanced use
 - `options.allowForceDelete` — allow deleting all records without criteria (default: false)
-- `options.ingestChunkSize`, `options.nestedIngestChunkSize` — rows (5,000) and nested documents (10,000) per import request; `0` sends one request
+- `options.ingestChunkSize`, `options.nestedIngestChunkSize` — split imports into requests of this many rows / nested documents (default: one atomic request; 5,000 and 10,000 recommended)
 - `direct`, `engineUrl`, `scope` — direct mode against a standalone engine (see above)
 
 Full config reference: [docs.rushdb.com/3.x/learn/reference/typescript/RushDB](https://docs.rushdb.com/3.x/learn/reference/typescript/RushDB/#sdkconfig-options)

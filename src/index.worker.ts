@@ -7,6 +7,7 @@ import {
   type CreateTextIndexParams,
   type CreatePropertyIndexParams,
   type DeleteRelationshipPatternOptions,
+  type IngestChunkFailure,
   type EmbeddingIndex,
   type EmbeddingIndexStats,
   type RelationshipPattern,
@@ -69,7 +70,8 @@ export {
   type VectorSearchParams,
   type VectorSearchReport,
   type VectorSearchResult,
-  type WaitForPending
+  type WaitForPending,
+  type IngestChunkFailure
 }
 export * from './types/index.js'
 export * from './api/ingest-types.js'
@@ -95,8 +97,8 @@ export {
   PROPERTY_TYPE_POINT,
   PROPERTY_TYPE_STRING,
   ORDERED_PROPERTY_TYPES,
-  DEFAULT_INGEST_CHUNK_SIZE,
-  DEFAULT_NESTED_INGEST_CHUNK_SIZE
+  RECOMMENDED_INGEST_CHUNK_SIZE,
+  RECOMMENDED_NESTED_INGEST_CHUNK_SIZE
 } from './common/constants.js'
 
 export default RushDB

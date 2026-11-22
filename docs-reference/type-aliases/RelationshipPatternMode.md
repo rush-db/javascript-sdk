@@ -8,4 +8,4 @@
 
 > **RelationshipPatternMode** = `"join_pattern"` \| `"retype_existing_relationship"`
 
-Defined in: [api/types.ts:308](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L308)
+Defined in: [api/types.ts:324](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L324)

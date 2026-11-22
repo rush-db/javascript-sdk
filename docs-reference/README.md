@@ -128,6 +128,7 @@
 - [InferSchemaTypesRead](type-aliases/InferSchemaTypesRead.md)
 - [InferSchemaTypesWrite](type-aliases/InferSchemaTypesWrite.md)
 - [InferType](type-aliases/InferType.md)
+- [IngestChunkFailure](type-aliases/IngestChunkFailure.md)
 - [JoinCandidate](type-aliases/JoinCandidate.md)
 - [ListImportsParams](type-aliases/ListImportsParams.md)
 - [LocalDateTimeValue](type-aliases/LocalDateTimeValue.md)
@@ -239,8 +240,6 @@
 
 - [CLOUD\_ONLY\_FORMS](variables/CLOUD_ONLY_FORMS.md)
 - [CLOUD\_ONLY\_METHODS](variables/CLOUD_ONLY_METHODS.md)
-- [DEFAULT\_INGEST\_CHUNK\_SIZE](variables/DEFAULT_INGEST_CHUNK_SIZE.md)
-- [DEFAULT\_NESTED\_INGEST\_CHUNK\_SIZE](variables/DEFAULT_NESTED_INGEST_CHUNK_SIZE.md)
 - [FINISHED\_IMPORT\_RUN\_STATUSES](variables/FINISHED_IMPORT_RUN_STATUSES.md)
 - [ORDERED\_PROPERTY\_TYPES](variables/ORDERED_PROPERTY_TYPES.md)
 - [PROPERTY\_TYPE\_BOOLEAN](variables/PROPERTY_TYPE_BOOLEAN.md)
@@ -253,6 +252,8 @@
 - [PROPERTY\_TYPE\_POINT](variables/PROPERTY_TYPE_POINT.md)
 - [PROPERTY\_TYPE\_STRING](variables/PROPERTY_TYPE_STRING.md)
 - [PROPERTY\_TYPES](variables/PROPERTY_TYPES.md)
+- [RECOMMENDED\_INGEST\_CHUNK\_SIZE](variables/RECOMMENDED_INGEST_CHUNK_SIZE.md)
+- [RECOMMENDED\_NESTED\_INGEST\_CHUNK\_SIZE](variables/RECOMMENDED_NESTED_INGEST_CHUNK_SIZE.md)
 
 ## Functions
 

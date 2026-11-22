@@ -8,7 +8,7 @@
 
 > **TextSearchReport** = `object`
 
-Defined in: [api/types.ts:248](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L248)
+Defined in: [api/types.ts:264](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L264)
 
 How the engine ran a keyword search, or the keyword leg of a hybrid one.
 
@@ -18,7 +18,7 @@ How the engine ran a keyword search, or the keyword leg of a hybrid one.
 
 > **matches**: `number`
 
-Defined in: [api/types.ts:250](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L250)
+Defined in: [api/types.ts:266](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L266)
 
 Records matching the keywords among the filtered records.
 
@@ -28,6 +28,6 @@ Records matching the keywords among the filtered records.
 
 > **pending**: `number`
 
-Defined in: [api/types.ts:252](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L252)
+Defined in: [api/types.ts:268](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L268)
 
 Changes the index had not applied when the search ran.

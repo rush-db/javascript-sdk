@@ -161,10 +161,13 @@ export const searchUntilApplied = async <T extends { textSearch?: { pending?: nu
   return result
 }
 
-/** The chunk size to use: the call's, else the client's, else the default. `0` means no chunking. */
-export const chunkSizeOf = (call: number | undefined, client: number | undefined, fallback: number) => {
-  const size = call ?? client ?? fallback
-  return Number.isFinite(size) && size > 0 ? Math.floor(size) : Infinity
+/**
+ * The chunk size to use: the call's, else the client's. Unset or `0` means no
+ * chunking (one request, atomic as before).
+ */
+export const chunkSizeOf = (call: number | undefined, client: number | undefined) => {
+  const size = call ?? client
+  return size !== undefined && Number.isFinite(size) && size > 0 ? Math.floor(size) : Infinity
 }
 
 /** `items` in consecutive chunks of at most `size` (one chunk, possibly empty, when it fits). */

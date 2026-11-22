@@ -44,7 +44,7 @@ Defined in: [sdk/sdk.ts:24](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **ai**: `object`
 
-Defined in: [api/api.ts:1654](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1654)
+Defined in: [api/api.ts:1675](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1675)
 
 API methods for AI-assisted graph exploration.
 
@@ -403,7 +403,7 @@ The search text, match mode, labels to search and a limit.
 
 > **connections**: `object`
 
-Defined in: [api/api.ts:1438](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1438)
+Defined in: [api/api.ts:1442](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1442)
 
 Connections to SaaS tools, custom APIs and webhooks, and their syncs.
 **RushDB Cloud only.**
@@ -752,7 +752,7 @@ Defined in: [api/api.ts:96](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **imports**: `object`
 
-Defined in: [api/api.ts:1432](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1432)
+Defined in: [api/api.ts:1436](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1436)
 
 Background file imports: `create` → `upload` → `preview` → `start`, or
 `importFiles` for all of it; `get`/`wait` follow a run (file imports and
@@ -1022,7 +1022,7 @@ Polls a run until it is `completed`, `partial`, `failed` or
 
 > **indexes**: `object`
 
-Defined in: [api/api.ts:1501](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1501)
+Defined in: [api/api.ts:1505](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1505)
 
 Ordered and unique property indexes. An ordered index answers equality,
 range and `$within` filters and sorting on one property of a label; a
@@ -1085,7 +1085,7 @@ Lists the project's ordered and unique indexes (text indexes are in `textIndexes
 
 > **labels**: `object`
 
-Defined in: [api/api.ts:1309](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1309)
+Defined in: [api/api.ts:1313](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1313)
 
 API methods for managing labels in the database
 
@@ -1165,16 +1165,18 @@ which results in deleting all Records in the project.
 
 > `optional` **ingestChunkSize?**: `number`
 
-Flat rows per request when `records.createMany`, `records.importCsv` and
-`records.importJson` (with flat rows) split a large write. Defaults to
-5,000, where ingest loads fastest; `0` sends every write in one request.
+Split `records.createMany`, `records.importCsv` and `records.importJson`
+(flat rows) into requests of this many rows. Unset (the default) or `0`
+sends each write in one all-or-nothing request. 5,000 is recommended for
+large writes; chunked, each request commits on its own unless the call
+passes a transaction.
 
 ##### nestedIngestChunkSize?
 
 > `optional` **nestedIngestChunkSize?**: `number`
 
-Documents per request when `records.importJson` splits a large array of
-nested documents. Defaults to 10,000; `0` sends one request.
+Split `records.importJson` arrays of nested documents into requests of
+this many documents. Unset or `0` sends one request; 10,000 is recommended.
 
 ***
 
@@ -1190,7 +1192,7 @@ nested documents. Defaults to 10,000; `0` sends one request.
 
 > **properties**: `object`
 
-Defined in: [api/api.ts:1200](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1200)
+Defined in: [api/api.ts:1204](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1204)
 
 API methods for managing properties in the database
 
@@ -1320,7 +1322,7 @@ Promise with the API response containing the property and its values
 
 > **query**: `object`
 
-Defined in: [api/api.ts:1460](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1460)
+Defined in: [api/api.ts:1464](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1464)
 
 #### raw
 
@@ -1495,9 +1497,10 @@ Object containing label, options and data array (of flat objects)
 
 `number`
 
-Rows per request (default `options.ingestChunkSize` of the client, or 5,000). A larger
-`data` is sent in several requests, one after another; `0` sends it in one. Each request
-commits on its own unless a `transaction` is passed.
+Rows per request, to send a large `data` in several requests one after another
+(default the client's `options.ingestChunkSize`; unset or `0` sends one request, which
+is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its own
+unless a `transaction` is passed.
 
 ###### data
 
@@ -1848,9 +1851,10 @@ CSV import configuration
 
 `number`
 
-Data rows per request (default the client's `options.ingestChunkSize`, or 5,000). A
-larger file is sent in several requests, each with the header row; each commits on its
-own unless a `transaction` is passed. `0` sends one request.
+Data rows per request, to send a large file in several requests, each with the header
+row (default the client's `options.ingestChunkSize`; unset or `0` sends one request,
+which is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its
+own unless a `transaction` is passed.
 
 ###### data
 
@@ -1951,9 +1955,10 @@ Throws if `label` is missing and the input is a top-level array or object record
 
 `number`
 
-Documents per request when `data` is an array (default the client's
-`options.nestedIngestChunkSize`, or 10,000; flat rows use `ingestChunkSize`, or 5,000).
-Each request commits on its own unless a `transaction` is passed; `0` sends one request.
+Documents per request, to send a large array in several requests (default the client's
+`options.nestedIngestChunkSize`, or `ingestChunkSize` for flat rows; unset or `0` sends
+one request, which is all-or-nothing). 10,000 nested documents or 5,000 flat rows are
+recommended. Chunked, each request commits on its own unless a `transaction` is passed.
 
 ###### data
 
@@ -2218,7 +2223,7 @@ with RushDB Cloud's managed model, so it throws `CloudOnlyError` without sending
 
 > **relationships**: `object`
 
-Defined in: [api/api.ts:967](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L967)
+Defined in: [api/api.ts:971](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L971)
 
 API methods for managing relations between records
 
@@ -2548,7 +2553,7 @@ Promise with the number of relationships updated
 
 > **settings**: `object`
 
-Defined in: [api/api.ts:1440](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1440)
+Defined in: [api/api.ts:1444](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1444)
 
 #### get
 
@@ -2574,7 +2579,7 @@ The project's settings.
 
 > **textIndexes**: `object`
 
-Defined in: [api/api.ts:1526](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1526)
+Defined in: [api/api.ts:1530](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1530)
 
 BM25 text indexes, searched with `db.records.textSearch()` or as the
 keyword leg of a hybrid `db.records.vectorSearch({ text })`.
@@ -2648,7 +2653,7 @@ The name a new text index would get by default, unique in the project.
 
 > **tx**: `object`
 
-Defined in: [api/api.ts:1338](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1338)
+Defined in: [api/api.ts:1342](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1342)
 
 API methods for managing database transactions
 

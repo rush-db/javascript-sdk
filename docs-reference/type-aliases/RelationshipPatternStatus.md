@@ -8,4 +8,4 @@
 
 > **RelationshipPatternStatus** = `"suggested"` \| `"approved"` \| `"ignored"` \| `"error"`
 
-Defined in: [api/types.ts:305](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L305)
+Defined in: [api/types.ts:321](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L321)
