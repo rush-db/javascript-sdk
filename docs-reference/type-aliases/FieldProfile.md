@@ -8,7 +8,7 @@
 
 > **FieldProfile** = `object`
 
-Defined in: [api/ingest-types.ts:333](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L333)
+Defined in: [api/ingest-types.ts:342](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L342)
 
 One field of a stream as sampled for the field review.
 
@@ -18,7 +18,7 @@ One field of a stream as sampled for the field review.
 
 > **coverage**: `number`
 
-Defined in: [api/ingest-types.ts:337](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L337)
+Defined in: [api/ingest-types.ts:346](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L346)
 
 Share of sampled records that have a value.
 
@@ -28,7 +28,7 @@ Share of sampled records that have a value.
 
 > `optional` **example?**: `string`
 
-Defined in: [api/ingest-types.ts:340](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L340)
+Defined in: [api/ingest-types.ts:349](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L349)
 
 A masked example (never a raw value of a field that looks like personal data).
 
@@ -38,7 +38,7 @@ A masked example (never a raw value of a field that looks like personal data).
 
 > **name**: `string`
 
-Defined in: [api/ingest-types.ts:334](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L334)
+Defined in: [api/ingest-types.ts:343](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L343)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [api/ingest-types.ts:334](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **pii?**: [`PiiFinding`](PiiFinding.md)
 
-Defined in: [api/ingest-types.ts:338](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L338)
+Defined in: [api/ingest-types.ts:347](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L347)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [api/ingest-types.ts:338](https://github.com/rush-db/javascript-sdk/
 
 > **suggestion**: `"include"` \| `"exclude"` \| `"hash"`
 
-Defined in: [api/ingest-types.ts:342](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L342)
+Defined in: [api/ingest-types.ts:351](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L351)
 
 What the doctrine would do with it now.
 
@@ -62,6 +62,6 @@ What the doctrine would do with it now.
 
 ### type
 
-> **type**: `"string"` \| `"number"` \| `"boolean"` \| `"datetime"` \| `"array"` \| `"null"`
+> **type**: [`ImportColumnType`](ImportColumnType.md) \| `"array"` \| `"null"`
 
-Defined in: [api/ingest-types.ts:335](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L335)
+Defined in: [api/ingest-types.ts:344](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L344)

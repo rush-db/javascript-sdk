@@ -8,4 +8,4 @@
 
 > **DatetimeValue** = [`DatetimeObject`](DatetimeObject.md) \| `string`
 
-Defined in: [types/value.ts:21](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L21)
+Defined in: [types/value.ts:26](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L26)

@@ -8,7 +8,7 @@
 
 > **ImportColumnProfile** = `object`
 
-Defined in: [api/ingest-types.ts:204](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L204)
+Defined in: [api/ingest-types.ts:213](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L213)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:204](https://github.com/rush-db/javascript-sdk/
 
 > **distinct**: `number`
 
-Defined in: [api/ingest-types.ts:209](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L209)
+Defined in: [api/ingest-types.ts:218](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L218)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:209](https://github.com/rush-db/javascript-sdk/
 
 > **name**: `string`
 
-Defined in: [api/ingest-types.ts:205](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L205)
+Defined in: [api/ingest-types.ts:214](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L214)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:205](https://github.com/rush-db/javascript-sdk/
 
 > **nulls**: `number`
 
-Defined in: [api/ingest-types.ts:208](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L208)
+Defined in: [api/ingest-types.ts:217](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L217)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [api/ingest-types.ts:208](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **pii?**: [`PiiFinding`](PiiFinding.md)
 
-Defined in: [api/ingest-types.ts:213](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L213)
+Defined in: [api/ingest-types.ts:222](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L222)
 
 Looks like personal data (by name or sampled values); its samples are masked then.
 
@@ -50,7 +50,7 @@ Looks like personal data (by name or sampled values); its samples are masked the
 
 > **samples**: `unknown`[]
 
-Defined in: [api/ingest-types.ts:207](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L207)
+Defined in: [api/ingest-types.ts:216](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L216)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [api/ingest-types.ts:207](https://github.com/rush-db/javascript-sdk/
 
 > **suggestion**: `"include"` \| `"skip"` \| `"hash"`
 
-Defined in: [api/ingest-types.ts:215](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L215)
+Defined in: [api/ingest-types.ts:224](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L224)
 
 What to do with the column by default: personal data that joins (email, phone) is hashed, other personal data skipped.
 
@@ -68,7 +68,7 @@ What to do with the column by default: personal data that joins (email, phone) i
 
 > **type**: [`ImportColumnType`](ImportColumnType.md)
 
-Defined in: [api/ingest-types.ts:206](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L206)
+Defined in: [api/ingest-types.ts:215](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L215)
 
 ***
 
@@ -76,6 +76,6 @@ Defined in: [api/ingest-types.ts:206](https://github.com/rush-db/javascript-sdk/
 
 > **unique**: `boolean`
 
-Defined in: [api/ingest-types.ts:211](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L211)
+Defined in: [api/ingest-types.ts:220](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L220)
 
 Every sampled non-empty value is different.

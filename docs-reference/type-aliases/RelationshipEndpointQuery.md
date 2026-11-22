@@ -8,7 +8,7 @@
 
 > **RelationshipEndpointQuery**\<`S`\> = [`SearchQueryLabelsClause`](SearchQueryLabelsClause.md) & [`WhereClause`](WhereClause.md)\<`S`\>
 
-Defined in: [types/query.ts:303](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L303)
+Defined in: [types/query.ts:322](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L322)
 
 ## Type Parameters
 

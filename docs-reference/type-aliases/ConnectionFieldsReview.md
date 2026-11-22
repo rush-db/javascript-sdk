@@ -8,7 +8,7 @@
 
 > **ConnectionFieldsReview** = `object`
 
-Defined in: [api/ingest-types.ts:346](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L346)
+Defined in: [api/ingest-types.ts:355](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L355)
 
 `connections.fields`: the field review of one stream.
 
@@ -18,7 +18,7 @@ Defined in: [api/ingest-types.ts:346](https://github.com/rush-db/javascript-sdk/
 
 > **fields**: [`FieldProfile`](FieldProfile.md)[]
 
-Defined in: [api/ingest-types.ts:351](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L351)
+Defined in: [api/ingest-types.ts:360](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L360)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/ingest-types.ts:351](https://github.com/rush-db/javascript-sdk/
 
 > **label**: `string`
 
-Defined in: [api/ingest-types.ts:348](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L348)
+Defined in: [api/ingest-types.ts:357](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L357)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [api/ingest-types.ts:348](https://github.com/rush-db/javascript-sdk/
 
 > **policy**: [`FieldPolicy`](FieldPolicy.md)
 
-Defined in: [api/ingest-types.ts:352](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L352)
+Defined in: [api/ingest-types.ts:361](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L361)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [api/ingest-types.ts:352](https://github.com/rush-db/javascript-sdk/
 
 > **sampled**: `number`
 
-Defined in: [api/ingest-types.ts:350](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L350)
+Defined in: [api/ingest-types.ts:359](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L359)
 
 Records sampled (agent connections: what the agent reported).
 
@@ -52,7 +52,7 @@ Records sampled (agent connections: what the agent reported).
 
 > **stream**: `string`
 
-Defined in: [api/ingest-types.ts:347](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L347)
+Defined in: [api/ingest-types.ts:356](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L356)
 
 ***
 
@@ -60,4 +60,4 @@ Defined in: [api/ingest-types.ts:347](https://github.com/rush-db/javascript-sdk/
 
 > **unreviewed**: `string`[]
 
-Defined in: [api/ingest-types.ts:353](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L353)
+Defined in: [api/ingest-types.ts:362](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L362)

@@ -8,7 +8,7 @@
 
 > **InferSchemaTypesRead**\<`S`\> = [`FlattenTypes`](FlattenTypes.md)\<`{ [Key in RequiredKeysRead<S>]: S[Key]["multiple"] extends true ? TypeMappingRead[S[Key]["type"]][] : TypeMappingRead[S[Key]["type"]] }` & `{ [Key in OptionalKeysRead<S>]?: S[Key]["multiple"] extends true ? TypeMappingRead[S[Key]["type"]][] : TypeMappingRead[S[Key]["type"]] }`\>
 
-Defined in: [types/schema.ts:67](https://github.com/rush-db/javascript-sdk/blob/main/src/types/schema.ts#L67)
+Defined in: [types/schema.ts:77](https://github.com/rush-db/javascript-sdk/blob/main/src/types/schema.ts#L77)
 
 ## Type Parameters
 

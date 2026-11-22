@@ -8,4 +8,4 @@
 
 > **ConnectionDeleteMode** = `"soft"` \| `"hard"` \| `"ignore"`
 
-Defined in: [api/ingest-types.ts:315](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L315)
+Defined in: [api/ingest-types.ts:324](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L324)

@@ -8,7 +8,7 @@
 
 > **ImportFileInput** = `object`
 
-Defined in: [api/ingest-types.ts:176](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L176)
+Defined in: [api/ingest-types.ts:185](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L185)
 
 A file announced to `imports.create`: its name (the extension picks the parser) and exact size in bytes.
 
@@ -18,7 +18,7 @@ A file announced to `imports.create`: its name (the extension picks the parser) 
 
 > `optional` **label?**: `string`
 
-Defined in: [api/ingest-types.ts:180](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L180)
+Defined in: [api/ingest-types.ts:189](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L189)
 
 Label of the file's records; defaults to one derived from the file name.
 
@@ -28,7 +28,7 @@ Label of the file's records; defaults to one derived from the file name.
 
 > **name**: `string`
 
-Defined in: [api/ingest-types.ts:177](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L177)
+Defined in: [api/ingest-types.ts:186](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L186)
 
 ***
 
@@ -36,4 +36,4 @@ Defined in: [api/ingest-types.ts:177](https://github.com/rush-db/javascript-sdk/
 
 > **size**: `number`
 
-Defined in: [api/ingest-types.ts:178](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L178)
+Defined in: [api/ingest-types.ts:187](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L187)

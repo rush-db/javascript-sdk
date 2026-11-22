@@ -8,7 +8,7 @@
 
 > **ImportUploadOptions** = `object`
 
-Defined in: [api/ingest-types.ts:264](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L264)
+Defined in: [api/ingest-types.ts:273](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L273)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:264](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **onProgress?**: (`progress`) => `void`
 
-Defined in: [api/ingest-types.ts:271](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L271)
+Defined in: [api/ingest-types.ts:280](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L280)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: [api/ingest-types.ts:271](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **parallelism?**: `number`
 
-Defined in: [api/ingest-types.ts:266](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L266)
+Defined in: [api/ingest-types.ts:275](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L275)
 
 Parts uploaded at once (`s3-multipart`). Default 4.
 
@@ -44,7 +44,7 @@ Parts uploaded at once (`s3-multipart`). Default 4.
 
 > `optional` **retries?**: `number`
 
-Defined in: [api/ingest-types.ts:268](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L268)
+Defined in: [api/ingest-types.ts:277](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L277)
 
 Attempts per part (or per direct upload) on a network error or 5xx/429. Default 3.
 
@@ -54,6 +54,6 @@ Attempts per part (or per direct upload) on a network error or 5xx/429. Default 
 
 > `optional` **timeout?**: `number`
 
-Defined in: [api/ingest-types.ts:270](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L270)
+Defined in: [api/ingest-types.ts:279](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L279)
 
 Per-request timeout in ms. Default 10 minutes.

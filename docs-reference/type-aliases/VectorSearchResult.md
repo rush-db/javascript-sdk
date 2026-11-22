@@ -8,7 +8,7 @@
 
 > **VectorSearchResult**\<`S`\> = [`DBRecord`](DBRecord.md)\<`S`\> & `object`
 
-Defined in: [api/types.ts:228](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L228)
+Defined in: [api/types.ts:262](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L262)
 
 A record returned by db.records.vectorSearch().
 Identical to DBRecord but with __score guaranteed present — never optional.

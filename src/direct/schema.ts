@@ -1,4 +1,5 @@
 import type { DirectEngine } from './engine.js'
+import { ORDERED_PROPERTY_TYPES } from '../common/constants.js'
 
 /**
  * `ai.getSchema` and `ai.getSchemaMarkdown` in direct mode: the engine's
@@ -48,6 +49,21 @@ export type SchemaItem = {
 /** Sample values shown per string property. */
 const SAMPLE_VALUES = 10
 
+/**
+ * A property's min or max as the schema shows it: a number for numbers, ISO
+ * 8601 text otherwise. Engines before 3.0.14 may send a datetime bound as
+ * epoch milliseconds; it is shown as the UTC instant.
+ */
+const rangeBound = (type: string, value: unknown): number | string => {
+  if (type === 'number') {
+    return Number(value)
+  }
+  if (type === 'datetime' && typeof value === 'number' && Number.isFinite(value)) {
+    return new Date(value).toISOString()
+  }
+  return String(value)
+}
+
 export const buildSchema = async (
   engine: DirectEngine,
   labels: string[] | undefined,
@@ -84,10 +100,10 @@ export const buildSchema = async (
       property.values = [...new Set<string>(samples)].slice(0, SAMPLE_VALUES)
     }
     if (definition.min !== undefined && definition.min !== null) {
-      property.min = property.type === 'number' ? Number(definition.min) : String(definition.min)
+      property.min = rangeBound(property.type, definition.min)
     }
     if (definition.max !== undefined && definition.max !== null) {
-      property.max = property.type === 'number' ? Number(definition.max) : String(definition.max)
+      property.max = rangeBound(property.type, definition.max)
     }
     const props = propsByLabel.get(label) ?? []
     props.push(property)
@@ -175,7 +191,7 @@ export const buildSchemaMarkdown = (schema: SchemaItem[]): string => {
 
   const fmtValues = (prop: SchemaProperty): string => {
     const t = (prop.type || '').toLowerCase()
-    if (t === 'number' || t === 'datetime') {
+    if (ORDERED_PROPERTY_TYPES.includes(t)) {
       return prop.min !== undefined && prop.max !== undefined ? `\`${prop.min}\`..\`${prop.max}\`` : '—'
     }
     if (Array.isArray(prop.values) && prop.values.length > 0) {

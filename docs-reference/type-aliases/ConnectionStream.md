@@ -8,7 +8,7 @@
 
 > **ConnectionStream** = `object`
 
-Defined in: [api/ingest-types.ts:390](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L390)
+Defined in: [api/ingest-types.ts:399](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L399)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:390](https://github.com/rush-db/javascript-sdk/
 
 > **cursor**: `string` \| `number` \| `null`
 
-Defined in: [api/ingest-types.ts:404](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L404)
+Defined in: [api/ingest-types.ts:413](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L413)
 
 Incremental position, e.g. the last modified time seen.
 
@@ -26,7 +26,7 @@ Incremental position, e.g. the last modified time seen.
 
 > **deleteMode**: [`ConnectionDeleteMode`](ConnectionDeleteMode.md)
 
-Defined in: [api/ingest-types.ts:394](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L394)
+Defined in: [api/ingest-types.ts:403](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L403)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [api/ingest-types.ts:394](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **description?**: `string`
 
-Defined in: [api/ingest-types.ts:405](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L405)
+Defined in: [api/ingest-types.ts:414](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L414)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [api/ingest-types.ts:405](https://github.com/rush-db/javascript-sdk/
 
 > **enabled**: `boolean`
 
-Defined in: [api/ingest-types.ts:392](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L392)
+Defined in: [api/ingest-types.ts:401](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L401)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [api/ingest-types.ts:392](https://github.com/rush-db/javascript-sdk/
 
 > **label**: `string`
 
-Defined in: [api/ingest-types.ts:393](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L393)
+Defined in: [api/ingest-types.ts:402](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L402)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [api/ingest-types.ts:393](https://github.com/rush-db/javascript-sdk/
 
 > **lastSyncedAt**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:402](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L402)
+Defined in: [api/ingest-types.ts:411](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L411)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [api/ingest-types.ts:402](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **optional?**: `boolean`
 
-Defined in: [api/ingest-types.ts:406](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L406)
+Defined in: [api/ingest-types.ts:415](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L415)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [api/ingest-types.ts:406](https://github.com/rush-db/javascript-sdk/
 
 > **policy**: [`FieldPolicy`](FieldPolicy.md)
 
-Defined in: [api/ingest-types.ts:396](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L396)
+Defined in: [api/ingest-types.ts:405](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L405)
 
 The field doctrine every batch of this stream passes through.
 
@@ -84,7 +84,7 @@ The field doctrine every batch of this stream passes through.
 
 > **records**: `number`
 
-Defined in: [api/ingest-types.ts:401](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L401)
+Defined in: [api/ingest-types.ts:410](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L410)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [api/ingest-types.ts:401](https://github.com/rush-db/javascript-sdk/
 
 > **reviewed**: `boolean`
 
-Defined in: [api/ingest-types.ts:398](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L398)
+Defined in: [api/ingest-types.ts:407](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L407)
 
 An allowlist a person confirmed.
 
@@ -102,7 +102,7 @@ An allowlist a person confirmed.
 
 > **stream**: `string`
 
-Defined in: [api/ingest-types.ts:391](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L391)
+Defined in: [api/ingest-types.ts:400](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L400)
 
 ***
 
@@ -110,6 +110,6 @@ Defined in: [api/ingest-types.ts:391](https://github.com/rush-db/javascript-sdk/
 
 > **unreviewed**: `string`[]
 
-Defined in: [api/ingest-types.ts:400](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L400)
+Defined in: [api/ingest-types.ts:409](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L409)
 
 Fields seen since the review and held back until someone reviews them.

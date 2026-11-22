@@ -8,7 +8,7 @@
 
 > **SearchQueryLabelsClause** = `object`
 
-Defined in: [types/query.ts:202](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L202)
+Defined in: [types/query.ts:209](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L209)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [types/query.ts:202](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **labels?**: `string`[]
 
-Defined in: [types/query.ts:203](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L203)
+Defined in: [types/query.ts:210](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L210)

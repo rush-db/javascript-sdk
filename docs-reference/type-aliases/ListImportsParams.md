@@ -8,7 +8,7 @@
 
 > **ListImportsParams** = `object`
 
-Defined in: [api/ingest-types.ts:236](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L236)
+Defined in: [api/ingest-types.ts:245](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L245)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:236](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **connectionId?**: `string`
 
-Defined in: [api/ingest-types.ts:238](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L238)
+Defined in: [api/ingest-types.ts:247](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L247)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:238](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **kind?**: [`ImportRunKind`](ImportRunKind.md)
 
-Defined in: [api/ingest-types.ts:237](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L237)
+Defined in: [api/ingest-types.ts:246](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L246)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:237](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **limit?**: `number`
 
-Defined in: [api/ingest-types.ts:240](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L240)
+Defined in: [api/ingest-types.ts:249](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L249)
 
 1–100.
 
@@ -42,4 +42,4 @@ Defined in: [api/ingest-types.ts:240](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **skip?**: `number`
 
-Defined in: [api/ingest-types.ts:241](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L241)
+Defined in: [api/ingest-types.ts:250](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L250)

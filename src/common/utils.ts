@@ -44,8 +44,28 @@ export const removeUndefinedDeep = <T>(input: T): T => {
   return input
 }
 
+const POINT_KEYS = new Set(['type', 'coordinates', 'crs'])
+
+/** A GeoJSON point (`{ type: 'Point', coordinates: [x, y] | [x, y, z], crs? }`), a value of its own type. */
+export const isPointValue = (value: unknown): boolean => {
+  if (!isObject(value)) {
+    return false
+  }
+  const point = value as Record<string, unknown>
+  return (
+    point.type === 'Point' &&
+    isArray(point.coordinates) &&
+    (point.coordinates.length === 2 || point.coordinates.length === 3) &&
+    point.coordinates.every((coordinate) => typeof coordinate === 'number' && Number.isFinite(coordinate)) &&
+    (point.crs === undefined || typeof point.crs === 'string') &&
+    Object.keys(point).every((key) => POINT_KEYS.has(key))
+  )
+}
+
+const isScalarValue = (value: unknown) => isPrimitive(value) || isPointValue(value)
+
 export const isPropertyValue = (value: any): value is PropertyValue => {
-  return isArray(value) ? value.every(isPrimitive) : isPrimitive(value)
+  return isArray(value) ? value.every(isScalarValue) : isScalarValue(value)
 }
 
 export const isFlatObject = (input: any): input is Record<string, PropertyValue> => {
@@ -53,7 +73,7 @@ export const isFlatObject = (input: any): input is Record<string, PropertyValue>
 }
 
 const isComplexImportValue = (value: unknown): boolean =>
-  isObject(value) || (isArray(value) && !value.every(isPrimitive))
+  (isObject(value) && !isPointValue(value)) || (isArray(value) && !value.every(isScalarValue))
 
 export const jsonImportRequiresLabel = (data: unknown): boolean => {
   if (isArray(data)) {

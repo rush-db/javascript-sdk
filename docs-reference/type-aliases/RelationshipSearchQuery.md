@@ -8,7 +8,7 @@
 
 > **RelationshipSearchQuery**\<`S`\> = [`PaginationClause`](PaginationClause.md) & [`OrderClause`](OrderClause.md)\<`any`\> & `object`
 
-Defined in: [types/query.ts:305](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L305)
+Defined in: [types/query.ts:324](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L324)
 
 ## Type Declaration
 

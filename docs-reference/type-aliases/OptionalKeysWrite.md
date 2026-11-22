@@ -8,7 +8,7 @@
 
 > **OptionalKeysWrite**\<`S`\> = `{ [Key in keyof S]: S[Key]["required"] extends false ? Key : S[Key]["default"] extends SchemaDefaultValue ? Key : never }`\[keyof `S`\]
 
-Defined in: [types/schema.ts:28](https://github.com/rush-db/javascript-sdk/blob/main/src/types/schema.ts#L28)
+Defined in: [types/schema.ts:33](https://github.com/rush-db/javascript-sdk/blob/main/src/types/schema.ts#L33)
 
 ## Type Parameters
 

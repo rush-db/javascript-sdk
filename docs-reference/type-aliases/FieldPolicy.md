@@ -8,7 +8,7 @@
 
 > **FieldPolicy** = `object`
 
-Defined in: [api/ingest-types.ts:322](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L322)
+Defined in: [api/ingest-types.ts:331](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L331)
 
 Which fields of a stream reach the graph. `auto` keeps every field except
 what is excluded or hashed; `allowlist` keeps only reviewed fields
@@ -20,7 +20,7 @@ what is excluded or hashed; `allowlist` keeps only reviewed fields
 
 > `optional` **exclude?**: `string`[]
 
-Defined in: [api/ingest-types.ts:325](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L325)
+Defined in: [api/ingest-types.ts:334](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L334)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [api/ingest-types.ts:325](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **hash?**: `string`[]
 
-Defined in: [api/ingest-types.ts:327](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L327)
+Defined in: [api/ingest-types.ts:336](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L336)
 
 Kept as a keyed hash: joinable with the same value hashed elsewhere in the project, not readable.
 
@@ -38,7 +38,7 @@ Kept as a keyed hash: joinable with the same value hashed elsewhere in the proje
 
 > `optional` **include?**: `string`[]
 
-Defined in: [api/ingest-types.ts:324](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L324)
+Defined in: [api/ingest-types.ts:333](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L333)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [api/ingest-types.ts:324](https://github.com/rush-db/javascript-sdk/
 
 > **mode**: `"auto"` \| `"allowlist"`
 
-Defined in: [api/ingest-types.ts:323](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L323)
+Defined in: [api/ingest-types.ts:332](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L332)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [api/ingest-types.ts:323](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **reviewedAt?**: `string`
 
-Defined in: [api/ingest-types.ts:328](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L328)
+Defined in: [api/ingest-types.ts:337](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L337)
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [api/ingest-types.ts:328](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **reviewedBy?**: `string`
 
-Defined in: [api/ingest-types.ts:329](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L329)
+Defined in: [api/ingest-types.ts:338](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L338)

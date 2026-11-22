@@ -8,7 +8,7 @@
 
 > **ImportUploadProgress** = `object`
 
-Defined in: [api/ingest-types.ts:257](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L257)
+Defined in: [api/ingest-types.ts:266](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L266)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:257](https://github.com/rush-db/javascript-sdk/
 
 > **fileId**: `string`
 
-Defined in: [api/ingest-types.ts:258](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L258)
+Defined in: [api/ingest-types.ts:267](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L267)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:258](https://github.com/rush-db/javascript-sdk/
 
 > **loaded**: `number`
 
-Defined in: [api/ingest-types.ts:260](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L260)
+Defined in: [api/ingest-types.ts:269](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L269)
 
 Bytes sent so far for this file.
 
@@ -34,4 +34,4 @@ Bytes sent so far for this file.
 
 > **total**: `number`
 
-Defined in: [api/ingest-types.ts:261](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L261)
+Defined in: [api/ingest-types.ts:270](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L270)

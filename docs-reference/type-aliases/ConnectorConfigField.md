@@ -8,7 +8,7 @@
 
 > **ConnectorConfigField** = `object`
 
-Defined in: [api/ingest-types.ts:444](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L444)
+Defined in: [api/ingest-types.ts:453](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L453)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:444](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **default?**: `string`
 
-Defined in: [api/ingest-types.ts:451](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L451)
+Defined in: [api/ingest-types.ts:460](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L460)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:451](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **help?**: `string`
 
-Defined in: [api/ingest-types.ts:448](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L448)
+Defined in: [api/ingest-types.ts:457](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L457)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:448](https://github.com/rush-db/javascript-sdk/
 
 > **label**: `string`
 
-Defined in: [api/ingest-types.ts:445](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L445)
+Defined in: [api/ingest-types.ts:454](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L454)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [api/ingest-types.ts:445](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **options?**: `object`[]
 
-Defined in: [api/ingest-types.ts:450](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L450)
+Defined in: [api/ingest-types.ts:459](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L459)
 
 #### label
 
@@ -56,7 +56,7 @@ Defined in: [api/ingest-types.ts:450](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **placeholder?**: `string`
 
-Defined in: [api/ingest-types.ts:449](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L449)
+Defined in: [api/ingest-types.ts:458](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L458)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [api/ingest-types.ts:449](https://github.com/rush-db/javascript-sdk/
 
 > **required**: `boolean`
 
-Defined in: [api/ingest-types.ts:447](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L447)
+Defined in: [api/ingest-types.ts:456](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L456)
 
 ***
 
@@ -72,4 +72,4 @@ Defined in: [api/ingest-types.ts:447](https://github.com/rush-db/javascript-sdk/
 
 > **type**: `"string"` \| `"url"` \| `"select"` \| `"list"`
 
-Defined in: [api/ingest-types.ts:446](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L446)
+Defined in: [api/ingest-types.ts:455](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L455)

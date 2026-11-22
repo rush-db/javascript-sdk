@@ -50,5 +50,16 @@ export type SDKConfig = {
      * which results in deleting all Records in the project.
      */
     allowForceDelete?: boolean
+    /**
+     * Flat rows per request when `records.createMany`, `records.importCsv` and
+     * `records.importJson` (with flat rows) split a large write. Defaults to
+     * 5,000, where ingest loads fastest; `0` sends every write in one request.
+     */
+    ingestChunkSize?: number
+    /**
+     * Documents per request when `records.importJson` splits a large array of
+     * nested documents. Defaults to 10,000; `0` sends one request.
+     */
+    nestedIngestChunkSize?: number
   }
 } & ApiConnectionConfig

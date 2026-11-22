@@ -8,4 +8,4 @@
 
 > **RelationshipPattern** = [`RelationshipPatternDto`](RelationshipPatternDto.md)
 
-Defined in: [api/types.ts:301](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L301)
+Defined in: [api/types.ts:335](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L335)

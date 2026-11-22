@@ -8,7 +8,7 @@
 
 > **ImportLinkSuggestion** = [`ImportFileLink`](ImportFileLink.md) & `object`
 
-Defined in: [api/ingest-types.ts:228](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L228)
+Defined in: [api/ingest-types.ts:237](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L237)
 
 ## Type Declaration
 

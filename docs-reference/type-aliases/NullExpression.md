@@ -8,4 +8,4 @@
 
 > **NullExpression** = [`NullValue`](NullValue.md) \| [`RequireAtLeastOne`](RequireAtLeastOne.md)\<`Record`\<`"$eq"` \| `"$ne"`, [`NullValue`](NullValue.md)\> & `Record`\<`"$exists"`, [`BooleanValue`](BooleanValue.md)\>\>
 
-Defined in: [types/expressions.ts:30](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L30)
+Defined in: [types/expressions.ts:67](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L67)

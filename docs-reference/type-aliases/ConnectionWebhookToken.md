@@ -8,7 +8,7 @@
 
 > **ConnectionWebhookToken** = `object`
 
-Defined in: [api/ingest-types.ts:551](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L551)
+Defined in: [api/ingest-types.ts:560](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L560)
 
 The new webhook URL with its token; shown once.
 
@@ -18,7 +18,7 @@ The new webhook URL with its token; shown once.
 
 > **token**: `string`
 
-Defined in: [api/ingest-types.ts:551](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L551)
+Defined in: [api/ingest-types.ts:560](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L560)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [api/ingest-types.ts:551](https://github.com/rush-db/javascript-sdk/
 
 > **url**: `string`
 
-Defined in: [api/ingest-types.ts:551](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L551)
+Defined in: [api/ingest-types.ts:560](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L560)

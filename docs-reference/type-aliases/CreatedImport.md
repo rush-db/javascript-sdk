@@ -8,7 +8,7 @@
 
 > **CreatedImport** = [`ImportRun`](ImportRun.md) & `object`
 
-Defined in: [api/ingest-types.ts:188](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L188)
+Defined in: [api/ingest-types.ts:197](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L197)
 
 ## Type Declaration
 

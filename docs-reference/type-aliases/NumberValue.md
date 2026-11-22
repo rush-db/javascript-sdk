@@ -8,4 +8,4 @@
 
 > **NumberValue** = `number`
 
-Defined in: [types/value.ts:30](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L30)
+Defined in: [types/value.ts:55](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L55)

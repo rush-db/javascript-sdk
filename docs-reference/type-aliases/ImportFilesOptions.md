@@ -8,7 +8,7 @@
 
 > **ImportFilesOptions** = `Omit`\<[`ImportUploadOptions`](ImportUploadOptions.md), `"onProgress"`\> & `object`
 
-Defined in: [api/ingest-types.ts:293](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L293)
+Defined in: [api/ingest-types.ts:302](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L302)
 
 ## Type Declaration
 

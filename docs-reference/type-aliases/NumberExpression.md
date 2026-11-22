@@ -8,4 +8,4 @@
 
 > **NumberExpression** = [`NumberValue`](NumberValue.md) \| [`RequireAtLeastOne`](RequireAtLeastOne.md)\<`Record`\<`"$eq"` \| `"$gt"` \| `"$gte"` \| `"$lt"` \| `"$lte"` \| `"$ne"`, [`NumberValue`](NumberValue.md)\> & `Record`\<`"$in"` \| `"$nin"`, [`NumberValue`](NumberValue.md)[]\> & `Record`\<`"$exists"`, [`BooleanValue`](BooleanValue.md)\>\>
 
-Defined in: [types/expressions.ts:34](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L34)
+Defined in: [types/expressions.ts:71](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L71)

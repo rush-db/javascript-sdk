@@ -8,4 +8,4 @@
 
 > **BooleanExpression** = [`BooleanValue`](BooleanValue.md) \| [`RequireAtLeastOne`](RequireAtLeastOne.md)\<`Record`\<`"$eq"` \| `"$ne"`, [`BooleanValue`](BooleanValue.md)\> & `Record`\<`"$exists"`, [`BooleanValue`](BooleanValue.md)\>\>
 
-Defined in: [types/expressions.ts:26](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L26)
+Defined in: [types/expressions.ts:63](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L63)

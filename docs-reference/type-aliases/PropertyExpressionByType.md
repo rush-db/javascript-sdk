@@ -8,7 +8,7 @@
 
 > **PropertyExpressionByType** = `object`
 
-Defined in: [types/expressions.ts:62](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L62)
+Defined in: [types/expressions.ts:101](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L101)
 
 ## Properties
 
@@ -16,7 +16,15 @@ Defined in: [types/expressions.ts:62](https://github.com/rush-db/javascript-sdk/
 
 > **boolean**: [`BooleanExpression`](BooleanExpression.md) \| [`TypeExpression`](TypeExpression.md)
 
-Defined in: [types/expressions.ts:63](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L63)
+Defined in: [types/expressions.ts:102](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L102)
+
+***
+
+### date
+
+> **date**: [`TemporalExpression`](TemporalExpression.md) \| [`TypeExpression`](TypeExpression.md)
+
+Defined in: [types/expressions.ts:106](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L106)
 
 ***
 
@@ -24,7 +32,31 @@ Defined in: [types/expressions.ts:63](https://github.com/rush-db/javascript-sdk/
 
 > **datetime**: [`DatetimeExpression`](DatetimeExpression.md) \| [`TypeExpression`](TypeExpression.md)
 
-Defined in: [types/expressions.ts:64](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L64)
+Defined in: [types/expressions.ts:103](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L103)
+
+***
+
+### duration
+
+> **duration**: [`TemporalExpression`](TemporalExpression.md) \| [`TypeExpression`](TypeExpression.md)
+
+Defined in: [types/expressions.ts:109](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L109)
+
+***
+
+### localdatetime
+
+> **localdatetime**: [`TemporalExpression`](TemporalExpression.md) \| [`TypeExpression`](TypeExpression.md)
+
+Defined in: [types/expressions.ts:108](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L108)
+
+***
+
+### localtime
+
+> **localtime**: [`TemporalExpression`](TemporalExpression.md) \| [`TypeExpression`](TypeExpression.md)
+
+Defined in: [types/expressions.ts:107](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L107)
 
 ***
 
@@ -32,7 +64,15 @@ Defined in: [types/expressions.ts:64](https://github.com/rush-db/javascript-sdk/
 
 > **number**: [`NumberExpression`](NumberExpression.md) \| [`TypeExpression`](TypeExpression.md)
 
-Defined in: [types/expressions.ts:65](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L65)
+Defined in: [types/expressions.ts:104](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L104)
+
+***
+
+### point
+
+> **point**: [`PointExpression`](PointExpression.md) \| [`TypeExpression`](TypeExpression.md)
+
+Defined in: [types/expressions.ts:110](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L110)
 
 ***
 
@@ -40,4 +80,4 @@ Defined in: [types/expressions.ts:65](https://github.com/rush-db/javascript-sdk/
 
 > **string**: [`StringExpression`](StringExpression.md) \| [`TypeExpression`](TypeExpression.md)
 
-Defined in: [types/expressions.ts:66](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L66)
+Defined in: [types/expressions.ts:105](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L105)

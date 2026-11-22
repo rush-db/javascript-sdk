@@ -8,4 +8,4 @@
 
 > **ConnectionMode** = `"once"` \| `"scheduled"` \| `"manual"` \| `"webhook_trigger"` \| `"webhook_push"` \| `"agent"`
 
-Defined in: [api/ingest-types.ts:313](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L313)
+Defined in: [api/ingest-types.ts:322](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L322)

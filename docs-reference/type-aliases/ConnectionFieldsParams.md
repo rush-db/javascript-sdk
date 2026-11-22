@@ -8,7 +8,7 @@
 
 > **ConnectionFieldsParams** = `object`
 
-Defined in: [api/ingest-types.ts:356](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L356)
+Defined in: [api/ingest-types.ts:365](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L365)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:356](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **limit?**: `number`
 
-Defined in: [api/ingest-types.ts:359](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L359)
+Defined in: [api/ingest-types.ts:368](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L368)
 
 Records to sample, 1–200.
 
@@ -26,4 +26,4 @@ Records to sample, 1–200.
 
 > **stream**: `string`
 
-Defined in: [api/ingest-types.ts:357](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L357)
+Defined in: [api/ingest-types.ts:366](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L366)

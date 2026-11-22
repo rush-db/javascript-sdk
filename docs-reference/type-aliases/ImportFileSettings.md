@@ -8,7 +8,7 @@
 
 > **ImportFileSettings** = `object`
 
-Defined in: [api/ingest-types.ts:191](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L191)
+Defined in: [api/ingest-types.ts:200](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L200)
 
 Settings of one uploaded file for `preview` and `start`.
 
@@ -18,7 +18,7 @@ Settings of one uploaded file for `preview` and `start`.
 
 > **id**: `string`
 
-Defined in: [api/ingest-types.ts:192](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L192)
+Defined in: [api/ingest-types.ts:201](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L201)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/ingest-types.ts:192](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **label?**: `string`
 
-Defined in: [api/ingest-types.ts:193](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L193)
+Defined in: [api/ingest-types.ts:202](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L202)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [api/ingest-types.ts:193](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **mapping?**: [`ImportFileMapping`](ImportFileMapping.md)
 
-Defined in: [api/ingest-types.ts:194](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L194)
+Defined in: [api/ingest-types.ts:203](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L203)

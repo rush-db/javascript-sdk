@@ -8,7 +8,7 @@
 
 > **TypeExpression** = `object`
 
-Defined in: [types/expressions.ts:50](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L50)
+Defined in: [types/expressions.ts:87](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L87)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [types/expressions.ts:50](https://github.com/rush-db/javascript-sdk/
 
 > **$type**: [`PropertyType`](PropertyType.md)
 
-Defined in: [types/expressions.ts:51](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L51)
+Defined in: [types/expressions.ts:88](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L88)

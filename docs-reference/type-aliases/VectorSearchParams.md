@@ -203,6 +203,16 @@ This leg's share of the fused score (≥ 0, default 1).
 
 ***
 
+### waitForPending?
+
+> `optional` **waitForPending?**: [`WaitForPending`](WaitForPending.md)
+
+Defined in: [api/types.ts:169](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L169)
+
+Hybrid only: repeat the search while its keyword leg reports `pending` changes (see `TextSearchParams`).
+
+***
+
 ### weight?
 
 > `optional` **weight?**: `number`

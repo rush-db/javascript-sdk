@@ -8,4 +8,4 @@
 
 > **BooleanValue** = `boolean`
 
-Defined in: [types/value.ts:24](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L24)
+Defined in: [types/value.ts:49](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L49)

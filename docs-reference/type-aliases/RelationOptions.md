@@ -8,7 +8,7 @@
 
 > **RelationOptions** = `object`
 
-Defined in: [sdk/record.ts:108](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L108)
+Defined in: [sdk/record.ts:118](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L118)
 
 Options for creating or modifying relationships.
 
@@ -18,7 +18,7 @@ Options for creating or modifying relationships.
 
 > `optional` **direction?**: [`RelationDirection`](RelationDirection.md)
 
-Defined in: [sdk/record.ts:109](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L109)
+Defined in: [sdk/record.ts:119](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L119)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [sdk/record.ts:109](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **properties?**: `Record`\<`string`, `unknown`\>
 
-Defined in: [sdk/record.ts:111](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L111)
+Defined in: [sdk/record.ts:121](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L121)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [sdk/record.ts:111](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **type?**: `string`
 
-Defined in: [sdk/record.ts:110](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L110)
+Defined in: [sdk/record.ts:120](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L120)

@@ -165,6 +165,8 @@ export type VectorSearchParams = {
   fusion?: 'rrf' | 'dbsf'
   /** Hybrid only: the RRF smoothing constant (default 60). */
   rrfK?: number
+  /** Hybrid only: repeat the search while its keyword leg reports `pending` changes (see `TextSearchParams`). */
+  waitForPending?: WaitForPending
 }
 
 /** A BM25 text index. */
@@ -190,6 +192,28 @@ export type CreateTextIndexParams = {
   consistency?: 'eventual' | 'immediate'
 }
 
+/** An ordered or unique property index (`db.indexes`). */
+export type PropertyIndex = {
+  /** Index name, unique within the project. */
+  name: string
+  label: string
+  /** The indexed property, stored normalized (`unitPrice` is listed as `unitprice`). */
+  property: string
+  kind: 'ordered' | 'unique'
+  /** Whether the index refuses a second record of the label with the same value. */
+  unique: boolean
+  status: 'building' | 'ready' | 'dropping'
+}
+
+export type CreatePropertyIndexParams = {
+  label: string
+  property: string
+  /** Refuse a write that repeats a value under the label (RushDB 3.0.14 and later). Default `false`. */
+  unique?: boolean
+  /** Defaults to `<label>.<property>.ordered` or `<label>.<property>.unique`, unique within the project. */
+  name?: string
+}
+
 /** Parameters for keyword (BM25) search. */
 export type TextSearchParams = {
   /** Keywords; `"a phrase"`, `-excluded` and `+required` follow the query syntax. */
@@ -208,7 +232,17 @@ export type TextSearchParams = {
   allTerms?: boolean
   /** Match the keywords as one phrase. */
   phrase?: boolean
+  /**
+   * Read your own writes from an `eventual` text index: repeat the search
+   * while the index reports `pending` changes, until none are left or the
+   * timeout passes (then the last result is returned as is). `true` waits up
+   * to 2 seconds. Not sent to the server. An `immediate` index never needs it.
+   */
+  waitForPending?: WaitForPending
 }
+
+/** How long a keyword or hybrid search waits for its text index to catch up. */
+export type WaitForPending = boolean | { timeoutMs?: number; intervalMs?: number }
 
 /** How the engine ran a keyword search, or the keyword leg of a hybrid one. */
 export type TextSearchReport = {

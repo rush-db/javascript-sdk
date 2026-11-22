@@ -14,6 +14,7 @@ import { RushDB, initSDK } from '../src/sdk/sdk.js'
 
 const RECORD = { id: '0190a7e2-0000-7000-8000-000000000001', label: 'Book', properties: { title: 'Dune' } }
 const TEXT_INDEX = { kind: 'text', name: 'Book.title.text', label: 'Book', property: 'title', state: 'ready' }
+const ORDERED_INDEX = { kind: 'ordered', name: 'Book.year.ordered', label: 'Book', property: 'year', state: 'ready' }
 const VECTOR_INDEX = {
   name: 'book-vec',
   label: 'Book',
@@ -70,7 +71,7 @@ function engineAnswer(operation: any): any {
     case 'describe.names':
       return { kind: 'names', names: [{ label: 'Book', score: 1 }] }
     case 'describe.indexes':
-      return { kind: 'indexes', indexes: [TEXT_INDEX] }
+      return { kind: 'indexes', indexes: [TEXT_INDEX, ORDERED_INDEX] }
     case 'describe.vectorIndexes':
       return { kind: 'vectorIndexes', indexes: [VECTOR_INDEX] }
     case 'describe.vectorIndex':
@@ -189,6 +190,9 @@ const EVERY_METHOD: Record<string, Call> = {
   'tx.rollback': (db) => db.tx.rollback('tx-1'),
   'settings.get': (db) => db.settings.get(),
   'query.raw': (db) => db.query.raw({ query: 'MATCH (n) RETURN count(n) AS n' }),
+  'indexes.find': (db) => db.indexes.find(),
+  'indexes.create': (db) => db.indexes.create({ label: 'Book', property: 'year' }),
+  'indexes.delete': (db) => db.indexes.delete('Book.year.ordered'),
   'textIndexes.find': (db) => db.textIndexes.find(),
   'textIndexes.create': (db) => db.textIndexes.create({ label: 'Book', property: 'summary' }),
   'textIndexes.suggestName': (db) => db.textIndexes.suggestName({ label: 'Book', property: 'summary' }),
@@ -259,6 +263,7 @@ function sdkMethods(db: RushDB): string[] {
     'tx',
     'settings',
     'query',
+    'indexes',
     'textIndexes',
     'ai',
     'imports',

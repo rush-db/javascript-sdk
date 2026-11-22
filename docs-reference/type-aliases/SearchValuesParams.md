@@ -8,7 +8,7 @@
 
 > **SearchValuesParams** = `object`
 
-Defined in: [types/value.ts:82](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L82)
+Defined in: [types/value.ts:142](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L142)
 
 Parameters of `db.ai.searchValues`.
 
@@ -18,7 +18,7 @@ Parameters of `db.ai.searchValues`.
 
 > `optional` **caseSensitive?**: `boolean`
 
-Defined in: [types/value.ts:85](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L85)
+Defined in: [types/value.ts:145](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L145)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [types/value.ts:85](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **labels?**: `string`[]
 
-Defined in: [types/value.ts:88](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L88)
+Defined in: [types/value.ts:148](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L148)
 
 Labels to search (all when omitted).
 
@@ -36,7 +36,7 @@ Labels to search (all when omitted).
 
 > `optional` **limit?**: `number`
 
-Defined in: [types/value.ts:90](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L90)
+Defined in: [types/value.ts:150](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L150)
 
 Most matches (default 50, at most 1000).
 
@@ -46,7 +46,7 @@ Most matches (default 50, at most 1000).
 
 > `optional` **match?**: [`ValueMatchMode`](ValueMatchMode.md)
 
-Defined in: [types/value.ts:84](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L84)
+Defined in: [types/value.ts:144](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L144)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [types/value.ts:84](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **minSimilarity?**: `number`
 
-Defined in: [types/value.ts:86](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L86)
+Defined in: [types/value.ts:146](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L146)
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [types/value.ts:86](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **text**: `string`
 
-Defined in: [types/value.ts:83](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L83)
+Defined in: [types/value.ts:143](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L143)

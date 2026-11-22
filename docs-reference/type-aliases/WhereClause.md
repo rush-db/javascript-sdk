@@ -8,7 +8,7 @@
 
 > **WhereClause**\<`S`\> = `object`
 
-Defined in: [types/query.ts:193](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L193)
+Defined in: [types/query.ts:200](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L200)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: [types/query.ts:193](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **where?**: [`Where`](Where.md)\<`S`\>
 
-Defined in: [types/query.ts:194](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L194)
+Defined in: [types/query.ts:201](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L201)

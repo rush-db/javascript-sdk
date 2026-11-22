@@ -8,7 +8,7 @@
 
 > **ConnectionStreamSettings** = `object`
 
-Defined in: [api/ingest-types.ts:481](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L481)
+Defined in: [api/ingest-types.ts:490](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L490)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:481](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **deleteMode?**: [`ConnectionDeleteMode`](ConnectionDeleteMode.md)
 
-Defined in: [api/ingest-types.ts:485](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L485)
+Defined in: [api/ingest-types.ts:494](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L494)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:485](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **enabled?**: `boolean`
 
-Defined in: [api/ingest-types.ts:483](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L483)
+Defined in: [api/ingest-types.ts:492](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L492)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:483](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **label?**: `string`
 
-Defined in: [api/ingest-types.ts:484](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L484)
+Defined in: [api/ingest-types.ts:493](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L493)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [api/ingest-types.ts:484](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **policy?**: `Pick`\<[`FieldPolicy`](FieldPolicy.md), `"mode"` \| `"include"` \| `"exclude"` \| `"hash"`\>
 
-Defined in: [api/ingest-types.ts:487](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L487)
+Defined in: [api/ingest-types.ts:496](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L496)
 
 The stream's field doctrine (see `connections.fields` / `reviewFields`).
 
@@ -50,4 +50,4 @@ The stream's field doctrine (see `connections.fields` / `reviewFields`).
 
 > **stream**: `string`
 
-Defined in: [api/ingest-types.ts:482](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L482)
+Defined in: [api/ingest-types.ts:491](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L491)

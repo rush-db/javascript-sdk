@@ -8,7 +8,7 @@
 
 > **VectorSearchReport** = `object`
 
-Defined in: [api/types.ts:233](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L233)
+Defined in: [api/types.ts:267](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L267)
 
 How the engine ran a vector search.
 
@@ -18,7 +18,7 @@ How the engine ran a vector search.
 
 > `optional` **ef?**: `number`
 
-Defined in: [api/types.ts:237](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L237)
+Defined in: [api/types.ts:271](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L271)
 
 Gather breadth, for an ANN search.
 
@@ -28,7 +28,7 @@ Gather breadth, for an ANN search.
 
 > `optional` **fallback?**: `"metric"` \| `"budget"` \| `"lowConfidence"` \| `"annWarming"`
 
-Defined in: [api/types.ts:243](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L243)
+Defined in: [api/types.ts:277](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L277)
 
 Why a search that would use the ANN graph was answered exactly:
 `metric`, `budget`, `lowConfidence`, or `annWarming` (the graph is being
@@ -40,7 +40,7 @@ built; later searches use it).
 
 > **mode**: `"exact"` \| `"ann"`
 
-Defined in: [api/types.ts:235](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L235)
+Defined in: [api/types.ts:269](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L269)
 
 The path that produced the results.
 
@@ -50,6 +50,6 @@ The path that produced the results.
 
 > **pool**: `number`
 
-Defined in: [api/types.ts:245](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L245)
+Defined in: [api/types.ts:279](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L279)
 
 Vectors in the index.

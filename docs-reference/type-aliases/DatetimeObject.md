@@ -8,7 +8,7 @@
 
 > **DatetimeObject** = `object`
 
-Defined in: [types/value.ts:10](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L10)
+Defined in: [types/value.ts:15](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L15)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [types/value.ts:10](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$day?**: `number`
 
-Defined in: [types/value.ts:11](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L11)
+Defined in: [types/value.ts:16](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L16)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [types/value.ts:11](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$hour?**: `number`
 
-Defined in: [types/value.ts:12](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L12)
+Defined in: [types/value.ts:17](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L17)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [types/value.ts:12](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$microsecond?**: `number`
 
-Defined in: [types/value.ts:13](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L13)
+Defined in: [types/value.ts:18](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L18)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [types/value.ts:13](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$millisecond?**: `number`
 
-Defined in: [types/value.ts:14](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L14)
+Defined in: [types/value.ts:19](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L19)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [types/value.ts:14](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$minute?**: `number`
 
-Defined in: [types/value.ts:15](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L15)
+Defined in: [types/value.ts:20](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L20)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [types/value.ts:15](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$month?**: `number`
 
-Defined in: [types/value.ts:16](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L16)
+Defined in: [types/value.ts:21](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L21)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [types/value.ts:16](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$nanosecond?**: `number`
 
-Defined in: [types/value.ts:17](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L17)
+Defined in: [types/value.ts:22](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L22)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [types/value.ts:17](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **$second?**: `number`
 
-Defined in: [types/value.ts:18](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L18)
+Defined in: [types/value.ts:23](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L23)
 
 ***
 
@@ -80,4 +80,4 @@ Defined in: [types/value.ts:18](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **$year**: `number`
 
-Defined in: [types/value.ts:19](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L19)
+Defined in: [types/value.ts:24](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L24)

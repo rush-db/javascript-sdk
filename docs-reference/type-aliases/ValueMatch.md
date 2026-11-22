@@ -8,7 +8,7 @@
 
 > **ValueMatch** = `object`
 
-Defined in: [types/value.ts:94](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L94)
+Defined in: [types/value.ts:154](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L154)
 
 A stored value matching `db.ai.searchValues`, with where it is held.
 
@@ -18,7 +18,7 @@ A stored value matching `db.ai.searchValues`, with where it is held.
 
 > **count**: `number`
 
-Defined in: [types/value.ts:98](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L98)
+Defined in: [types/value.ts:158](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L158)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [types/value.ts:98](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **label**: `string`
 
-Defined in: [types/value.ts:95](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L95)
+Defined in: [types/value.ts:155](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L155)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [types/value.ts:95](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **property**: `string`
 
-Defined in: [types/value.ts:96](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L96)
+Defined in: [types/value.ts:156](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L156)
 
 ***
 
@@ -42,4 +42,4 @@ Defined in: [types/value.ts:96](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **value**: [`PropertyValue`](PropertyValue.md)
 
-Defined in: [types/value.ts:97](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L97)
+Defined in: [types/value.ts:157](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L157)

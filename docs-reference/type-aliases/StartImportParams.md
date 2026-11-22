@@ -8,7 +8,7 @@
 
 > **StartImportParams** = `object`
 
-Defined in: [api/ingest-types.ts:199](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L199)
+Defined in: [api/ingest-types.ts:208](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L208)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:199](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **files?**: [`ImportFileSettings`](ImportFileSettings.md)[]
 
-Defined in: [api/ingest-types.ts:200](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L200)
+Defined in: [api/ingest-types.ts:209](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L209)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [api/ingest-types.ts:200](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **links?**: [`ImportFileLink`](ImportFileLink.md)[]
 
-Defined in: [api/ingest-types.ts:201](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L201)
+Defined in: [api/ingest-types.ts:210](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L210)

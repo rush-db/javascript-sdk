@@ -8,7 +8,7 @@
 
 > **Aggregate** = \{\[`field`: `string`\]: [`AggregateCollectNestedFn`](AggregateCollectNestedFn.md); \} \| \{\[`field`: `string`\]: `string` \| [`AggregateFn`](AggregateFn.md)\<[`Schema`](Schema.md)\>; \}
 
-Defined in: [types/query.ts:173](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L173)
+Defined in: [types/query.ts:180](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L180)
 
 ## Deprecated
 

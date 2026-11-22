@@ -8,7 +8,7 @@
 
 > **PreviewImportParams** = `object`
 
-Defined in: [api/ingest-types.ts:197](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L197)
+Defined in: [api/ingest-types.ts:206](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L206)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [api/ingest-types.ts:197](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **files?**: [`ImportFileSettings`](ImportFileSettings.md)[]
 
-Defined in: [api/ingest-types.ts:197](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L197)
+Defined in: [api/ingest-types.ts:206](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L206)

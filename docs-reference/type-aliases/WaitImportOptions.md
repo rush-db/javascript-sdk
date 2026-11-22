@@ -8,7 +8,7 @@
 
 > **WaitImportOptions** = `object`
 
-Defined in: [api/ingest-types.ts:303](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L303)
+Defined in: [api/ingest-types.ts:312](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L312)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:303](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **intervalMs?**: `number`
 
-Defined in: [api/ingest-types.ts:305](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L305)
+Defined in: [api/ingest-types.ts:314](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L314)
 
 Poll interval in ms. Default 2000.
 
@@ -26,7 +26,7 @@ Poll interval in ms. Default 2000.
 
 > `optional` **onProgress?**: (`run`) => `void`
 
-Defined in: [api/ingest-types.ts:308](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L308)
+Defined in: [api/ingest-types.ts:317](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L317)
 
 #### Parameters
 
@@ -44,6 +44,6 @@ Defined in: [api/ingest-types.ts:308](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **timeoutMs?**: `number`
 
-Defined in: [api/ingest-types.ts:307](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L307)
+Defined in: [api/ingest-types.ts:316](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L316)
 
 Give up after this many ms (rejects). Default: no limit.
