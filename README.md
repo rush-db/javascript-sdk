@@ -214,25 +214,34 @@ Before 3.0.14, `"2024-05-01"` and `"2024-05-01T10:30:00"` were datetimes at UTC,
 
 `$within` matches points within a radius (haversine meters for WGS-84) or inside a box from its south-west to its north-east corner; `orderBy` with `$distance` sorts nearest first. An ordered index on the point property (`db.indexes.create`) answers `$within` from the index. RushDB 3.0.14 and later.
 
+`point`, `withinRadius`, `withinBox` and `distanceFrom` build these values, so there is no GeoJSON or `$within`/`$distance` object to write by hand:
+
 ```typescript
-const berlin = { type: 'Point', coordinates: [13.405, 52.52] } as const
+import { distanceFrom, point, withinBox, withinRadius } from '@rushdb/javascript-sdk'
+
+const berlin = point(13.405, 52.52) // { type: 'Point', coordinates: [13.405, 52.52] }
 
 const nearest = await db.records.find({
   labels: ['CAFE'],
-  where: { location: { $within: { center: berlin, meters: 2000 } } },
-  orderBy: { location: { $distance: berlin } },
+  where: { location: withinRadius(berlin, 2000) },
+  orderBy: { location: distanceFrom(berlin) },
   limit: 5
 })
 
 await db.records.find({
   labels: ['CAFE'],
-  where: {
-    location: {
-      $within: { box: [{ type: 'Point', coordinates: [13.3, 52.45] }, { type: 'Point', coordinates: [13.5, 52.55] }] }
-    }
-  }
+  where: { location: withinBox(point(13.3, 52.45), point(13.5, 52.55)) }
 })
+
+await db.records.create({ label: 'CAFE', data: { name: 'Kaffeehaus', location: berlin } })
 ```
+
+| Helper | Returns |
+|---|---|
+| `point(longitude, latitude, height?, { crs? }?)` | `{ type: 'Point', coordinates: [longitude, latitude(, height)], crs? }`; with a Cartesian `crs` the coordinates are `x, y(, z)` |
+| `withinRadius(center, meters)` | `{ $within: { center, meters } }`, for a `where` value; haversine meters for WGS-84, plane units for Cartesian points |
+| `withinBox(southWest, northEast)` | `{ $within: { box: [southWest, northEast] } }`, for a `where` value; edges included, and a WGS-84 box whose south-west longitude is east of its north-east one crosses the antimeridian |
+| `distanceFrom(center)` | `{ $distance: center }`, for an `orderBy` value: nearest first, records without a point last |
 
 ### Catalog check: names and values no record holds
 

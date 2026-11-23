@@ -8,6 +8,8 @@ import type { HttpClientInterface, HttpClientResponseInterface } from '../src/ne
 import { responseError } from '../src/network/errors.js'
 import { CatalogCheckError, DirectModeError, UniqueConstraintError } from '../src/sdk/errors.js'
 import { RushDB, initSDK } from '../src/sdk/sdk.js'
+import { distanceFrom, point, withinBox, withinRadius } from '../src/sdk/spatial.js'
+import type { SearchQuery } from '../src/types/query.js'
 
 // Features of RushDB 3.0.14: typed temporal and point values, spatial filters,
 // the catalog check (`warnings`, `context.check`), unique indexes, ingest
@@ -594,5 +596,46 @@ describe('direct-mode schema with the new types', () => {
       (index) => index
     )
     expect(schema[0].properties[0].min).toBe('2024-05-01T10:30:00.000Z')
+  })
+})
+
+describe('spatial helpers', () => {
+  it('builds GeoJSON points, longitude first', () => {
+    expect(point(13.405, 52.52)).toEqual(BERLIN)
+    expect(point(13.405, 52.52, 34)).toEqual({ type: 'Point', coordinates: [13.405, 52.52, 34] })
+    expect(point(3, 4, { crs: 'cartesian' })).toEqual({ type: 'Point', coordinates: [3, 4], crs: 'cartesian' })
+    expect(point(3, 4, 5, { crs: 'cartesian-3d' })).toEqual({
+      type: 'Point',
+      coordinates: [3, 4, 5],
+      crs: 'cartesian-3d'
+    })
+    expect(point(0, 0, 0)).toEqual({ type: 'Point', coordinates: [0, 0, 0] })
+    expect('crs' in point(1, 2)).toBe(false)
+    expect(isPointValue(point(1, 2, 3, { crs: 'wgs-84-3d' }))).toBe(true)
+  })
+
+  it('builds $within and $distance operands', () => {
+    const sw = point(13.3, 52.45)
+    const ne = point(13.5, 52.55)
+    expect(withinRadius(BERLIN, 2000)).toEqual({ $within: { center: BERLIN, meters: 2000 } })
+    expect(withinBox(sw, ne)).toEqual({ $within: { box: [sw, ne] } })
+    expect(distanceFrom(BERLIN)).toEqual({ $distance: BERLIN })
+  })
+
+  it('fits the where and orderBy of a search query', async () => {
+    useServer(() => ({ body: { success: true, data: [], total: 0 } }))
+    const search: SearchQuery = {
+      labels: ['CAFE'],
+      where: { location: withinRadius(point(13.405, 52.52), 2000), area: withinBox(point(13.3, 52.45), point(13.5, 52.55)) },
+      orderBy: { location: distanceFrom(point(13.405, 52.52)) }
+    }
+    await cloudDb().records.find(search)
+    expect(calls[0].body).toMatchObject({
+      where: {
+        location: { $within: { center: BERLIN, meters: 2000 } },
+        area: { $within: { box: [point(13.3, 52.45), point(13.5, 52.55)] } }
+      },
+      orderBy: { location: { $distance: BERLIN } }
+    })
   })
 })
