@@ -8,7 +8,7 @@
 
 > **DeletedConnection** = `object`
 
-Defined in: [api/ingest-types.ts:548](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L548)
+Defined in: [api/ingest-types.ts:557](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L557)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:548](https://github.com/rush-db/javascript-sdk/
 
 > **deleted**: `true`
 
-Defined in: [api/ingest-types.ts:548](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L548)
+Defined in: [api/ingest-types.ts:557](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L557)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [api/ingest-types.ts:548](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **recordsDeleted?**: `number`
 
-Defined in: [api/ingest-types.ts:548](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L548)
+Defined in: [api/ingest-types.ts:557](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L557)

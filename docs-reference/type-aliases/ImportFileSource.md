@@ -8,7 +8,7 @@
 
 > **ImportFileSource** = `object`
 
-Defined in: [api/ingest-types.ts:275](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L275)
+Defined in: [api/ingest-types.ts:284](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L284)
 
 A file for `imports.importFiles`: its data, name and size (taken from a `Blob`/`File`/bytes when omitted).
 
@@ -18,7 +18,7 @@ A file for `imports.importFiles`: its data, name and size (taken from a `Blob`/`
 
 > **data**: [`ImportUploadData`](ImportUploadData.md)
 
-Defined in: [api/ingest-types.ts:276](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L276)
+Defined in: [api/ingest-types.ts:285](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L285)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/ingest-types.ts:276](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **label?**: `string`
 
-Defined in: [api/ingest-types.ts:279](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L279)
+Defined in: [api/ingest-types.ts:288](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L288)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [api/ingest-types.ts:279](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **mapping?**: [`ImportFileMapping`](ImportFileMapping.md)
 
-Defined in: [api/ingest-types.ts:280](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L280)
+Defined in: [api/ingest-types.ts:289](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L289)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [api/ingest-types.ts:280](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **name?**: `string`
 
-Defined in: [api/ingest-types.ts:277](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L277)
+Defined in: [api/ingest-types.ts:286](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L286)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [api/ingest-types.ts:277](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **size?**: `number`
 
-Defined in: [api/ingest-types.ts:278](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L278)
+Defined in: [api/ingest-types.ts:287](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L287)

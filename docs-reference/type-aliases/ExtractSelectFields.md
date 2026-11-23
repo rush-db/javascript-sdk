@@ -8,7 +8,7 @@
 
 > **ExtractSelectFields**\<`S`\> = `{ [K in keyof S]: InferExprType<S[K]> }`
 
-Defined in: [types/query.ts:287](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L287)
+Defined in: [types/query.ts:294](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L294)
 
 ## Type Parameters
 

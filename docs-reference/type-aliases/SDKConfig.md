@@ -49,6 +49,23 @@ Defaults to `false`.
 Allows using the `delete()` method without a specified criteria,
 which results in deleting all Records in the project.
 
+#### options.ingestChunkSize?
+
+> `optional` **ingestChunkSize?**: `number`
+
+Split `records.createMany`, `records.importCsv` and `records.importJson`
+(flat rows) into requests of this many rows. Unset (the default) or `0`
+sends each write in one all-or-nothing request. 5,000 is recommended for
+large writes; chunked, each request commits on its own unless the call
+passes a transaction.
+
+#### options.nestedIngestChunkSize?
+
+> `optional` **nestedIngestChunkSize?**: `number`
+
+Split `records.importJson` arrays of nested documents into requests of
+this many documents. Unset or `0` sends one request; 10,000 is recommended.
+
 ### scope?
 
 > `optional` **scope?**: `string`

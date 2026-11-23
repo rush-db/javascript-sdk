@@ -8,4 +8,4 @@
 
 > **ImportFilesProgress** = `object` & [`ImportUploadProgress`](ImportUploadProgress.md) \| \{ `phase`: `"run"`; `run`: [`ImportRun`](ImportRun.md); \}
 
-Defined in: [api/ingest-types.ts:289](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L289)
+Defined in: [api/ingest-types.ts:298](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L298)

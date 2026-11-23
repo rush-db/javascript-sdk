@@ -8,7 +8,7 @@
 
 > **SchemaSummaryLabel** = `object`
 
-Defined in: [types/value.ts:118](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L118)
+Defined in: [types/value.ts:178](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L178)
 
 One label of `db.ai.getSchemaSummary`.
 
@@ -18,7 +18,7 @@ One label of `db.ai.getSchemaSummary`.
 
 > **name**: `string`
 
-Defined in: [types/value.ts:119](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L119)
+Defined in: [types/value.ts:179](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L179)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [types/value.ts:119](https://github.com/rush-db/javascript-sdk/blob/
 
 > **properties**: `object`[]
 
-Defined in: [types/value.ts:121](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L121)
+Defined in: [types/value.ts:181](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L181)
 
 #### distinctCount?
 
@@ -68,7 +68,7 @@ Every value, by record count, when the property holds few.
 
 > **recordsCount**: `number`
 
-Defined in: [types/value.ts:120](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L120)
+Defined in: [types/value.ts:180](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L180)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [types/value.ts:120](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **relationships?**: `object`[]
 
-Defined in: [types/value.ts:132](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L132)
+Defined in: [types/value.ts:192](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L192)
 
 #### count
 

@@ -8,7 +8,7 @@
 
 > **ImportFile** = `object`
 
-Defined in: [api/ingest-types.ts:142](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L142)
+Defined in: [api/ingest-types.ts:151](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L151)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:142](https://github.com/rush-db/javascript-sdk/
 
 > **bytesDone**: `number`
 
-Defined in: [api/ingest-types.ts:152](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L152)
+Defined in: [api/ingest-types.ts:161](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L161)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:152](https://github.com/rush-db/javascript-sdk/
 
 > **compression**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:146](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L146)
+Defined in: [api/ingest-types.ts:155](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L155)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:146](https://github.com/rush-db/javascript-sdk/
 
 > **error**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:154](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L154)
+Defined in: [api/ingest-types.ts:163](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L163)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [api/ingest-types.ts:154](https://github.com/rush-db/javascript-sdk/
 
 > **errorCount**: `number`
 
-Defined in: [api/ingest-types.ts:153](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L153)
+Defined in: [api/ingest-types.ts:162](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L162)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [api/ingest-types.ts:153](https://github.com/rush-db/javascript-sdk/
 
 > **format**: `string`
 
-Defined in: [api/ingest-types.ts:145](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L145)
+Defined in: [api/ingest-types.ts:154](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L154)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [api/ingest-types.ts:145](https://github.com/rush-db/javascript-sdk/
 
 > **id**: `string`
 
-Defined in: [api/ingest-types.ts:143](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L143)
+Defined in: [api/ingest-types.ts:152](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L152)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [api/ingest-types.ts:143](https://github.com/rush-db/javascript-sdk/
 
 > **label**: `string`
 
-Defined in: [api/ingest-types.ts:149](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L149)
+Defined in: [api/ingest-types.ts:158](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L158)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [api/ingest-types.ts:149](https://github.com/rush-db/javascript-sdk/
 
 > **mapping**: [`ImportFileMapping`](ImportFileMapping.md) \| `null`
 
-Defined in: [api/ingest-types.ts:150](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L150)
+Defined in: [api/ingest-types.ts:159](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L159)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [api/ingest-types.ts:150](https://github.com/rush-db/javascript-sdk/
 
 > **name**: `string`
 
-Defined in: [api/ingest-types.ts:144](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L144)
+Defined in: [api/ingest-types.ts:153](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L153)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [api/ingest-types.ts:144](https://github.com/rush-db/javascript-sdk/
 
 > **rowsDone**: `number`
 
-Defined in: [api/ingest-types.ts:151](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L151)
+Defined in: [api/ingest-types.ts:160](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L160)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [api/ingest-types.ts:151](https://github.com/rush-db/javascript-sdk/
 
 > **size**: `number`
 
-Defined in: [api/ingest-types.ts:147](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L147)
+Defined in: [api/ingest-types.ts:156](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L156)
 
 ***
 
@@ -104,4 +104,4 @@ Defined in: [api/ingest-types.ts:147](https://github.com/rush-db/javascript-sdk/
 
 > **status**: `string`
 
-Defined in: [api/ingest-types.ts:148](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L148)
+Defined in: [api/ingest-types.ts:157](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L157)

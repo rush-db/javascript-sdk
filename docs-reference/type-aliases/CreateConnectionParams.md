@@ -8,7 +8,7 @@
 
 > **CreateConnectionParams** = `ConnectionFields` & `object`
 
-Defined in: [api/ingest-types.ts:507](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L507)
+Defined in: [api/ingest-types.ts:516](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L516)
 
 ## Type Declaration
 

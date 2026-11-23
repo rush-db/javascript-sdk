@@ -8,7 +8,7 @@
 
 > **SyncConnectionParams** = `object`
 
-Defined in: [api/ingest-types.ts:536](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L536)
+Defined in: [api/ingest-types.ts:545](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L545)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:536](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **full?**: `boolean`
 
-Defined in: [api/ingest-types.ts:540](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L540)
+Defined in: [api/ingest-types.ts:549](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L549)
 
 Ignore stored cursors and read everything again.
 
@@ -26,6 +26,6 @@ Ignore stored cursors and read everything again.
 
 > `optional` **streams?**: `string`[]
 
-Defined in: [api/ingest-types.ts:538](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L538)
+Defined in: [api/ingest-types.ts:547](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L547)
 
 Stream names; every enabled stream when omitted.

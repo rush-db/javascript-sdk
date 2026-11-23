@@ -8,7 +8,7 @@
 
 > **SemanticSearchParams** = [`VectorSearchParams`](VectorSearchParams.md)
 
-Defined in: [api/types.ts:249](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L249)
+Defined in: [api/types.ts:299](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L299)
 
 ## Deprecated
 

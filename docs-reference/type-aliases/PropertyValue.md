@@ -8,7 +8,7 @@
 
 > **PropertyValue**\<`TType`\> = [`MaybeArray`](MaybeArray.md)\<[`PropertySingleValue`](PropertySingleValue.md)\<`TType`\>\>
 
-Defined in: [types/value.ts:166](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L166)
+Defined in: [types/value.ts:231](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L231)
 
 ## Type Parameters
 

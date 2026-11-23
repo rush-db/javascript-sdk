@@ -8,7 +8,7 @@
 
 > **SelectClause** = `object`
 
-Defined in: [types/query.ts:291](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L291)
+Defined in: [types/query.ts:298](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L298)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [types/query.ts:291](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **select?**: [`SelectExprMap`](SelectExprMap.md)
 
-Defined in: [types/query.ts:292](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L292)
+Defined in: [types/query.ts:299](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L299)

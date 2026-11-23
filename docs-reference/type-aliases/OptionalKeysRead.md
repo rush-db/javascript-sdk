@@ -8,7 +8,7 @@
 
 > **OptionalKeysRead**\<`S`\> = `{ [Key in keyof S]: S[Key]["required"] extends false ? Key : never }`\[keyof `S`\]
 
-Defined in: [types/schema.ts:59](https://github.com/rush-db/javascript-sdk/blob/main/src/types/schema.ts#L59)
+Defined in: [types/schema.ts:69](https://github.com/rush-db/javascript-sdk/blob/main/src/types/schema.ts#L69)
 
 ## Type Parameters
 

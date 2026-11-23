@@ -1,4 +1,5 @@
 import type {
+  CatalogWarning,
   ExtractAggregateFields,
   FlattenTypes,
   InferSchemaTypesRead,
@@ -94,7 +95,16 @@ export type Relation = {
 }
 
 /** Type of a relationship property value. */
-export type RelationPropertyType = 'string' | 'number' | 'boolean' | 'datetime'
+export type RelationPropertyType =
+  | 'string'
+  | 'number'
+  | 'boolean'
+  | 'datetime'
+  | 'date'
+  | 'localtime'
+  | 'localdatetime'
+  | 'duration'
+  | 'point'
 
 /**
  * Direction of a relationship.
@@ -356,6 +366,12 @@ export class DBRecordsArrayInstance<S extends Schema = Schema, Q extends SearchQ
   searchQuery?: SearchQuery<S>
   /** Warnings returned by AI-assisted query generation, when applicable. */
   warnings?: string[]
+  /**
+   * Labels, properties or compared texts in the query that no record holds,
+   * with what the query most likely meant (the server's catalog check, RushDB
+   * 3.0.14 and later). Absent when nothing is missing.
+   */
+  catalogWarnings?: CatalogWarning[]
   /** For Smart search (`ai.search`): the SQL statement that produced this result. */
   sql?: string
   /** For Smart search: a short title of the query. */

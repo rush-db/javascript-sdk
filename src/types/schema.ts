@@ -1,5 +1,5 @@
 import type { FlattenTypes } from './utils.js'
-import type { DatetimeObject, PropertyType, PropertyValue } from './value.js'
+import type { DatetimeObject, PointValue, PropertyType, PropertyValue } from './value.js'
 
 export type SchemaDefaultValue<T extends PropertyType = PropertyType> =
   | PropertyValue<T>
@@ -20,6 +20,11 @@ export type Schema = Record<string, SchemaField>
 type TypeMappingWrite = {
   boolean: boolean
   datetime: DatetimeObject | string
+  date: string
+  localtime: string
+  localdatetime: string
+  duration: string
+  point: PointValue
   null: null
   number: number
   string: string
@@ -51,6 +56,11 @@ export type InferSchemaTypesWrite<S extends Schema = Schema> = FlattenTypes<
 type TypeMappingRead = {
   boolean: boolean
   datetime: string
+  date: string
+  localtime: string
+  localdatetime: string
+  duration: string
+  point: PointValue
   null: null
   number: number
   string: string

@@ -6,7 +6,7 @@
 
 # Class: DBRecordInstance\<S, Q\>
 
-Defined in: [sdk/record.ts:147](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L147)
+Defined in: [sdk/record.ts:157](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L157)
 
 ## Type Parameters
 
@@ -24,7 +24,7 @@ Defined in: [sdk/record.ts:147](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **new DBRecordInstance**\<`S`, `Q`\>(`data?`, `client?`): `DBRecordInstance`\<`S`, `Q`\>
 
-Defined in: [sdk/record.ts:159](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L159)
+Defined in: [sdk/record.ts:169](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L169)
 
 Creates a new DBRecordInstance.
 Typically, you don't create these directly but receive them from query results.
@@ -55,7 +55,7 @@ The client the record was read through; the instance's
 
 > **data**: [`DBRecordInferred`](../type-aliases/DBRecordInferred.md)\<`S`, `Q`\>
 
-Defined in: [sdk/record.ts:148](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L148)
+Defined in: [sdk/record.ts:158](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L158)
 
 ## Accessors
 
@@ -65,7 +65,7 @@ Defined in: [sdk/record.ts:148](https://github.com/rush-db/javascript-sdk/blob/m
 
 > **get** **date**(): `Date`
 
-Defined in: [sdk/record.ts:215](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L215)
+Defined in: [sdk/record.ts:225](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L225)
 
 The creation date of this record, derived from its ID.
 
@@ -85,7 +85,7 @@ Error if the ID is missing or invalid
 
 > **get** **exists**(): `boolean`
 
-Defined in: [sdk/record.ts:168](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L168)
+Defined in: [sdk/record.ts:178](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L178)
 
 Checks if this record instance exists.
 A record is considered to exist if it has a valid ID and label.
@@ -102,7 +102,7 @@ A record is considered to exist if it has a valid ID and label.
 
 > **get** **id**(): `string`
 
-Defined in: [sdk/record.ts:176](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L176)
+Defined in: [sdk/record.ts:186](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L186)
 
 The unique ID of this record.
 
@@ -122,7 +122,7 @@ Error if the ID is missing or invalid
 
 > **get** **label**(): `string`
 
-Defined in: [sdk/record.ts:189](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L189)
+Defined in: [sdk/record.ts:199](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L199)
 
 The label (type) of this record.
 
@@ -142,7 +142,7 @@ Error if the label is missing or invalid
 
 > **get** **proptypes**(): [`FlattenTypes`](../type-aliases/FlattenTypes.md)\<[`FlattenTypes`](../type-aliases/FlattenTypes.md)\<\{ \[Key in string \| number \| symbol\]: S\[Key\]\["type"\] \} & \{ \[Key in string \| number \| symbol\]?: S\[Key\]\["type"\] \}\>\> \| `undefined`
 
-Defined in: [sdk/record.ts:202](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L202)
+Defined in: [sdk/record.ts:212](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L212)
 
 The property types of this record.
 
@@ -162,7 +162,7 @@ Error if the property types are missing or invalid
 
 > **get** **score**(): `number` \| `undefined`
 
-Defined in: [sdk/record.ts:245](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L245)
+Defined in: [sdk/record.ts:255](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L255)
 
 The similarity score from the most recent vector search.
 Only present on records returned by `records.vectorSearch()`.
@@ -181,7 +181,7 @@ Equivalent to `data.__score`.
 
 > **get** **timestamp**(): `number`
 
-Defined in: [sdk/record.ts:229](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L229)
+Defined in: [sdk/record.ts:239](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L239)
 
 The creation timestamp of this record, derived from its ID.
 
@@ -199,7 +199,7 @@ Error if the ID is missing or invalid
 
 > **attach**(`target`, `options?`, `transaction?`): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/record.ts:315](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L315)
+Defined in: [sdk/record.ts:325](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L325)
 
 Creates a relationship between this record and another record or records.
 
@@ -239,7 +239,7 @@ Error if the record data is undefined
 
 > **delete**(`transaction?`): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/record.ts:256](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L256)
+Defined in: [sdk/record.ts:266](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L266)
 
 Deletes this record from the database.
 
@@ -267,7 +267,7 @@ Error if the record data is undefined
 
 > **detach**(`target`, `options?`, `transaction?`): `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `message`: `string`; \}\>\>
 
-Defined in: [sdk/record.ts:333](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L333)
+Defined in: [sdk/record.ts:343](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L343)
 
 Removes a relationship between this record and another record or records.
 
@@ -307,7 +307,7 @@ Error if the record data is undefined
 
 > **set**\<`S`\>(`data`, `transaction?`): `Promise`\<`DBRecordInstance`\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/record.ts:294](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L294)
+Defined in: [sdk/record.ts:304](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L304)
 
 Sets all fields of this record to the provided values.
 This replaces all existing field values.
@@ -348,7 +348,7 @@ Error if the record data is undefined
 
 > **update**\<`S`\>(`data`, `transaction?`): `Promise`\<`DBRecordInstance`\<`S`, [`SearchQuery`](../type-aliases/SearchQuery.md)\<`S`\>\>\>
 
-Defined in: [sdk/record.ts:273](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L273)
+Defined in: [sdk/record.ts:283](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L283)
 
 Updates specific fields of this record.
 

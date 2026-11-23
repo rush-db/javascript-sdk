@@ -1,7 +1,12 @@
 import type {
   PROPERTY_TYPE_BOOLEAN,
+  PROPERTY_TYPE_DATE,
   PROPERTY_TYPE_DATETIME,
+  PROPERTY_TYPE_DURATION,
+  PROPERTY_TYPE_LOCALDATETIME,
+  PROPERTY_TYPE_LOCALTIME,
   PROPERTY_TYPE_NUMBER,
+  PROPERTY_TYPE_POINT,
   PROPERTY_TYPE_STRING
 } from '../common/constants.js'
 import type { MaybeArray } from './utils.js'
@@ -20,6 +25,26 @@ export type DatetimeObject = {
 }
 export type DatetimeValue = DatetimeObject | string
 
+/** A calendar date as ISO 8601 text, `2024-05-01`. */
+export type DateValue = string
+/** A time of day without a zone, `10:30:00` or `10:30:00.5`. */
+export type LocalTimeValue = string
+/** A date and time without a zone, `2024-05-01T10:30:00`. */
+export type LocalDateTimeValue = string
+/** An ISO 8601 duration, `P1DT2H`; months, days and seconds are kept apart. */
+export type DurationValue = string
+
+/**
+ * A GeoJSON point, longitude first. Without `crs` it is a WGS-84 position
+ * (`[lon, lat]` or `[lon, lat, height]`); `crs: 'cartesian'` or
+ * `'cartesian-3d'` places it in a plane.
+ */
+export type PointValue = {
+  type: 'Point'
+  coordinates: [number, number] | [number, number, number]
+  crs?: 'wgs-84' | 'wgs-84-3d' | 'cartesian' | 'cartesian-3d' | 'EPSG:4326' | 'EPSG:4979' | 'EPSG:7203' | 'EPSG:9157'
+}
+
 // BOOLEAN
 export type BooleanValue = boolean
 
@@ -37,6 +62,11 @@ export type PropertyType =
   | typeof PROPERTY_TYPE_DATETIME
   | typeof PROPERTY_TYPE_NUMBER
   | typeof PROPERTY_TYPE_STRING
+  | typeof PROPERTY_TYPE_DATE
+  | typeof PROPERTY_TYPE_LOCALTIME
+  | typeof PROPERTY_TYPE_LOCALDATETIME
+  | typeof PROPERTY_TYPE_DURATION
+  | typeof PROPERTY_TYPE_POINT
 
 type WithId<T> = T & { id: string }
 type WithValue<T> = T & { value: PropertyValue }
@@ -51,8 +81,9 @@ export type Property = WithId<{
 export type PropertyWithValue = WithValue<Property>
 
 export type PropertyValuesData = {
-  max?: number
-  min?: number
+  /** A number, or ISO 8601 text for temporal and duration properties. */
+  max?: number | string
+  min?: number | string
   values: Array<PropertyValue>
   /** Record counts aligned with `values` (a searched or `limit`ed read). */
   counts?: Array<number>
@@ -60,6 +91,35 @@ export type PropertyValuesData = {
   distinctCount?: number
   /** The search matched nothing and `values` lists the whole (small) domain (`domainOnMiss`). */
   searchMissed?: boolean
+  /** Names or texts in the request no record holds, with suggestions (RushDB 3.0.14 and later). */
+  catalogWarnings?: Array<CatalogWarning>
+}
+
+/** What `context.check` does with a label, property or text no record holds. */
+export type CatalogCheckMode = 'warn' | 'strict' | 'off'
+
+/** A likely meant spelling, label or property for a {@link CatalogWarning}. */
+export type CatalogSuggestion = {
+  /** `spelling`, `storedIn` or `contains`. */
+  reason: string
+  label?: string
+  property?: string
+  value?: PropertyValue
+}
+
+/**
+ * The catalog check's finding for a query: a label (`unknownLabel`), a
+ * property (`unknownProperty`) or a compared text (`unknownValue`) that no
+ * record holds, with what the query most likely meant.
+ */
+export type CatalogWarning = {
+  kind: 'unknownLabel' | 'unknownProperty' | 'unknownValue' | (string & {})
+  label?: string
+  labels?: Array<string>
+  property?: string
+  value?: PropertyValue
+  /** Omitted when there is nothing to suggest. */
+  suggestions?: Array<CatalogSuggestion>
 }
 
 /** How a value search matches stored values. `similar` finds near spellings. */
@@ -158,6 +218,11 @@ export type PropertyDraft = Omit<PropertyWithValue, 'id'> & {
 
 export type PropertySingleValue<TType extends PropertyType = PropertyType> =
   TType extends typeof PROPERTY_TYPE_DATETIME ? DatetimeValue
+  : TType extends typeof PROPERTY_TYPE_DATE ? DateValue
+  : TType extends typeof PROPERTY_TYPE_LOCALTIME ? LocalTimeValue
+  : TType extends typeof PROPERTY_TYPE_LOCALDATETIME ? LocalDateTimeValue
+  : TType extends typeof PROPERTY_TYPE_DURATION ? DurationValue
+  : TType extends typeof PROPERTY_TYPE_POINT ? PointValue
   : TType extends typeof PROPERTY_TYPE_NUMBER ? NumberValue
   : TType extends typeof PROPERTY_TYPE_STRING ? StringValue
   : TType extends typeof PROPERTY_TYPE_BOOLEAN ? BooleanValue

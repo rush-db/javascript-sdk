@@ -8,7 +8,7 @@
 
 > **AggregateClause** = `object`
 
-Defined in: [types/query.ts:210](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L210)
+Defined in: [types/query.ts:217](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L217)
 
 ## Properties
 
@@ -16,4 +16,4 @@ Defined in: [types/query.ts:210](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **aggregate?**: [`Aggregate`](Aggregate.md)
 
-Defined in: [types/query.ts:211](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L211)
+Defined in: [types/query.ts:218](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L218)

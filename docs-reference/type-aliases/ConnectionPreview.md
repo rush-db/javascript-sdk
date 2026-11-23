@@ -8,7 +8,7 @@
 
 > **ConnectionPreview** = `object`
 
-Defined in: [api/ingest-types.ts:534](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L534)
+Defined in: [api/ingest-types.ts:543](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L543)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:534](https://github.com/rush-db/javascript-sdk/
 
 > **label**: `string`
 
-Defined in: [api/ingest-types.ts:534](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L534)
+Defined in: [api/ingest-types.ts:543](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L543)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:534](https://github.com/rush-db/javascript-sdk/
 
 > **records**: [`ConnectionPreviewRecord`](ConnectionPreviewRecord.md)[]
 
-Defined in: [api/ingest-types.ts:534](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L534)
+Defined in: [api/ingest-types.ts:543](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L543)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [api/ingest-types.ts:534](https://github.com/rush-db/javascript-sdk/
 
 > **stream**: `string`
 
-Defined in: [api/ingest-types.ts:534](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L534)
+Defined in: [api/ingest-types.ts:543](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L543)

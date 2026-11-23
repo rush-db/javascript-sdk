@@ -5,12 +5,14 @@ import type {
   LogicalGrouping,
   NullExpression,
   NumberExpression,
+  PointExpression,
   PropertyExpression,
   PropertyExpressionByType,
   StringExpression
 } from './expressions.js'
 import type { Schema } from './schema.js'
 import type { AnyObject, MaybeArray, RequireAtLeastOne } from './utils.js'
+import type { CatalogCheckMode, PointValue } from './value.js'
 
 /**
  * Variable-length traversal depth for `$relation.hops` and `$cycle.hops`.
@@ -100,6 +102,7 @@ export type Expression<S extends Schema = Schema> =
         : S[Key] extends MaybeArray<string> ?
           MaybeLogicalExpression<DatetimeExpression> | MaybeLogicalExpression<StringExpression>
         : S[Key] extends MaybeArray<null> ? MaybeLogicalExpression<NullExpression>
+        : S[Key] extends MaybeArray<PointValue> ? MaybeLogicalExpression<PointExpression>
         : LogicalExpression | Partial<PropertyExpression>
       })
 
@@ -109,7 +112,11 @@ export type Where<S extends Schema = Schema> =
   | LogicalGrouping<Expression<S> & Related & { $cycle?: CycleExpression }>
 
 export type OrderDirection = 'asc' | 'desc'
-export type Order<S extends Schema = Schema> = OrderDirection | Partial<Record<keyof S, OrderDirection>>
+/** Nearest first by distance from a point; records without a point of its CRS sort last. */
+export type DistanceOrder = { $distance: PointValue }
+export type Order<S extends Schema = Schema> =
+  | OrderDirection
+  | Partial<Record<keyof S, OrderDirection | DistanceOrder>>
 
 /**
  * @deprecated The aggregate clause is deprecated. Use select/groupBy for all metrics/analytics. Only use aggregate for vector similarity until select supports it.
@@ -292,7 +299,19 @@ export type SelectClause = {
   select?: SelectExprMap
 }
 
+/**
+ * Request options of a search. `check` picks how the server checks the
+ * labels, properties and compared texts against the data (RushDB 3.0.14 and
+ * later): `warn` (the server's default) runs the query and reports misses in
+ * `catalogWarnings`, `strict` refuses a query with a miss (`CatalogCheckError`),
+ * `off` skips the check. Leave it unset for servers before 3.0.14.
+ */
+export type SearchContextClause = {
+  context?: { check?: CatalogCheckMode }
+}
+
 export type SearchQuery<S extends Schema = any> = SearchQueryLabelsClause &
+  SearchContextClause &
   PaginationClause &
   OrderClause<S> &
   WhereClause<S> &

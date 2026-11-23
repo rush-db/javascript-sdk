@@ -8,7 +8,7 @@
 
 > **ImportUploadInstructions** = \{ `expiresAt`: `string`; `mode`: `"s3-multipart"`; `parts`: `object`[]; `partSize`: `number`; \} \| \{ `method`: `"PUT"`; `mode`: `"direct"`; `path`: `string`; \}
 
-Defined in: [api/ingest-types.ts:158](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L158)
+Defined in: [api/ingest-types.ts:167](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L167)
 
 How the client uploads one file.
 

@@ -8,7 +8,7 @@
 
 > **RecordProps**\<`S`\> = `S` *extends* `S` ? [`InferSchemaTypesRead`](InferSchemaTypesRead.md)\<`S`\> : `{ [K in keyof S]?: S[K] }`
 
-Defined in: [sdk/record.ts:41](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L41)
+Defined in: [sdk/record.ts:42](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L42)
 
 Properties defined by the user's schema.
 

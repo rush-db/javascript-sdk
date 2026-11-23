@@ -8,7 +8,7 @@
 
 > **ImportPreview** = `object`
 
-Defined in: [api/ingest-types.ts:234](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L234)
+Defined in: [api/ingest-types.ts:243](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L243)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:234](https://github.com/rush-db/javascript-sdk/
 
 > **files**: [`ImportFilePreview`](ImportFilePreview.md)[]
 
-Defined in: [api/ingest-types.ts:234](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L234)
+Defined in: [api/ingest-types.ts:243](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L243)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [api/ingest-types.ts:234](https://github.com/rush-db/javascript-sdk/
 
 > **links**: [`ImportLinkSuggestion`](ImportLinkSuggestion.md)[]
 
-Defined in: [api/ingest-types.ts:234](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L234)
+Defined in: [api/ingest-types.ts:243](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L243)

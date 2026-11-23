@@ -8,7 +8,7 @@
 
 > **RelationshipPatternDto** = `object`
 
-Defined in: [api/types.ts:282](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L282)
+Defined in: [api/types.ts:332](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L332)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/types.ts:282](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **confidence**: `number`
 
-Defined in: [api/types.ts:291](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L291)
+Defined in: [api/types.ts:341](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L341)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/types.ts:291](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **createdAt**: `string`
 
-Defined in: [api/types.ts:297](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L297)
+Defined in: [api/types.ts:347](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L347)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/types.ts:297](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **direction**: [`RelationshipPatternDirection`](RelationshipPatternDirection.md)
 
-Defined in: [api/types.ts:288](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L288)
+Defined in: [api/types.ts:338](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L338)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [api/types.ts:288](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **id**: `string`
 
-Defined in: [api/types.ts:283](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L283)
+Defined in: [api/types.ts:333](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L333)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [api/types.ts:283](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **lastAnalyzedAt?**: `string`
 
-Defined in: [api/types.ts:295](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L295)
+Defined in: [api/types.ts:345](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L345)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [api/types.ts:295](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **lastAppliedAt?**: `string`
 
-Defined in: [api/types.ts:294](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L294)
+Defined in: [api/types.ts:344](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L344)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [api/types.ts:294](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **lastError?**: `string`
 
-Defined in: [api/types.ts:296](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L296)
+Defined in: [api/types.ts:346](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L346)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [api/types.ts:296](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **mode**: [`RelationshipPatternMode`](RelationshipPatternMode.md)
 
-Defined in: [api/types.ts:290](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L290)
+Defined in: [api/types.ts:340](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L340)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [api/types.ts:290](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **origin**: [`RelationshipPatternOrigin`](RelationshipPatternOrigin.md)
 
-Defined in: [api/types.ts:285](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L285)
+Defined in: [api/types.ts:335](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L335)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [api/types.ts:285](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **rationale?**: `string`
 
-Defined in: [api/types.ts:292](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L292)
+Defined in: [api/types.ts:342](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L342)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [api/types.ts:292](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > `optional` **sampleMatchCount?**: `number`
 
-Defined in: [api/types.ts:293](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L293)
+Defined in: [api/types.ts:343](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L343)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [api/types.ts:293](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **source**: [`RelationshipPatternEndpoint`](RelationshipPatternEndpoint.md)
 
-Defined in: [api/types.ts:286](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L286)
+Defined in: [api/types.ts:336](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L336)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [api/types.ts:286](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **status**: [`RelationshipPatternStatus`](RelationshipPatternStatus.md)
 
-Defined in: [api/types.ts:284](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L284)
+Defined in: [api/types.ts:334](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L334)
 
 ***
 
@@ -120,7 +120,7 @@ Defined in: [api/types.ts:284](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **target**: [`RelationshipPatternEndpoint`](RelationshipPatternEndpoint.md)
 
-Defined in: [api/types.ts:287](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L287)
+Defined in: [api/types.ts:337](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L337)
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: [api/types.ts:287](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **type**: `string`
 
-Defined in: [api/types.ts:289](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L289)
+Defined in: [api/types.ts:339](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L339)
 
 ***
 
@@ -136,4 +136,4 @@ Defined in: [api/types.ts:289](https://github.com/rush-db/javascript-sdk/blob/ma
 
 > **updatedAt**: `string`
 
-Defined in: [api/types.ts:298](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L298)
+Defined in: [api/types.ts:348](https://github.com/rush-db/javascript-sdk/blob/main/src/api/types.ts#L348)

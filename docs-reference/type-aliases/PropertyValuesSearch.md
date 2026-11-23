@@ -8,7 +8,7 @@
 
 > **PropertyValuesSearch** = `object`
 
-Defined in: [types/value.ts:69](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L69)
+Defined in: [types/value.ts:129](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L129)
 
 Value-search options for `db.properties.values`.
 
@@ -18,7 +18,7 @@ Value-search options for `db.properties.values`.
 
 > `optional` **domainOnMiss?**: `number`
 
-Defined in: [types/value.ts:76](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L76)
+Defined in: [types/value.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L136)
 
 With no match, list every value of a property holding at most this many.
 
@@ -28,7 +28,7 @@ With no match, list every value of a property holding at most this many.
 
 > `optional` **limit?**: `number`
 
-Defined in: [types/value.ts:74](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L74)
+Defined in: [types/value.ts:134](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L134)
 
 Most values returned, by record count (default 100 with `query`).
 
@@ -38,7 +38,7 @@ Most values returned, by record count (default 100 with `query`).
 
 > `optional` **match?**: [`ValueMatchMode`](ValueMatchMode.md)
 
-Defined in: [types/value.ts:72](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L72)
+Defined in: [types/value.ts:132](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L132)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [types/value.ts:72](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **minSimilarity?**: `number`
 
-Defined in: [types/value.ts:78](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L78)
+Defined in: [types/value.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L138)
 
 `similar` only: least similarity, 0 to 1 (default 0.6).
 
@@ -56,6 +56,6 @@ Defined in: [types/value.ts:78](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **query?**: `string`
 
-Defined in: [types/value.ts:71](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L71)
+Defined in: [types/value.ts:131](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L131)
 
 Keep the values whose text matches.

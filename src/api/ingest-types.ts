@@ -114,7 +114,16 @@ export type PiiFinding = {
 
 // ── file imports ─────────────────────────────────────────────────────────────
 
-export type ImportColumnType = 'string' | 'number' | 'boolean' | 'datetime'
+export type ImportColumnType =
+  | 'string'
+  | 'number'
+  | 'boolean'
+  | 'datetime'
+  | 'date'
+  | 'localtime'
+  | 'localdatetime'
+  | 'duration'
+  | 'point'
 
 /** How one file maps to the graph. */
 export type ImportFileMapping = {
@@ -332,7 +341,7 @@ export type FieldPolicy = {
 /** One field of a stream as sampled for the field review. */
 export type FieldProfile = {
   name: string
-  type: 'string' | 'number' | 'boolean' | 'datetime' | 'array' | 'null'
+  type: ImportColumnType | 'array' | 'null'
   /** Share of sampled records that have a value. */
   coverage: number
   pii?: PiiFinding

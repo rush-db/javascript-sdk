@@ -8,4 +8,4 @@
 
 > **StringValue** = `string`
 
-Defined in: [types/value.ts:33](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L33)
+Defined in: [types/value.ts:58](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L58)

@@ -8,7 +8,7 @@
 
 > **ImportFileUpload** = [`ImportFile`](ImportFile.md) & `object`
 
-Defined in: [api/ingest-types.ts:173](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L173)
+Defined in: [api/ingest-types.ts:182](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L182)
 
 ## Type Declaration
 

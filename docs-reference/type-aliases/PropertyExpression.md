@@ -6,6 +6,6 @@
 
 # Type Alias: PropertyExpression
 
-> **PropertyExpression** = [`BooleanExpression`](BooleanExpression.md) \| [`DatetimeExpression`](DatetimeExpression.md) \| [`NullExpression`](NullExpression.md) \| [`NumberExpression`](NumberExpression.md) \| [`StringExpression`](StringExpression.md) \| [`TypeExpression`](TypeExpression.md)
+> **PropertyExpression** = [`BooleanExpression`](BooleanExpression.md) \| [`DatetimeExpression`](DatetimeExpression.md) \| [`NullExpression`](NullExpression.md) \| [`NumberExpression`](NumberExpression.md) \| [`StringExpression`](StringExpression.md) \| [`TemporalExpression`](TemporalExpression.md) \| [`PointExpression`](PointExpression.md) \| [`TypeExpression`](TypeExpression.md)
 
-Defined in: [types/expressions.ts:54](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L54)
+Defined in: [types/expressions.ts:91](https://github.com/rush-db/javascript-sdk/blob/main/src/types/expressions.ts#L91)

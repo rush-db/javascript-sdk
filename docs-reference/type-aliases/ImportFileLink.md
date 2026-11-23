@@ -8,7 +8,7 @@
 
 > **ImportFileLink** = `object`
 
-Defined in: [api/ingest-types.ts:133](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L133)
+Defined in: [api/ingest-types.ts:142](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L142)
 
 A link between two files of one import: rows whose `sourceColumn` equals the target's `targetColumn`.
 
@@ -18,7 +18,7 @@ A link between two files of one import: rows whose `sourceColumn` equals the tar
 
 > **sourceColumn**: `string`
 
-Defined in: [api/ingest-types.ts:135](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L135)
+Defined in: [api/ingest-types.ts:144](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L144)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/ingest-types.ts:135](https://github.com/rush-db/javascript-sdk/
 
 > **sourceFileId**: `string`
 
-Defined in: [api/ingest-types.ts:134](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L134)
+Defined in: [api/ingest-types.ts:143](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L143)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [api/ingest-types.ts:134](https://github.com/rush-db/javascript-sdk/
 
 > **targetColumn**: `string`
 
-Defined in: [api/ingest-types.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L137)
+Defined in: [api/ingest-types.ts:146](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L146)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [api/ingest-types.ts:137](https://github.com/rush-db/javascript-sdk/
 
 > **targetFileId**: `string`
 
-Defined in: [api/ingest-types.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L136)
+Defined in: [api/ingest-types.ts:145](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L145)
 
 ***
 
@@ -50,6 +50,6 @@ Defined in: [api/ingest-types.ts:136](https://github.com/rush-db/javascript-sdk/
 
 > **type**: `string`
 
-Defined in: [api/ingest-types.ts:139](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L139)
+Defined in: [api/ingest-types.ts:148](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L148)
 
 Relationship type, e.g. `PLACED`.

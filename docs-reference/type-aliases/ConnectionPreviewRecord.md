@@ -8,7 +8,7 @@
 
 > **ConnectionPreviewRecord** = `object`
 
-Defined in: [api/ingest-types.ts:526](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L526)
+Defined in: [api/ingest-types.ts:535](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L535)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:526](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **cursor?**: `string` \| `number`
 
-Defined in: [api/ingest-types.ts:531](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L531)
+Defined in: [api/ingest-types.ts:540](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L540)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:531](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **deleted?**: `boolean`
 
-Defined in: [api/ingest-types.ts:530](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L530)
+Defined in: [api/ingest-types.ts:539](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L539)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:530](https://github.com/rush-db/javascript-sdk/
 
 > **externalId**: `string`
 
-Defined in: [api/ingest-types.ts:527](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L527)
+Defined in: [api/ingest-types.ts:536](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L536)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [api/ingest-types.ts:527](https://github.com/rush-db/javascript-sdk/
 
 > **links**: `object`[]
 
-Defined in: [api/ingest-types.ts:529](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L529)
+Defined in: [api/ingest-types.ts:538](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L538)
 
 #### direction
 
@@ -64,4 +64,4 @@ Defined in: [api/ingest-types.ts:529](https://github.com/rush-db/javascript-sdk/
 
 > **properties**: `Record`\<`string`, `unknown`\>
 
-Defined in: [api/ingest-types.ts:528](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L528)
+Defined in: [api/ingest-types.ts:537](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L537)

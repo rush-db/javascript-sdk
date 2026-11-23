@@ -8,7 +8,7 @@
 
 > **CatalogConnector** = `object`
 
-Defined in: [api/ingest-types.ts:454](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L454)
+Defined in: [api/ingest-types.ts:463](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L463)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:454](https://github.com/rush-db/javascript-sdk/
 
 > **auth**: `string`[]
 
-Defined in: [api/ingest-types.ts:461](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L461)
+Defined in: [api/ingest-types.ts:470](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L470)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:461](https://github.com/rush-db/javascript-sdk/
 
 > **beta**: `boolean`
 
-Defined in: [api/ingest-types.ts:466](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L466)
+Defined in: [api/ingest-types.ts:475](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L475)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:466](https://github.com/rush-db/javascript-sdk/
 
 > **category**: `string`
 
-Defined in: [api/ingest-types.ts:458](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L458)
+Defined in: [api/ingest-types.ts:467](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L467)
 
 e.g. `crm`, `billing`, `support`, `project-management`, `knowledge`, `spreadsheet`.
 
@@ -42,7 +42,7 @@ e.g. `crm`, `billing`, `support`, `project-management`, `knowledge`, `spreadshee
 
 > `optional` **config?**: `Record`\<`string`, [`ConnectorConfigField`](ConnectorConfigField.md)\>
 
-Defined in: [api/ingest-types.ts:463](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L463)
+Defined in: [api/ingest-types.ts:472](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L472)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [api/ingest-types.ts:463](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **custom?**: `object`
 
-Defined in: [api/ingest-types.ts:470](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L470)
+Defined in: [api/ingest-types.ts:479](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L479)
 
 A workspace's own connector.
 
@@ -76,7 +76,7 @@ A workspace's own connector.
 
 > **description**: `string`
 
-Defined in: [api/ingest-types.ts:459](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L459)
+Defined in: [api/ingest-types.ts:468](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L468)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [api/ingest-types.ts:459](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **docsUrl?**: `string`
 
-Defined in: [api/ingest-types.ts:460](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L460)
+Defined in: [api/ingest-types.ts:469](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L469)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [api/ingest-types.ts:460](https://github.com/rush-db/javascript-sdk/
 
 > **id**: `string`
 
-Defined in: [api/ingest-types.ts:455](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L455)
+Defined in: [api/ingest-types.ts:464](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L464)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [api/ingest-types.ts:455](https://github.com/rush-db/javascript-sdk/
 
 > **incremental**: `boolean`
 
-Defined in: [api/ingest-types.ts:465](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L465)
+Defined in: [api/ingest-types.ts:474](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L474)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [api/ingest-types.ts:465](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **logo?**: `string`
 
-Defined in: [api/ingest-types.ts:472](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L472)
+Defined in: [api/ingest-types.ts:481](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L481)
 
 The brand logo (`data:image/svg+xml`).
 
@@ -118,7 +118,7 @@ The brand logo (`data:image/svg+xml`).
 
 > **name**: `string`
 
-Defined in: [api/ingest-types.ts:456](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L456)
+Defined in: [api/ingest-types.ts:465](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L465)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [api/ingest-types.ts:456](https://github.com/rush-db/javascript-sdk/
 
 > **oauthAvailable**: `boolean`
 
-Defined in: [api/ingest-types.ts:468](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L468)
+Defined in: [api/ingest-types.ts:477](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L477)
 
 RushDB (or this server) has an OAuth app for it, so "Connect with …" works.
 
@@ -136,7 +136,7 @@ RushDB (or this server) has an OAuth app for it, so "Connect with …" works.
 
 > **streams**: `object`[]
 
-Defined in: [api/ingest-types.ts:462](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L462)
+Defined in: [api/ingest-types.ts:471](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L471)
 
 #### description?
 
@@ -160,4 +160,4 @@ Defined in: [api/ingest-types.ts:462](https://github.com/rush-db/javascript-sdk/
 
 > **webhooks**: `boolean`
 
-Defined in: [api/ingest-types.ts:464](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L464)
+Defined in: [api/ingest-types.ts:473](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L473)

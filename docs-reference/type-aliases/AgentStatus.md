@@ -8,7 +8,7 @@
 
 > **AgentStatus** = `object`
 
-Defined in: [api/ingest-types.ts:366](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L366)
+Defined in: [api/ingest-types.ts:375](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L375)
 
 What an on-prem agent (`rushdb-agent`) last reported.
 
@@ -18,7 +18,7 @@ What an on-prem agent (`rushdb-agent`) last reported.
 
 > `optional` **hostname?**: `string`
 
-Defined in: [api/ingest-types.ts:368](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L368)
+Defined in: [api/ingest-types.ts:377](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L377)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [api/ingest-types.ts:368](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **lastError?**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:371](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L371)
+Defined in: [api/ingest-types.ts:380](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L380)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [api/ingest-types.ts:371](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **lastSeenAt?**: `string`
 
-Defined in: [api/ingest-types.ts:370](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L370)
+Defined in: [api/ingest-types.ts:379](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L379)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [api/ingest-types.ts:370](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **relations?**: `Record`\<`string`, `object`[]\>
 
-Defined in: [api/ingest-types.ts:373](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L373)
+Defined in: [api/ingest-types.ts:382](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L382)
 
 Field relations the agent declared, by stream.
 
@@ -52,7 +52,7 @@ Field relations the agent declared, by stream.
 
 > `optional` **sources?**: `object`[]
 
-Defined in: [api/ingest-types.ts:369](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L369)
+Defined in: [api/ingest-types.ts:378](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L378)
 
 #### streams
 
@@ -68,4 +68,4 @@ Defined in: [api/ingest-types.ts:369](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **version?**: `string`
 
-Defined in: [api/ingest-types.ts:367](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L367)
+Defined in: [api/ingest-types.ts:376](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L376)

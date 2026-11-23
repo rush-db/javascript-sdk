@@ -8,7 +8,7 @@
 
 > **ConnectionTestResult** = `object`
 
-Defined in: [api/ingest-types.ts:524](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L524)
+Defined in: [api/ingest-types.ts:533](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L533)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:524](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **account?**: `string`
 
-Defined in: [api/ingest-types.ts:524](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L524)
+Defined in: [api/ingest-types.ts:533](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L533)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:524](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **error?**: `string`
 
-Defined in: [api/ingest-types.ts:524](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L524)
+Defined in: [api/ingest-types.ts:533](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L533)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [api/ingest-types.ts:524](https://github.com/rush-db/javascript-sdk/
 
 > **ok**: `boolean`
 
-Defined in: [api/ingest-types.ts:524](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L524)
+Defined in: [api/ingest-types.ts:533](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L533)

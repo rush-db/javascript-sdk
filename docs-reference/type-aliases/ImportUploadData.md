@@ -8,7 +8,7 @@
 
 > **ImportUploadData** = `Blob` \| `ArrayBuffer` \| `ArrayBufferView` \| `ReadableStream`\<`Uint8Array`\> \| `AsyncIterable`\<`Uint8Array` \| `string`\>
 
-Defined in: [api/ingest-types.ts:250](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L250)
+Defined in: [api/ingest-types.ts:259](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L259)
 
 File contents for an upload. `Blob`/`File`, `Uint8Array` (a Node `Buffer`
 is one), `ArrayBuffer` and web `ReadableStream`s work in every runtime; any

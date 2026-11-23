@@ -8,7 +8,7 @@
 
 > **ValueMatchesData** = `object`
 
-Defined in: [types/value.ts:101](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L101)
+Defined in: [types/value.ts:161](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L161)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [types/value.ts:101](https://github.com/rush-db/javascript-sdk/blob/
 
 > **matches**: [`ValueMatch`](ValueMatch.md)[]
 
-Defined in: [types/value.ts:102](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L102)
+Defined in: [types/value.ts:162](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L162)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [types/value.ts:102](https://github.com/rush-db/javascript-sdk/blob/
 
 > `optional` **skipped?**: `string`[]
 
-Defined in: [types/value.ts:106](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L106)
+Defined in: [types/value.ts:166](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L166)
 
 Properties that could not be searched within the request limits, as `label.property`.
 
@@ -34,6 +34,6 @@ Properties that could not be searched within the request limits, as `label.prope
 
 > **total**: `number`
 
-Defined in: [types/value.ts:104](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L104)
+Defined in: [types/value.ts:164](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L164)
 
 Matches before `limit`.

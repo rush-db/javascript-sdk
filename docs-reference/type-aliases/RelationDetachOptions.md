@@ -8,7 +8,7 @@
 
 > **RelationDetachOptions** = `object`
 
-Defined in: [sdk/record.ts:117](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L117)
+Defined in: [sdk/record.ts:127](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L127)
 
 Options for detaching (removing) relationships.
 
@@ -18,7 +18,7 @@ Options for detaching (removing) relationships.
 
 > `optional` **direction?**: [`RelationDirection`](RelationDirection.md)
 
-Defined in: [sdk/record.ts:118](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L118)
+Defined in: [sdk/record.ts:128](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L128)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [sdk/record.ts:118](https://github.com/rush-db/javascript-sdk/blob/m
 
 > `optional` **typeOrTypes?**: [`MaybeArray`](MaybeArray.md)\<`string`\>
 
-Defined in: [sdk/record.ts:119](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L119)
+Defined in: [sdk/record.ts:129](https://github.com/rush-db/javascript-sdk/blob/main/src/sdk/record.ts#L129)

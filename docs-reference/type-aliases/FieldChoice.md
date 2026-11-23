@@ -8,7 +8,7 @@
 
 > **FieldChoice** = `object`
 
-Defined in: [api/ingest-types.ts:363](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L363)
+Defined in: [api/ingest-types.ts:372](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L372)
 
 A reviewer's choice for one field, for `connections.reviewFields`.
 
@@ -18,7 +18,7 @@ A reviewer's choice for one field, for `connections.reviewFields`.
 
 > **action**: `"include"` \| `"exclude"` \| `"hash"`
 
-Defined in: [api/ingest-types.ts:363](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L363)
+Defined in: [api/ingest-types.ts:372](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L372)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [api/ingest-types.ts:363](https://github.com/rush-db/javascript-sdk/
 
 > **name**: `string`
 
-Defined in: [api/ingest-types.ts:363](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L363)
+Defined in: [api/ingest-types.ts:372](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L372)

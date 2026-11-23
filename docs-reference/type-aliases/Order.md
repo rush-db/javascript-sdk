@@ -6,9 +6,9 @@
 
 # Type Alias: Order\<S\>
 
-> **Order**\<`S`\> = [`OrderDirection`](OrderDirection.md) \| `Partial`\<`Record`\<keyof `S`, [`OrderDirection`](OrderDirection.md)\>\>
+> **Order**\<`S`\> = [`OrderDirection`](OrderDirection.md) \| `Partial`\<`Record`\<keyof `S`, [`OrderDirection`](OrderDirection.md) \| [`DistanceOrder`](DistanceOrder.md)\>\>
 
-Defined in: [types/query.ts:112](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L112)
+Defined in: [types/query.ts:117](https://github.com/rush-db/javascript-sdk/blob/main/src/types/query.ts#L117)
 
 ## Type Parameters
 

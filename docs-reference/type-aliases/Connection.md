@@ -8,7 +8,7 @@
 
 > **Connection** = `object`
 
-Defined in: [api/ingest-types.ts:409](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L409)
+Defined in: [api/ingest-types.ts:418](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L418)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [api/ingest-types.ts:409](https://github.com/rush-db/javascript-sdk/
 
 > **account**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:421](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L421)
+Defined in: [api/ingest-types.ts:430](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L430)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [api/ingest-types.ts:421](https://github.com/rush-db/javascript-sdk/
 
 > **activeRunId**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:434](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L434)
+Defined in: [api/ingest-types.ts:443](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L443)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [api/ingest-types.ts:434](https://github.com/rush-db/javascript-sdk/
 
 > **agent**: [`AgentStatus`](AgentStatus.md) \| `null`
 
-Defined in: [api/ingest-types.ts:436](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L436)
+Defined in: [api/ingest-types.ts:445](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L445)
 
 Agent connections: what the agent last reported.
 
@@ -42,7 +42,7 @@ Agent connections: what the agent last reported.
 
 > **authType**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:420](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L420)
+Defined in: [api/ingest-types.ts:429](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L429)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [api/ingest-types.ts:420](https://github.com/rush-db/javascript-sdk/
 
 > **config**: `Record`\<`string`, `unknown`\>
 
-Defined in: [api/ingest-types.ts:419](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L419)
+Defined in: [api/ingest-types.ts:428](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L428)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [api/ingest-types.ts:419](https://github.com/rush-db/javascript-sdk/
 
 > **connectorId**: `string`
 
-Defined in: [api/ingest-types.ts:412](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L412)
+Defined in: [api/ingest-types.ts:421](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L421)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [api/ingest-types.ts:412](https://github.com/rush-db/javascript-sdk/
 
 > **connectorName**: `string`
 
-Defined in: [api/ingest-types.ts:414](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L414)
+Defined in: [api/ingest-types.ts:423](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L423)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [api/ingest-types.ts:414](https://github.com/rush-db/javascript-sdk/
 
 > **createdAt**: `string`
 
-Defined in: [api/ingest-types.ts:440](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L440)
+Defined in: [api/ingest-types.ts:449](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L449)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [api/ingest-types.ts:440](https://github.com/rush-db/javascript-sdk/
 
 > **customWebhookUrl**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:427](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L427)
+Defined in: [api/ingest-types.ts:436](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L436)
 
 Custom trigger/push URL without its token (the token is shown once when rotated).
 
@@ -92,7 +92,7 @@ Custom trigger/push URL without its token (the token is shown once when rotated)
 
 > **hasCredentials**: `boolean`
 
-Defined in: [api/ingest-types.ts:422](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L422)
+Defined in: [api/ingest-types.ts:431](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L431)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [api/ingest-types.ts:422](https://github.com/rush-db/javascript-sdk/
 
 > **hasCustomWebhookToken**: `boolean`
 
-Defined in: [api/ingest-types.ts:428](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L428)
+Defined in: [api/ingest-types.ts:437](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L437)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [api/ingest-types.ts:428](https://github.com/rush-db/javascript-sdk/
 
 > **hasWebhookSecret**: `boolean`
 
-Defined in: [api/ingest-types.ts:423](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L423)
+Defined in: [api/ingest-types.ts:432](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L432)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [api/ingest-types.ts:423](https://github.com/rush-db/javascript-sdk/
 
 > **id**: `string`
 
-Defined in: [api/ingest-types.ts:410](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L410)
+Defined in: [api/ingest-types.ts:419](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L419)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [api/ingest-types.ts:410](https://github.com/rush-db/javascript-sdk/
 
 > **lastError**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:433](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L433)
+Defined in: [api/ingest-types.ts:442](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L442)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [api/ingest-types.ts:433](https://github.com/rush-db/javascript-sdk/
 
 > **lastRunAt**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:430](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L430)
+Defined in: [api/ingest-types.ts:439](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L439)
 
 ***
 
@@ -140,7 +140,7 @@ Defined in: [api/ingest-types.ts:430](https://github.com/rush-db/javascript-sdk/
 
 > **lastSuccessAt**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:431](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L431)
+Defined in: [api/ingest-types.ts:440](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L440)
 
 ***
 
@@ -148,7 +148,7 @@ Defined in: [api/ingest-types.ts:431](https://github.com/rush-db/javascript-sdk/
 
 > **lastWebhookAt**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:432](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L432)
+Defined in: [api/ingest-types.ts:441](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L441)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: [api/ingest-types.ts:432](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **logo?**: `string`
 
-Defined in: [api/ingest-types.ts:438](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L438)
+Defined in: [api/ingest-types.ts:447](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L447)
 
 The connector's brand logo (`data:image/svg+xml`), when it has one.
 
@@ -166,7 +166,7 @@ The connector's brand logo (`data:image/svg+xml`), when it has one.
 
 > **mode**: [`ConnectionMode`](ConnectionMode.md)
 
-Defined in: [api/ingest-types.ts:416](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L416)
+Defined in: [api/ingest-types.ts:425](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L425)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: [api/ingest-types.ts:416](https://github.com/rush-db/javascript-sdk/
 
 > **name**: `string`
 
-Defined in: [api/ingest-types.ts:411](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L411)
+Defined in: [api/ingest-types.ts:420](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L420)
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: [api/ingest-types.ts:411](https://github.com/rush-db/javascript-sdk/
 
 > **nextRunAt**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:418](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L418)
+Defined in: [api/ingest-types.ts:427](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L427)
 
 ***
 
@@ -190,7 +190,7 @@ Defined in: [api/ingest-types.ts:418](https://github.com/rush-db/javascript-sdk/
 
 > **scheduleMinutes**: `number` \| `null`
 
-Defined in: [api/ingest-types.ts:417](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L417)
+Defined in: [api/ingest-types.ts:426](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L426)
 
 ***
 
@@ -198,7 +198,7 @@ Defined in: [api/ingest-types.ts:417](https://github.com/rush-db/javascript-sdk/
 
 > **specId**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:413](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L413)
+Defined in: [api/ingest-types.ts:422](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L422)
 
 ***
 
@@ -206,7 +206,7 @@ Defined in: [api/ingest-types.ts:413](https://github.com/rush-db/javascript-sdk/
 
 > **status**: [`ConnectionStatus`](ConnectionStatus.md)
 
-Defined in: [api/ingest-types.ts:415](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L415)
+Defined in: [api/ingest-types.ts:424](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L424)
 
 ***
 
@@ -214,7 +214,7 @@ Defined in: [api/ingest-types.ts:415](https://github.com/rush-db/javascript-sdk/
 
 > **streams**: [`ConnectionStream`](ConnectionStream.md)[]
 
-Defined in: [api/ingest-types.ts:439](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L439)
+Defined in: [api/ingest-types.ts:448](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L448)
 
 ***
 
@@ -222,7 +222,7 @@ Defined in: [api/ingest-types.ts:439](https://github.com/rush-db/javascript-sdk/
 
 > **updatedAt**: `string`
 
-Defined in: [api/ingest-types.ts:441](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L441)
+Defined in: [api/ingest-types.ts:450](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L450)
 
 ***
 
@@ -230,7 +230,7 @@ Defined in: [api/ingest-types.ts:441](https://github.com/rush-db/javascript-sdk/
 
 > **webhookSetup**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:429](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L429)
+Defined in: [api/ingest-types.ts:438](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L438)
 
 ***
 
@@ -238,6 +238,6 @@ Defined in: [api/ingest-types.ts:429](https://github.com/rush-db/javascript-sdk/
 
 > **webhookUrl**: `string` \| `null`
 
-Defined in: [api/ingest-types.ts:425](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L425)
+Defined in: [api/ingest-types.ts:434](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L434)
 
 Where the provider sends events (when the connector supports webhooks).

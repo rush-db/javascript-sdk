@@ -17,6 +17,7 @@ import { DBRecordInstance, DBRecordsArrayInstance } from '../sdk/record.js'
 import type { SDKConfig, State } from '../sdk/types.js'
 import type {
   AnyObject,
+  CatalogWarning,
   FlatObject,
   InferSchemaTypesWrite,
   MaybeArray,
@@ -48,6 +49,9 @@ import type {
   UpsertEmbeddingVectorsParams,
   UpsertEmbeddingVectorsResult,
   CreateTextIndexParams,
+  CreatePropertyIndexParams,
+  IngestChunkFailure,
+  PropertyIndex,
   TextIndex,
   TextSearchParams,
   TextSearchReport,
@@ -77,6 +81,11 @@ import { Transaction } from '../sdk/transaction.js'
 import {
   buildTransactionHeader,
   buildUrl,
+  chunked,
+  chunkSizeOf,
+  csvChunks,
+  pickCatalogWarnings,
+  searchUntilApplied,
   generateRandomId,
   isPropertyDraft,
   pickRecordId,
@@ -354,6 +363,13 @@ export class RestAPI {
          *   Auto-wrapped into `[[entry1, entry2, …]]` so callers don't need the double nesting.
          */
         vectors?: VectorEntry[][] | VectorEntry[]
+        /**
+         * Rows per request, to send a large `data` in several requests one after another
+         * (default the client's `options.ingestChunkSize`; unset or `0` sends one request, which
+         * is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its own
+         * unless a `transaction` is passed.
+         */
+        chunkSize?: number
       },
       transaction?: Transaction | string
     ): Promise<DBRecordsArrayInstance<S>> => {
@@ -385,32 +401,12 @@ export class RestAPI {
           items.map((item, i) => (vectors[i]?.length ? { ...item, $vectors: vectors[i] } : item))
         : items
 
-      const txId = pickTransactionId(transaction)
-      const path = `/records/import/json`
-      const payload = {
-        headers: Object.assign({}, buildTransactionHeader(txId)),
-        method: 'POST',
-        requestData: { label: data.label, data: itemsWithVectors, options: data.options }
-      }
-      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
-      this.logger?.({ requestId, path, ...payload })
-
-      const response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(path, payload)
-      this.logger?.({ requestId, path, ...payload, responseData: response.data })
-
-      if (response?.success && response?.data) {
-        // If `returnResult` was not explicitly set to `true`, `response.data` may be just `true`.
-        // In that case, fallback to an empty array. Otherwise, map records to typed instances.
-        const dbRecordInstances =
-          isArray(response.data) ?
-            (<Array<DBRecord<S>>>response.data)?.map((r) => {
-              return new DBRecordInstance<S>(r, this)
-            })
-          : []
-        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total, undefined, undefined, this)
-      }
-
-      return new DBRecordsArrayInstance<S>([], 0, undefined, undefined, this)
+      const size = chunkSizeOf(data.chunkSize, this.options?.ingestChunkSize)
+      return this.importInChunks<S>(
+        '/records/import/json',
+        chunked(itemsWithVectors, size).map((rows) => ({ label: data.label, data: rows, options: data.options })),
+        transaction
+      )
     },
 
     /**
@@ -432,6 +428,13 @@ export class RestAPI {
         data: any
         label?: string
         options?: DBRecordCreationOptions
+        /**
+         * Documents per request, to send a large array in several requests (default the client's
+         * `options.nestedIngestChunkSize`, or `ingestChunkSize` for flat rows; unset or `0` sends
+         * one request, which is all-or-nothing). 10,000 nested documents or 5,000 flat rows are
+         * recommended. Chunked, each request commits on its own unless a `transaction` is passed.
+         */
+        chunkSize?: number
       },
       transaction?: Transaction | string
     ): Promise<DBRecordsArrayInstance<S>> => {
@@ -449,33 +452,19 @@ export class RestAPI {
         }
       }
 
-      const txId = pickTransactionId(transaction)
-      const path = `/records/import/json`
-      const payload = {
-        headers: Object.assign({}, buildTransactionHeader(txId)),
-        method: 'POST',
-        requestData: {
-          label,
-          data: payloadData,
-          options
-        }
-      }
-
-      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
-      this.logger?.({ requestId, path, ...payload })
-
-      const response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(path, payload)
-      this.logger?.({ requestId, path, ...payload, responseData: response.data })
-
-      if (response?.success && response?.data) {
-        const dbRecordInstances =
-          isArray(response.data) ?
-            (<Array<DBRecord<S>>>response.data)?.map((r) => new DBRecordInstance<S>(r, this))
-          : []
-        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total, undefined, undefined, this)
-      }
-
-      return new DBRecordsArrayInstance<S>([], 0, undefined, undefined, this)
+      // With a chunk size set, a top-level array is split into chunks of whole documents
+      // (flat rows by `ingestChunkSize`, nested documents by `nestedIngestChunkSize`).
+      // A container object is sent as it is.
+      const documents: Array<any> | undefined = label && isArray(payloadData) ? payloadData : undefined
+      const size =
+        documents?.every((item) => isFlatObject(item)) ?
+          chunkSizeOf(params.chunkSize, this.options?.ingestChunkSize)
+        : chunkSizeOf(params.chunkSize, this.options?.nestedIngestChunkSize)
+      const requests =
+        documents ?
+          chunked(documents, size).map((chunk) => ({ label, data: chunk, options }))
+        : [{ label, data: payloadData, options }]
+      return this.importInChunks<S>('/records/import/json', requests, transaction)
     },
 
     /**
@@ -508,29 +497,19 @@ export class RestAPI {
          * Its length must not exceed the number of data rows — validated server-side.
          */
         vectors?: VectorEntry[][]
+        /**
+         * Data rows per request, to send a large file in several requests, each with the header
+         * row (default the client's `options.ingestChunkSize`; unset or `0` sends one request,
+         * which is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its
+         * own unless a `transaction` is passed.
+         */
+        chunkSize?: number
       },
       transaction?: Transaction | string
     ): Promise<DBRecordsArrayInstance<S>> => {
-      const txId = pickTransactionId(transaction)
-      const path = `/records/import/csv`
-      const payload = {
-        headers: Object.assign({}, buildTransactionHeader(txId)),
-        method: 'POST',
-        requestData: params
-      }
-      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
-      this.logger?.({ requestId, path, ...payload })
-
-      const response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(path, payload)
-      this.logger?.({ requestId, path, ...payload, responseData: response.data })
-
-      if (response?.success && response?.data) {
-        const dbRecordInstances =
-          isArray(response.data) ? response.data.map((r) => new DBRecordInstance<S>(r, this)) : []
-        return new DBRecordsArrayInstance<S>(dbRecordInstances, response.total, undefined, undefined, this)
-      }
-
-      return new DBRecordsArrayInstance<S>([], 0, undefined, undefined, this)
+      const { chunkSize, ...request } = params
+      const size = chunkSizeOf(chunkSize, this.options?.ingestChunkSize)
+      return this.importInChunks<S>('/records/import/csv', csvChunks(request, size), transaction)
     },
 
     /**
@@ -648,13 +627,18 @@ export class RestAPI {
         return new DBRecordInstance<S>(r, this)
       })
 
-      return new DBRecordsArrayInstance<S, Q>(
+      const result = new DBRecordsArrayInstance<S, Q>(
         dbRecordInstances,
         response.total,
         searchQueryWithEntryPoint,
         undefined,
         this
       )
+      const catalogWarnings = pickCatalogWarnings(response.warnings)
+      if (catalogWarnings) {
+        result.catalogWarnings = catalogWarnings
+      }
+      return result
     },
 
     /**
@@ -669,72 +653,29 @@ export class RestAPI {
      * @param params - Vector search parameters including the indexed property, labels, and query input
      */
     vectorSearch: async <S extends Schema = any>(
-      params: VectorSearchParams,
+      { waitForPending, ...params }: VectorSearchParams,
       transaction?: Transaction | string
-    ): Promise<DBRecordsArrayInstance<S>> => {
-      const txId = pickTransactionId(transaction)
-      const path = `/ai/search`
-      const payload = {
-        method: 'POST',
-        headers: Object.assign({}, buildTransactionHeader(txId)),
-        requestData: params
-      }
-      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
-      this.logger?.({ requestId, path, ...payload })
-
-      const response = await this.fetcher<
-        ApiResponse<
-          VectorSearchResult<S>[],
-          {
-            meta?: {
-              vectorSearch?: VectorSearchReport
-              textSearch?: TextSearchReport
-              fusion?: 'rrf' | 'dbsf'
-            }
-          }
-        >
-      >(path, payload)
-      this.logger?.({ requestId, path, ...payload, responseData: response.data })
-
-      const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>, this))
-      const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0, undefined, undefined, this)
-      result.vectorSearch = response.meta?.vectorSearch
-      result.textSearch = response.meta?.textSearch
-      result.fusion = response.meta?.fusion
-      return result
-    },
+    ): Promise<DBRecordsArrayInstance<S>> =>
+      searchUntilApplied(waitForPending, () => this.vectorSearchOnce<S>(params, transaction)),
 
     /**
      * Keyword (BM25) search over a text index: the records matching `query`,
      * best first (`__score`), among those `labels` and `where` select.
      * `total` counts every match, not just the page.
      *
+     * An `eventual` text index (the default) applies writes shortly after
+     * they commit, so a search sent right after a write may miss it; the
+     * result's `textSearch.pending` counts the changes not applied yet. Pass
+     * `waitForPending: true` to repeat the search until they are, or create
+     * the index with `consistency: 'immediate'`.
+     *
      * @param params - Keywords, the index (or the label whose one text index to use) and filters
      */
     textSearch: async <S extends Schema = any>(
-      params: TextSearchParams,
+      { waitForPending, ...params }: TextSearchParams,
       transaction?: Transaction | string
-    ): Promise<DBRecordsArrayInstance<S>> => {
-      const txId = pickTransactionId(transaction)
-      const path = `/search/text`
-      const payload = {
-        method: 'POST',
-        headers: Object.assign({}, buildTransactionHeader(txId)),
-        requestData: params
-      }
-      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
-      this.logger?.({ requestId, path, ...payload })
-
-      const response = await this.fetcher<
-        ApiResponse<VectorSearchResult<S>[], { meta?: { textSearch?: TextSearchReport } }>
-      >(path, payload)
-      this.logger?.({ requestId, path, ...payload, responseData: response.data })
-
-      const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>, this))
-      const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0, undefined, undefined, this)
-      result.textSearch = response.meta?.textSearch
-      return result
-    },
+    ): Promise<DBRecordsArrayInstance<S>> =>
+      searchUntilApplied(waitForPending, () => this.textSearchOnce<S>(params, transaction)),
 
     /**
      * Retrieves record(s) by ID
@@ -1358,6 +1299,10 @@ export class RestAPI {
       const response = await this.fetcher<ApiResponse<Property & PropertyValuesData>>(path, payload)
       this.logger?.({ requestId, path, ...payload, responseData: response.data })
 
+      const catalogWarnings = pickCatalogWarnings(response.warnings)
+      if (catalogWarnings && response.data) {
+        response.data.catalogWarnings = catalogWarnings
+      }
       return response
     }
   }
@@ -1551,8 +1496,33 @@ export class RestAPI {
   }
 
   /**
-   * API methods for AI-assisted graph exploration.
+   * Ordered and unique property indexes. An ordered index answers equality,
+   * range and `$within` filters and sorting on one property of a label; a
+   * unique one (`unique: true`, RushDB 3.0.14 and later) also refuses a write
+   * that would give a second record of the label a value another record of it
+   * holds, with a {@link UniqueConstraintError}.
    */
+  public indexes = {
+    /** Lists the project's ordered and unique indexes (text indexes are in `textIndexes`). */
+    find: async () => this.textIndexRequest<PropertyIndex[]>('/indexes', 'GET'),
+
+    /**
+     * Declares an ordered index, or a unique one with `unique: true`. It is
+     * built online: `status` starts at `building` and turns `ready`.
+     * Declaring a unique index over data that already repeats a value is
+     * refused with a 409.
+     */
+    create: async ({ unique, ...params }: CreatePropertyIndexParams) =>
+      this.textIndexRequest<PropertyIndex>('/indexes', 'POST', {
+        ...params,
+        kind: unique ? 'unique' : 'ordered'
+      }),
+
+    /** Drops an ordered or unique index by name. */
+    delete: async (name: string) =>
+      this.textIndexRequest<{ deleted: boolean }>(`/indexes/${encodeURIComponent(name)}`, 'DELETE')
+  }
+
   /**
    * BM25 text indexes, searched with `db.records.textSearch()` or as the
    * keyword leg of a hybrid `db.records.vectorSearch({ text })`.
@@ -1577,6 +1547,119 @@ export class RestAPI {
       this.textIndexRequest<{ deleted: boolean }>(`/text-indexes/${encodeURIComponent(name)}`, 'DELETE')
   }
 
+  /**
+   * Sends import requests one after another (one per chunk) and returns their
+   * records together; `total` adds up the requests' totals. When a chunk of a
+   * chunked write fails, its error gets `ingest` ({@link IngestChunkFailure}):
+   * the chunks before it committed (or were staged, in a transaction).
+   */
+  private async importInChunks<S extends Schema = any>(
+    path: string,
+    requests: Array<Record<string, any>>,
+    transaction?: Transaction | string
+  ): Promise<DBRecordsArrayInstance<S>> {
+    const txId = pickTransactionId(transaction)
+    const records: Array<DBRecordInstance<S>> = []
+    let total = 0
+    for (const [index, requestData] of requests.entries()) {
+      const payload = {
+        headers: Object.assign({}, buildTransactionHeader(txId)),
+        method: 'POST',
+        requestData
+      }
+      const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+      this.logger?.({ requestId, path, ...payload })
+
+      let response: ApiResponse<Array<DBRecord<S>>>
+      try {
+        response = await this.fetcher<ApiResponse<Array<DBRecord<S>>>>(path, payload)
+      } catch (error) {
+        if (requests.length > 1 && error && typeof error === 'object') {
+          const ingest: IngestChunkFailure = {
+            chunks: requests.length,
+            failedChunk: index,
+            completedChunks: index,
+            completedRecords: total,
+            inTransaction: Boolean(txId)
+          }
+          Object.assign(error, { ingest })
+        }
+        throw error
+      }
+      this.logger?.({ requestId, path, ...payload, responseData: response.data })
+
+      if (response?.success && response?.data) {
+        // If `returnResult` was not explicitly set to `true`, `response.data` may be just `true`.
+        // In that case, fallback to an empty array. Otherwise, map records to typed instances.
+        const page = isArray(response.data) ? response.data.map((r) => new DBRecordInstance<S>(r, this)) : []
+        records.push(...page)
+        total += response.total ?? page.length
+      }
+    }
+    return new DBRecordsArrayInstance<S>(records, total, undefined, undefined, this)
+  }
+
+  private async vectorSearchOnce<S extends Schema = any>(
+    params: Omit<VectorSearchParams, 'waitForPending'>,
+    transaction?: Transaction | string
+  ): Promise<DBRecordsArrayInstance<S>> {
+    const txId = pickTransactionId(transaction)
+    const path = `/ai/search`
+    const payload = {
+      method: 'POST',
+      headers: Object.assign({}, buildTransactionHeader(txId)),
+      requestData: params
+    }
+    const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+    this.logger?.({ requestId, path, ...payload })
+
+    const response = await this.fetcher<
+      ApiResponse<
+        VectorSearchResult<S>[],
+        {
+          meta?: {
+            vectorSearch?: VectorSearchReport
+            textSearch?: TextSearchReport
+            fusion?: 'rrf' | 'dbsf'
+          }
+        }
+      >
+    >(path, payload)
+    this.logger?.({ requestId, path, ...payload, responseData: response.data })
+
+    const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>, this))
+    const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0, undefined, undefined, this)
+    result.vectorSearch = response.meta?.vectorSearch
+    result.textSearch = response.meta?.textSearch
+    result.fusion = response.meta?.fusion
+    return result
+  }
+
+  private async textSearchOnce<S extends Schema = any>(
+    params: Omit<TextSearchParams, 'waitForPending'>,
+    transaction?: Transaction | string
+  ): Promise<DBRecordsArrayInstance<S>> {
+    const txId = pickTransactionId(transaction)
+    const path = `/search/text`
+    const payload = {
+      method: 'POST',
+      headers: Object.assign({}, buildTransactionHeader(txId)),
+      requestData: params
+    }
+    const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
+    this.logger?.({ requestId, path, ...payload })
+
+    const response = await this.fetcher<
+      ApiResponse<VectorSearchResult<S>[], { meta?: { textSearch?: TextSearchReport } }>
+    >(path, payload)
+    this.logger?.({ requestId, path, ...payload, responseData: response.data })
+
+    const dbRecordInstances = (response.data ?? []).map((r) => new DBRecordInstance<S>(r as DBRecord<S>, this))
+    const result = new DBRecordsArrayInstance<S>(dbRecordInstances, response.total ?? 0, undefined, undefined, this)
+    result.textSearch = response.meta?.textSearch
+    return result
+  }
+
   private async textIndexRequest<T>(path: string, method: string, requestData?: Record<string, any>) {
     const payload = { method, headers: {}, ...(requestData === undefined ? {} : { requestData }) }
     const requestId = typeof this.logger === 'function' ? generateRandomId() : ''
@@ -1586,6 +1669,9 @@ export class RestAPI {
     return response
   }
 
+  /**
+   * API methods for AI-assisted graph exploration.
+   */
   public ai = {
     /**
      * Stored values matching a text across every property, with the label and property

@@ -195,6 +195,127 @@ await db.relationships.update({
 })
 ```
 
+### Dates, times, durations and points
+
+RushDB 3.0.14 stores each of these as a type of its own. With type inference on (the default), strings in these forms are typed on write:
+
+| Value | Type |
+|---|---|
+| `"2024-05-01T12:30:00+02:00"`, `"2024-05-01T10:30:00Z"` | `datetime`: reads back at the offset it was written with, to the microsecond |
+| `"2024-05-01T10:30:00"` | `localdatetime` (no zone) |
+| `"2024-05-01"` | `date` |
+| `"10:30:00"` | `localtime` |
+| `"P1DT2H"` | `duration` |
+| `{ type: 'Point', coordinates: [13.405, 52.52] }` | `point` (GeoJSON, longitude first; `crs: 'cartesian'` for a plane) |
+
+Before 3.0.14, `"2024-05-01"` and `"2024-05-01T10:30:00"` were datetimes at UTC, and times and durations were strings. Filters compare a value in the property's own type, so `{ day: { $gte: '2024-05-01' } }` works on a `date` property and an equality on datetimes matches the same instant at any offset. `$min`, `$max` and `$timeBucket` over temporal properties return ISO 8601 text. The type names are exported as `PROPERTY_TYPE_DATE`, `PROPERTY_TYPE_LOCALTIME`, `PROPERTY_TYPE_LOCALDATETIME`, `PROPERTY_TYPE_DURATION` and `PROPERTY_TYPE_POINT`.
+
+### Spatial queries
+
+`$within` matches points within a radius (haversine meters for WGS-84) or inside a box from its south-west to its north-east corner; `orderBy` with `$distance` sorts nearest first. An ordered index on the point property (`db.indexes.create`) answers `$within` from the index. RushDB 3.0.14 and later.
+
+`point`, `withinRadius`, `withinBox` and `distanceFrom` build these values, so there is no GeoJSON or `$within`/`$distance` object to write by hand:
+
+```typescript
+import { distanceFrom, point, withinBox, withinRadius } from '@rushdb/javascript-sdk'
+
+const berlin = point(13.405, 52.52) // { type: 'Point', coordinates: [13.405, 52.52] }
+
+const nearest = await db.records.find({
+  labels: ['CAFE'],
+  where: { location: withinRadius(berlin, 2000) },
+  orderBy: { location: distanceFrom(berlin) },
+  limit: 5
+})
+
+await db.records.find({
+  labels: ['CAFE'],
+  where: { location: withinBox(point(13.3, 52.45), point(13.5, 52.55)) }
+})
+
+await db.records.create({ label: 'CAFE', data: { name: 'Kaffeehaus', location: berlin } })
+```
+
+| Helper | Returns |
+|---|---|
+| `point(longitude, latitude, height?, { crs? }?)` | `{ type: 'Point', coordinates: [longitude, latitude(, height)], crs? }`; with a Cartesian `crs` the coordinates are `x, y(, z)` |
+| `withinRadius(center, meters)` | `{ $within: { center, meters } }`, for a `where` value; haversine meters for WGS-84, plane units for Cartesian points |
+| `withinBox(southWest, northEast)` | `{ $within: { box: [southWest, northEast] } }`, for a `where` value; edges included, and a WGS-84 box whose south-west longitude is east of its north-east one crosses the antimeridian |
+| `distanceFrom(center)` | `{ $distance: center }`, for an `orderBy` value: nearest first, records without a point last |
+
+### Catalog check: names and values no record holds
+
+From RushDB 3.0.14, a search names in `catalogWarnings` any label, property or compared text that no record holds, with what it most likely meant. `records.find` (aggregates included) and `properties.values` results carry it; it is absent when nothing is missing.
+
+```typescript
+const people = await db.records.find({ labels: ['PERSON'], where: { city: 'berlin' } })
+people.catalogWarnings
+// [{ kind: 'unknownValue', labels: ['PERSON'], property: 'city', value: 'berlin',
+//    suggestions: [{ value: 'Berlin', reason: 'spelling' }] }]
+```
+
+`context.check` sets what the server does: `'warn'` (its default) runs the query and reports misses, `'strict'` refuses the query with a `CatalogCheckError` (its `warnings` say why), `'off'` skips the check. The SDK sends `context` only when you set it; in direct mode, a `check` on an engine older than 3.0.14 throws `DirectModeError` before the query is sent.
+
+```typescript
+import { CatalogCheckError } from '@rushdb/javascript-sdk'
+
+try {
+  await db.records.find({ labels: ['PERSON'], where: { city: 'berlin' }, context: { check: 'strict' } })
+} catch (error) {
+  if (error instanceof CatalogCheckError) console.log(error.warnings)
+}
+```
+
+### Unique indexes
+
+`db.indexes` manages ordered and unique property indexes. A unique index (RushDB 3.0.14 and later) refuses a write that gives a second record of the label a value another record of it holds. The write fails with a `UniqueConstraintError` that names the `label`, `property` and the `recordId` already holding the value (never the value itself). Declaring one over data that already repeats a value is refused with a 409.
+
+```typescript
+import { UniqueConstraintError } from '@rushdb/javascript-sdk'
+
+await db.indexes.create({ label: 'USER', property: 'email', unique: true }) // name: 'USER.email.unique'
+await db.indexes.find() // [{ name, label, property, kind: 'unique', unique: true, status: 'building' | 'ready' | 'dropping' }]
+
+try {
+  await db.records.create({ label: 'USER', data: { email: 'ada@example.com' } })
+} catch (error) {
+  if (error instanceof UniqueConstraintError) console.log(error.recordId)
+}
+
+await db.indexes.delete('USER.email.unique') // listed as `dropping` until the engine removes it
+```
+
+Every failed request's error keeps the server's `status`, `code`, `retryable` and `details`.
+
+### Sending large writes in chunks
+
+`records.createMany`, `records.importCsv` and `records.importJson` send each call as one request, which commits all or nothing. For a large write, set a chunk size to send it as several requests one after another. About 5,000 rows per request (flat rows and CSV) and 10,000 for nested documents load fastest (`RECOMMENDED_INGEST_CHUNK_SIZE`, `RECOMMENDED_NESTED_INGEST_CHUNK_SIZE`). A CSV chunk repeats the header row, inline vectors stay with their rows, and the result and `total` cover every chunk.
+
+```typescript
+await db.records.createMany({ label: 'EVENT', data: rows, chunkSize: 5000 })
+
+// or for every call of a client
+const db = new RushDB('RUSHDB_API_KEY', { options: { ingestChunkSize: 5000, nestedIngestChunkSize: 10000 } })
+```
+
+**A chunked write is not atomic.** Each chunk commits on its own. If one fails, the chunks before it stay written, and the error's `ingest` says how far the write got: `{ chunks, failedChunk, completedChunks, completedRecords, inTransaction }`. Pass a transaction to make the whole write all-or-nothing again.
+
+### Searching text right after a write
+
+A text index is `eventual` by default: it applies a write within milliseconds of the commit, but a search sent at the same moment can miss it. The result's `textSearch.pending` counts the changes it has not applied yet. To read your own writes, either:
+
+- create the index with `consistency: 'immediate'`, so each search first applies what is queued; or
+- pass `waitForPending` to repeat the search while `pending` is above 0 (`true` waits up to 2 seconds, or `{ timeoutMs, intervalMs }`). After the timeout, the last result is returned.
+
+```typescript
+await db.textIndexes.create({ label: 'NOTE', property: 'body', consistency: 'immediate' })
+
+await db.records.create({ label: 'NOTE', data: { body: 'quarterly revenue review' } })
+const hits = await db.records.textSearch({ query: 'revenue', labels: ['NOTE'], waitForPending: true })
+```
+
+`waitForPending` works on hybrid searches (`records.vectorSearch` with `text`) too.
+
 ---
 
 ## File imports and connections (RushDB Cloud)
@@ -377,6 +498,7 @@ Key options:
 - `timeout` — request timeout in ms (default: 10000)
 - `httpClient` — custom HTTP client for advanced use
 - `options.allowForceDelete` — allow deleting all records without criteria (default: false)
+- `options.ingestChunkSize`, `options.nestedIngestChunkSize` — split imports into requests of this many rows / nested documents (default: one atomic request; 5,000 and 10,000 recommended)
 - `direct`, `engineUrl`, `scope` — direct mode against a standalone engine (see above)
 
 Full config reference: [docs.rushdb.com/3.x/learn/reference/typescript/RushDB](https://docs.rushdb.com/3.x/learn/reference/typescript/RushDB/#sdkconfig-options)

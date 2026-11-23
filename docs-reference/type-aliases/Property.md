@@ -8,4 +8,4 @@
 
 > **Property** = `WithId`\<\{ `metadata?`: `string`; `name`: `string`; `recordsCount?`: `number`; `type`: [`PropertyType`](PropertyType.md); \}\>
 
-Defined in: [types/value.ts:44](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L44)
+Defined in: [types/value.ts:74](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L74)

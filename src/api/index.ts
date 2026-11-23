@@ -3,7 +3,9 @@ export {
   ApiResponse,
   CreateEmbeddingIndexParams,
   CreateTextIndexParams,
+  CreatePropertyIndexParams,
   DeleteRelationshipPatternOptions,
+  IngestChunkFailure,
   EmbeddingIndex,
   EmbeddingIndexStats,
   RelationshipPattern,
@@ -19,6 +21,7 @@ export {
   SimilarityFunction,
   SmartSearchOptions,
   SmartSearchSqlResponse,
+  PropertyIndex,
   TextIndex,
   TextSearchParams,
   TextSearchReport,
@@ -27,5 +30,6 @@ export {
   UpsertEmbeddingVectorsResult,
   VectorSearchParams,
   VectorSearchReport,
-  VectorSearchResult
+  VectorSearchResult,
+  WaitForPending
 } from './types.js'

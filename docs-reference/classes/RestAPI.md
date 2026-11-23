@@ -6,7 +6,7 @@
 
 # Class: RestAPI
 
-Defined in: [api/api.ts:86](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L86)
+Defined in: [api/api.ts:95](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L95)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [api/api.ts:86](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **new RestAPI**(`token?`, `config?`): `RestAPI`
 
-Defined in: [api/api.ts:102](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L102)
+Defined in: [api/api.ts:111](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L111)
 
 #### Parameters
 
@@ -40,7 +40,9 @@ SDKConfig & \{ httpClient: HttpClient; \}
 
 > **ai**: `object`
 
-Defined in: [api/api.ts:1589](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1589)
+Defined in: [api/api.ts:1675](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1675)
+
+API methods for AI-assisted graph exploration.
 
 #### getJoinCandidates
 
@@ -393,7 +395,7 @@ The search text, match mode, labels to search and a limit.
 
 > **connections**: `object`
 
-Defined in: [api/api.ts:1497](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1497)
+Defined in: [api/api.ts:1442](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1442)
 
 Connections to SaaS tools, custom APIs and webhooks, and their syncs.
 **RushDB Cloud only.**
@@ -690,7 +692,7 @@ Changes name, credentials, mode, schedule or stream settings (labels, delete mod
 
 > **direct**: `DirectEngine` \| `undefined`
 
-Defined in: [api/api.ts:95](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L95)
+Defined in: [api/api.ts:104](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L104)
 
 Direct engine transport (standalone `rushdb`) when `direct` mode is set.
 In direct mode every request is answered from the engine; nothing is sent
@@ -702,7 +704,7 @@ to RushDB Cloud.
 
 > **fetcher**: \<`Data`\>(`input`, `__namedParameters`) => `Promise`\<`Data`\>
 
-Defined in: [api/api.ts:87](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L87)
+Defined in: [api/api.ts:96](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L96)
 
 #### Type Parameters
 
@@ -730,7 +732,7 @@ Defined in: [api/api.ts:87](https://github.com/rush-db/javascript-sdk/blob/main/
 
 > **imports**: `object`
 
-Defined in: [api/api.ts:1491](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1491)
+Defined in: [api/api.ts:1436](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1436)
 
 Background file imports: `create` → `upload` → `preview` → `start`, or
 `importFiles` for all of it; `get`/`wait` follow a run (file imports and
@@ -992,11 +994,70 @@ Polls a run until it is `completed`, `partial`, `failed` or
 
 ***
 
+### indexes
+
+> **indexes**: `object`
+
+Defined in: [api/api.ts:1505](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1505)
+
+Ordered and unique property indexes. An ordered index answers equality,
+range and `$within` filters and sorting on one property of a label; a
+unique one (`unique: true`, RushDB 3.0.14 and later) also refuses a write
+that would give a second record of the label a value another record of it
+holds, with a [UniqueConstraintError](UniqueConstraintError.md).
+
+#### create
+
+> **create**: (`__namedParameters`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`PropertyIndex`](../type-aliases/PropertyIndex.md)\>\>
+
+Declares an ordered index, or a unique one with `unique: true`. It is
+built online: `status` starts at `building` and turns `ready`.
+Declaring a unique index over data that already repeats a value is
+refused with a 409.
+
+##### Parameters
+
+###### \_\_namedParameters
+
+[`CreatePropertyIndexParams`](../type-aliases/CreatePropertyIndexParams.md)
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`PropertyIndex`](../type-aliases/PropertyIndex.md)\>\>
+
+#### delete
+
+> **delete**: (`name`) => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `deleted`: `boolean`; \}\>\>
+
+Drops an ordered or unique index by name.
+
+##### Parameters
+
+###### name
+
+`string`
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<\{ `deleted`: `boolean`; \}\>\>
+
+#### find
+
+> **find**: () => `Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`PropertyIndex`](../type-aliases/PropertyIndex.md)[]\>\>
+
+Lists the project's ordered and unique indexes (text indexes are in `textIndexes`).
+
+##### Returns
+
+`Promise`\<[`ApiResponse`](../type-aliases/ApiResponse.md)\<[`PropertyIndex`](../type-aliases/PropertyIndex.md)[]\>\>
+
+***
+
 ### labels
 
 > **labels**: `object`
 
-Defined in: [api/api.ts:1368](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1368)
+Defined in: [api/api.ts:1313](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1313)
 
 API methods for managing labels in the database
 
@@ -1038,21 +1099,21 @@ Promise with the API response containing a record of label names and their count
 
 > **logger**: [`Logger`](../type-aliases/Logger.md) \| `undefined`
 
-Defined in: [api/api.ts:89](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L89)
+Defined in: [api/api.ts:98](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L98)
 
 ***
 
 ### options
 
-> **options**: \{ `allowForceDelete?`: `boolean`; \} \| `undefined`
+> **options**: \{ `allowForceDelete?`: `boolean`; `ingestChunkSize?`: `number`; `nestedIngestChunkSize?`: `number`; \} \| `undefined`
 
-Defined in: [api/api.ts:88](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L88)
+Defined in: [api/api.ts:97](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L97)
 
 #### Union Members
 
 ##### Type Literal
 
-\{ `allowForceDelete?`: `boolean`; \}
+\{ `allowForceDelete?`: `boolean`; `ingestChunkSize?`: `number`; `nestedIngestChunkSize?`: `number`; \}
 
 ##### allowForceDelete?
 
@@ -1064,6 +1125,23 @@ Defaults to `false`.
 Allows using the `delete()` method without a specified criteria,
 which results in deleting all Records in the project.
 
+##### ingestChunkSize?
+
+> `optional` **ingestChunkSize?**: `number`
+
+Split `records.createMany`, `records.importCsv` and `records.importJson`
+(flat rows) into requests of this many rows. Unset (the default) or `0`
+sends each write in one all-or-nothing request. 5,000 is recommended for
+large writes; chunked, each request commits on its own unless the call
+passes a transaction.
+
+##### nestedIngestChunkSize?
+
+> `optional` **nestedIngestChunkSize?**: `number`
+
+Split `records.importJson` arrays of nested documents into requests of
+this many documents. Unset or `0` sends one request; 10,000 is recommended.
+
 ***
 
 `undefined`
@@ -1074,7 +1152,7 @@ which results in deleting all Records in the project.
 
 > **properties**: `object`
 
-Defined in: [api/api.ts:1263](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1263)
+Defined in: [api/api.ts:1204](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1204)
 
 API methods for managing properties in the database
 
@@ -1178,7 +1256,7 @@ The unique identifier of the property
 
 ###### searchQuery?
 
-[`SearchQueryLabelsClause`](../type-aliases/SearchQueryLabelsClause.md) & [`PaginationClause`](../type-aliases/PaginationClause.md) & [`OrderClause`](../type-aliases/OrderClause.md)\<`any`\> & [`WhereClause`](../type-aliases/WhereClause.md)\<`any`\> & [`SelectClause`](../type-aliases/SelectClause.md) & [`AggregateClause`](../type-aliases/AggregateClause.md) & [`GroupByClause`](../type-aliases/GroupByClause.md) & `object` & [`PropertyValuesSearch`](../type-aliases/PropertyValuesSearch.md)
+[`SearchQueryLabelsClause`](../type-aliases/SearchQueryLabelsClause.md) & [`SearchContextClause`](../type-aliases/SearchContextClause.md) & [`PaginationClause`](../type-aliases/PaginationClause.md) & [`OrderClause`](../type-aliases/OrderClause.md)\<`any`\> & [`WhereClause`](../type-aliases/WhereClause.md)\<`any`\> & [`SelectClause`](../type-aliases/SelectClause.md) & [`AggregateClause`](../type-aliases/AggregateClause.md) & [`GroupByClause`](../type-aliases/GroupByClause.md) & `object` & [`PropertyValuesSearch`](../type-aliases/PropertyValuesSearch.md)
 
 Query parameters to filter properties
 
@@ -1200,7 +1278,7 @@ Promise with the API response containing the property and its values
 
 > **query**: `object`
 
-Defined in: [api/api.ts:1519](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1519)
+Defined in: [api/api.ts:1464](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1464)
 
 #### raw
 
@@ -1252,7 +1330,7 @@ ApiResponse<any> - Raw result returned by the server (wrapped in ApiResponse)
 
 > **records**: `object`
 
-Defined in: [api/api.ts:183](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L183)
+Defined in: [api/api.ts:192](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L192)
 
 API methods for managing database records
 
@@ -1366,6 +1444,15 @@ For nested/complex JSON, use `records.importJson`.
 ###### data
 
 Object containing label, options and data array (of flat objects)
+
+###### chunkSize?
+
+`number`
+
+Rows per request, to send a large `data` in several requests one after another
+(default the client's `options.ingestChunkSize`; unset or `0` sends one request, which
+is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its own
+unless a `transaction` is passed.
 
 ###### data
 
@@ -1712,6 +1799,15 @@ Imports records from CSV data.
 
 CSV import configuration
 
+###### chunkSize?
+
+`number`
+
+Data rows per request, to send a large file in several requests, each with the header
+row (default the client's `options.ingestChunkSize`; unset or `0` sends one request,
+which is all-or-nothing). 5,000 is recommended. Chunked, each request commits on its
+own unless a `transaction` is passed.
+
 ###### data
 
 `string`
@@ -1807,6 +1903,15 @@ Throws if `label` is missing and the input is a top-level array or object record
 
 ###### params
 
+###### chunkSize?
+
+`number`
+
+Documents per request, to send a large array in several requests (default the client's
+`options.nestedIngestChunkSize`, or `ingestChunkSize` for flat rows; unset or `0` sends
+one request, which is all-or-nothing). 10,000 nested documents or 5,000 flat rows are
+recommended. Chunked, each request commits on its own unless a `transaction` is passed.
+
 ###### data
 
 `any`
@@ -1897,6 +2002,12 @@ Error if data is not a flat object
 Keyword (BM25) search over a text index: the records matching `query`,
 best first (`__score`), among those `labels` and `where` select.
 `total` counts every match, not just the page.
+
+An `eventual` text index (the default) applies writes shortly after
+they commit, so a search sent right after a write may miss it; the
+result's `textSearch.pending` counts the changes not applied yet. Pass
+`waitForPending: true` to repeat the search until they are, or create
+the index with `consistency: 'immediate'`.
 
 ##### Type Parameters
 
@@ -2060,7 +2171,7 @@ with RushDB Cloud's managed model, so it throws `CloudOnlyError` without sending
 
 > **relationships**: `object`
 
-Defined in: [api/api.ts:1030](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1030)
+Defined in: [api/api.ts:971](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L971)
 
 API methods for managing relations between records
 
@@ -2386,7 +2497,7 @@ Promise with the number of relationships updated
 
 > **settings**: `object`
 
-Defined in: [api/api.ts:1499](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1499)
+Defined in: [api/api.ts:1444](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1444)
 
 #### get
 
@@ -2408,7 +2519,7 @@ The project's settings.
 
 > **textIndexes**: `object`
 
-Defined in: [api/api.ts:1560](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1560)
+Defined in: [api/api.ts:1530](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1530)
 
 BM25 text indexes, searched with `db.records.textSearch()` or as the
 keyword leg of a hybrid `db.records.vectorSearch({ text })`.
@@ -2478,7 +2589,7 @@ The name a new text index would get by default, unique in the project.
 
 > **tx**: `object`
 
-Defined in: [api/api.ts:1397](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1397)
+Defined in: [api/api.ts:1342](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L1342)
 
 API methods for managing database transactions
 
@@ -2584,7 +2695,7 @@ If the transaction cannot be rolled back or doesn't exist
 
 > **\_extractTargetIds**(`target`, `operation`): `string`[]
 
-Defined in: [api/api.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L138)
+Defined in: [api/api.ts:147](https://github.com/rush-db/javascript-sdk/blob/main/src/api/api.ts#L147)
 
 #### Parameters
 

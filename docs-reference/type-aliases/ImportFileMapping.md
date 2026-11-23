@@ -8,7 +8,7 @@
 
 > **ImportFileMapping** = `object`
 
-Defined in: [api/ingest-types.ts:120](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L120)
+Defined in: [api/ingest-types.ts:129](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L129)
 
 How one file maps to the graph.
 
@@ -18,7 +18,7 @@ How one file maps to the graph.
 
 > `optional` **delimiter?**: `string`
 
-Defined in: [api/ingest-types.ts:129](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L129)
+Defined in: [api/ingest-types.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L138)
 
 CSV only.
 
@@ -28,7 +28,7 @@ CSV only.
 
 > `optional` **hash?**: `string`[]
 
-Defined in: [api/ingest-types.ts:125](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L125)
+Defined in: [api/ingest-types.ts:134](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L134)
 
 Columns kept as a keyed hash: personal data that should still join across sources, not readable.
 
@@ -38,7 +38,7 @@ Columns kept as a keyed hash: personal data that should still join across source
 
 > `optional` **keyColumn?**: `string`
 
-Defined in: [api/ingest-types.ts:122](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L122)
+Defined in: [api/ingest-types.ts:131](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L131)
 
 Column whose value identifies a row across imports: re-importing the file upserts.
 
@@ -48,7 +48,7 @@ Column whose value identifies a row across imports: re-importing the file upsert
 
 > `optional` **rename?**: `Record`\<`string`, `string`\>
 
-Defined in: [api/ingest-types.ts:126](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L126)
+Defined in: [api/ingest-types.ts:135](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L135)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [api/ingest-types.ts:126](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **skip?**: `string`[]
 
-Defined in: [api/ingest-types.ts:123](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L123)
+Defined in: [api/ingest-types.ts:132](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L132)
 
 ***
 
@@ -64,4 +64,4 @@ Defined in: [api/ingest-types.ts:123](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **types?**: `Record`\<`string`, [`ImportColumnType`](ImportColumnType.md)\>
 
-Defined in: [api/ingest-types.ts:127](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L127)
+Defined in: [api/ingest-types.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L136)

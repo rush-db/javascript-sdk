@@ -14,7 +14,13 @@ import { CloudOnlyError, DirectModeError } from '../sdk/errors.js'
  */
 
 type Body = Record<string, any>
-type ApiResponse = { success: true; data: any; total?: number; meta?: Record<string, any> }
+type ApiResponse = {
+  success: true
+  data: any
+  total?: number
+  meta?: Record<string, any>
+  warnings?: Array<Record<string, any>>
+}
 
 type Request = {
   body: Body
@@ -150,15 +156,32 @@ const isEmptyObject = (value: unknown) =>
 const getRecord = async (engine: DirectEngine, id: string) =>
   (await engine.execute({ kind: 'query', query: { kind: 'record', id } })).record
 
-const searchRecords = async (engine: DirectEngine, search: Body) => {
-  const result = await engine.execute({
-    kind: 'query',
-    query: { kind: 'records', query: queryDocument(search) }
-  })
-  if (result.kind === 'rows') {
-    return { data: result.rows ?? [], total: result.total ?? 0 }
+/** Refuses a 3.0.14 feature on an engine that does not advertise it, before the request is sent. */
+const requireCapability = async (engine: DirectEngine, flag: string, what: string) => {
+  if (!(await engine.supports(flag))) {
+    throw new DirectModeError(
+      `${what} needs an engine that supports \`${flag}\` (RushDB 3.0.14 or later); this engine does not advertise it.`
+    )
   }
-  return { data: toSdkRecords(result.records), total: result.total ?? 0 }
+}
+
+/** The request context of a search: `context.check` when the caller set it. */
+const searchContext = async (engine: DirectEngine, search: Body): Promise<{ check?: string } | undefined> => {
+  if (typeof search.context?.check !== 'string') {
+    return undefined
+  }
+  await requireCapability(engine, 'catalogCheck', '`context.check`')
+  return { check: search.context.check }
+}
+
+const searchRecords = async (engine: DirectEngine, search: Body) => {
+  const { response: result, warnings } = await engine.run(
+    { kind: 'query', query: { kind: 'records', query: queryDocument(search) } },
+    await searchContext(engine, search)
+  )
+  const total = result.total ?? 0
+  const data = result.kind === 'rows' ? (result.rows ?? []) : toSdkRecords(result.records)
+  return warnings ? { data, total, warnings } : { data, total }
 }
 
 const vectorIndexes = async (engine: DirectEngine): Promise<Body[]> =>
@@ -195,6 +218,22 @@ const toTextIndex = (index: Body) => ({
 const textIndexes = async (engine: DirectEngine) =>
   (await declaredIndexes(engine)).filter((index) => index.kind === 'text').map(toTextIndex)
 
+/** An ordered index, unique or not (3.0.14 lists a unique one as `kind: 'unique'`). */
+const isPropertyIndex = (index: Body) =>
+  index.kind === undefined || index.kind === 'ordered' || index.kind === 'unique'
+
+const toPropertyIndex = (index: Body) => ({
+  name: index.name,
+  label: index.label,
+  property: index.property,
+  kind: index.kind === 'unique' || index.unique === true ? 'unique' : 'ordered',
+  unique: index.kind === 'unique' || index.unique === true,
+  status: index.state
+})
+
+const propertyIndexes = async (engine: DirectEngine) =>
+  (await declaredIndexes(engine)).filter(isPropertyIndex).map(toPropertyIndex)
+
 // ── names ───────────────────────────────────────────────────────────────────
 
 const INDEX_NAME_MAX_LENGTH = 64
@@ -220,6 +259,9 @@ const firstFree = (base: string, taken: Set<string>) => {
     }
   }
 }
+
+const defaultPropertyIndexName = ({ label, property, kind }: { label: string; property: string; kind?: string }) =>
+  nameWith([namePart(label), namePart(property), kind === 'unique' ? 'unique' : 'ordered'])
 
 const defaultTextIndexName = ({ label, property }: { label: string; property: string }) =>
   nameWith([namePart(label), property === '*' ? 'all' : namePart(property), 'text'])
@@ -423,8 +465,8 @@ const findRecords = async ({ body, params: [id], engine }: Request) => {
   if (!search) {
     return ok([], { total: 0 })
   }
-  const { data, total } = await searchRecords(engine, search)
-  return ok(data, { total })
+  const { data, total, warnings } = await searchRecords(engine, search)
+  return ok(data, warnings ? { total, warnings } : { total })
 }
 
 /** Run an import, or stage it into the transaction (then it reports counts, not records). */
@@ -921,7 +963,8 @@ const routes: Route[] = [
     pattern: new RegExp(`^/properties/${ID}/values$`),
     handle: async ({ body, params: [id], engine }) => {
       const searched = Boolean(body.query) || Boolean(body.limit)
-      const result = await engine.execute({
+      const { response: result, warnings } = await engine.run(
+        {
         kind: 'query',
         query: {
           kind: 'propertyValues',
@@ -939,13 +982,18 @@ const routes: Route[] = [
             }
           : {})
         }
-      })
-      return ok({
-        values: result.values ?? [],
-        ...(result.counts?.length ? { counts: result.counts } : {}),
-        ...(searched && result.distinctCount !== undefined ? { distinctCount: result.distinctCount } : {}),
-        ...(result.searchMissed ? { searchMissed: true } : {})
-      })
+        },
+        await searchContext(engine, body)
+      )
+      return ok(
+        {
+          values: result.values ?? [],
+          ...(result.counts?.length ? { counts: result.counts } : {}),
+          ...(searched && result.distinctCount !== undefined ? { distinctCount: result.distinctCount } : {}),
+          ...(result.searchMissed ? { searchMissed: true } : {})
+        },
+        warnings ? { warnings } : {}
+      )
     }
   },
   {
@@ -1016,6 +1064,50 @@ const routes: Route[] = [
         }
       })
       return ok({ records: result.rows ?? [] })
+    }
+  },
+
+  // ordered and unique property indexes
+  { method: 'GET', pattern: /^\/indexes$/, handle: async ({ engine }) => ok(await propertyIndexes(engine)) },
+  {
+    method: 'POST',
+    pattern: /^\/indexes$/,
+    handle: async ({ body, engine, txId }) => {
+      notInTransaction(txId, 'indexes.create')
+      const unique = body.kind === 'unique' || body.unique === true
+      if (unique) {
+        await requireCapability(engine, 'uniqueIndexes', 'A unique index')
+      }
+      const taken = new Set((await declaredIndexes(engine)).map((index) => String(index.name)))
+      if (body.name !== undefined && taken.has(body.name)) {
+        throw httpError(409, `An index named "${body.name}" already exists`)
+      }
+      const result = await engine.execute({
+        kind: 'index',
+        index: {
+          kind: 'create',
+          definition: {
+            name: body.name ?? firstFree(defaultPropertyIndexName({ ...(body as any), kind: unique ? 'unique' : 'ordered' }), taken),
+            label: body.label,
+            property: body.property,
+            kind: unique ? 'unique' : 'ordered'
+          }
+        }
+      })
+      return ok(toPropertyIndex(result.index))
+    }
+  },
+  {
+    method: 'DELETE',
+    pattern: new RegExp(`^/indexes/${ID}$`),
+    handle: async ({ params: [encoded], engine, txId }) => {
+      notInTransaction(txId, 'indexes.delete')
+      const name = decodeURIComponent(encoded)
+      if (!(await propertyIndexes(engine)).some((index) => index.name === name)) {
+        throw httpError(404, `No ordered or unique index named "${name}"`)
+      }
+      await engine.execute({ kind: 'index', index: { kind: 'drop', name } })
+      return ok({ deleted: true })
     }
   },
 

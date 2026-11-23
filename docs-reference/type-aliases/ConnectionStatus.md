@@ -8,4 +8,4 @@
 
 > **ConnectionStatus** = `"draft"` \| `"ready"` \| `"paused"` \| `"needs_reauth"`
 
-Defined in: [api/ingest-types.ts:314](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L314)
+Defined in: [api/ingest-types.ts:323](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L323)

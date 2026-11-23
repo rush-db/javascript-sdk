@@ -5,7 +5,9 @@ import {
   type ApiResponse,
   type CreateEmbeddingIndexParams,
   type CreateTextIndexParams,
+  type CreatePropertyIndexParams,
   type DeleteRelationshipPatternOptions,
+  type IngestChunkFailure,
   type EmbeddingIndex,
   type EmbeddingIndexStats,
   type RelationshipPattern,
@@ -22,12 +24,14 @@ import {
   type UpsertEmbeddingVectorItem,
   type UpsertEmbeddingVectorsParams,
   type UpsertEmbeddingVectorsResult,
+  type PropertyIndex,
   type TextIndex,
   type TextSearchParams,
   type TextSearchReport,
   type VectorSearchParams,
   type VectorSearchReport,
   type VectorSearchResult,
+  type WaitForPending,
   RestAPI
 } from './api/index.js'
 
@@ -42,6 +46,7 @@ export {
   type EmbeddingIndex,
   type CreateEmbeddingIndexParams,
   type CreateTextIndexParams,
+  type CreatePropertyIndexParams,
   type DeleteRelationshipPatternOptions,
   type EmbeddingIndexStats,
   type RelationshipPattern,
@@ -58,12 +63,15 @@ export {
   type UpsertEmbeddingVectorItem,
   type UpsertEmbeddingVectorsParams,
   type UpsertEmbeddingVectorsResult,
+  type PropertyIndex,
   type TextIndex,
   type TextSearchParams,
   type TextSearchReport,
   type VectorSearchParams,
   type VectorSearchReport,
-  type VectorSearchResult
+  type VectorSearchResult,
+  type WaitForPending,
+  type IngestChunkFailure
 }
 export * from './types/index.js'
 export * from './api/ingest-types.js'
@@ -76,5 +84,21 @@ export {
   isCloudOnlyMethod,
   type CloudOnlyMethod
 } from './direct/capabilities.js'
+
+export {
+  PROPERTY_TYPES,
+  PROPERTY_TYPE_BOOLEAN,
+  PROPERTY_TYPE_DATE,
+  PROPERTY_TYPE_DATETIME,
+  PROPERTY_TYPE_DURATION,
+  PROPERTY_TYPE_LOCALDATETIME,
+  PROPERTY_TYPE_LOCALTIME,
+  PROPERTY_TYPE_NUMBER,
+  PROPERTY_TYPE_POINT,
+  PROPERTY_TYPE_STRING,
+  ORDERED_PROPERTY_TYPES,
+  RECOMMENDED_INGEST_CHUNK_SIZE,
+  RECOMMENDED_NESTED_INGEST_CHUNK_SIZE
+} from './common/constants.js'
 
 export default RushDB

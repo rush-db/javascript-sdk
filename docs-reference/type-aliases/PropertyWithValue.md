@@ -8,4 +8,4 @@
 
 > **PropertyWithValue** = `WithValue`\<[`Property`](Property.md)\>
 
-Defined in: [types/value.ts:51](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L51)
+Defined in: [types/value.ts:81](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L81)

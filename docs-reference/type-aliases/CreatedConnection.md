@@ -8,7 +8,7 @@
 
 > **CreatedConnection** = `object`
 
-Defined in: [api/ingest-types.ts:522](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L522)
+Defined in: [api/ingest-types.ts:531](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L531)
 
 Tokens are returned once: `webhookToken` for push and trigger connections,
 `agentToken` (for `rushdb-agent`) for agent connections.
@@ -19,7 +19,7 @@ Tokens are returned once: `webhookToken` for push and trigger connections,
 
 > `optional` **agentToken?**: `string`
 
-Defined in: [api/ingest-types.ts:522](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L522)
+Defined in: [api/ingest-types.ts:531](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L531)
 
 ***
 
@@ -27,7 +27,7 @@ Defined in: [api/ingest-types.ts:522](https://github.com/rush-db/javascript-sdk/
 
 > **connection**: [`Connection`](Connection.md)
 
-Defined in: [api/ingest-types.ts:522](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L522)
+Defined in: [api/ingest-types.ts:531](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L531)
 
 ***
 
@@ -35,4 +35,4 @@ Defined in: [api/ingest-types.ts:522](https://github.com/rush-db/javascript-sdk/
 
 > `optional` **webhookToken?**: `string`
 
-Defined in: [api/ingest-types.ts:522](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L522)
+Defined in: [api/ingest-types.ts:531](https://github.com/rush-db/javascript-sdk/blob/main/src/api/ingest-types.ts#L531)

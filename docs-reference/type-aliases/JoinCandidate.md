@@ -8,7 +8,7 @@
 
 > **JoinCandidate** = `object`
 
-Defined in: [types/value.ts:136](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L136)
+Defined in: [types/value.ts:196](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L196)
 
 A reference suggested by `db.ai.getJoinCandidates`, with its evidence.
 
@@ -18,7 +18,7 @@ A reference suggested by `db.ai.getJoinCandidates`, with its evidence.
 
 > **confidence**: `number`
 
-Defined in: [types/value.ts:142](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L142)
+Defined in: [types/value.ts:202](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L202)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [types/value.ts:142](https://github.com/rush-db/javascript-sdk/blob/
 
 > **evidence**: `object`
 
-Defined in: [types/value.ts:143](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L143)
+Defined in: [types/value.ts:203](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L203)
 
 #### coverage?
 
@@ -62,7 +62,7 @@ Defined in: [types/value.ts:143](https://github.com/rush-db/javascript-sdk/blob/
 
 > **rationale**: `string`
 
-Defined in: [types/value.ts:152](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L152)
+Defined in: [types/value.ts:212](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L212)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [types/value.ts:152](https://github.com/rush-db/javascript-sdk/blob/
 
 > **reasons**: `string`[]
 
-Defined in: [types/value.ts:140](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L140)
+Defined in: [types/value.ts:200](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L200)
 
 `name`, `chain` and/or `values`: the rules that proposed it.
 
@@ -80,7 +80,7 @@ Defined in: [types/value.ts:140](https://github.com/rush-db/javascript-sdk/blob/
 
 > **relationshipType**: `string`
 
-Defined in: [types/value.ts:141](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L141)
+Defined in: [types/value.ts:201](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L201)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [types/value.ts:141](https://github.com/rush-db/javascript-sdk/blob/
 
 > **source**: `object`
 
-Defined in: [types/value.ts:137](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L137)
+Defined in: [types/value.ts:197](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L197)
 
 #### label
 
@@ -104,7 +104,7 @@ Defined in: [types/value.ts:137](https://github.com/rush-db/javascript-sdk/blob/
 
 > **target**: `object`
 
-Defined in: [types/value.ts:138](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L138)
+Defined in: [types/value.ts:198](https://github.com/rush-db/javascript-sdk/blob/main/src/types/value.ts#L198)
 
 #### label
 
