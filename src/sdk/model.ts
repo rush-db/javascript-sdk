@@ -196,8 +196,12 @@ export class Model<S extends Schema = any> {
    * @param id - The ID of the record to find
    * @param transaction - Optional transaction or transaction ID
    * @returns Promise resolving to the matching record or null if not found
+   * @throws EmptyTargetError if no id is provided
    */
   async findById(id: string, transaction?: Transaction | string) {
+    if (!id) {
+      throw new EmptyTargetError('findById error: Target id is empty')
+    }
     return this.findOne({ where: { $id: id } }, transaction)
   }
 

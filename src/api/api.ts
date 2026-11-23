@@ -682,6 +682,7 @@ export class RestAPI {
      * @param idOrIds - Single ID or array of IDs to retrieve
      * @param transaction - Optional transaction for atomic operations
      * @returns Promise resolving to DBRecordInstance or DBRecordsArrayInstance depending on input
+     * @throws EmptyTargetError if no id is provided
      */
     findById: async <
       S extends Schema = Schema,
@@ -691,6 +692,13 @@ export class RestAPI {
       idOrIds: Arg,
       transaction?: Transaction | string
     ): Promise<Result> => {
+      if (isArray(idOrIds)) {
+        if (!idOrIds.length || idOrIds.some((id) => !id)) {
+          throw new EmptyTargetError('findById error: Target id is empty')
+        }
+      } else if (!idOrIds) {
+        throw new EmptyTargetError('findById error: Target id is empty')
+      }
       const txId = pickTransactionId(transaction)
       const path = isArray(idOrIds) ? `/records/search` : `/records/${idOrIds}`
       const payload = {
@@ -721,11 +729,15 @@ export class RestAPI {
      * @param searchQuery - Query to identify the record
      * @param transaction - Optional transaction for atomic operations
      * @returns Promise resolving to DBRecordInstance
+     * @throws EmptyTargetError if no search query is provided
      */
     findOne: async <S extends Schema = any, Q extends SearchQuery<S> = SearchQuery<S>>(
       searchQuery: Q,
       transaction?: Transaction | string
     ): Promise<DBRecordInstance<S>> => {
+      if (!searchQuery) {
+        throw new EmptyTargetError('findOne error: Search query is empty')
+      }
       const txId = pickTransactionId(transaction)
       const path = `/records/search`
       const payload = {
@@ -748,12 +760,16 @@ export class RestAPI {
      * @param searchQuery - Query to identify the record
      * @param transaction - Optional transaction for atomic operations
      * @returns Promise resolving to DBRecordInstance
+     * @throws EmptyTargetError if no search query is provided
      * @throws NonUniqueResultError if multiple records match the query
      */
     findUniq: async <S extends Schema = any, Q extends SearchQuery<S> = SearchQuery<S>>(
       searchQuery: Q,
       transaction?: Transaction | string
     ): Promise<DBRecordInstance<S, Q>> => {
+      if (!searchQuery) {
+        throw new EmptyTargetError('findUniq error: Search query is empty')
+      }
       const txId = pickTransactionId(transaction)
       const path = `/records/search`
       const payload = {
@@ -1252,8 +1268,12 @@ export class RestAPI {
      * @param id - The unique identifier of the property to retrieve
      * @param transaction - Optional transaction for atomic operations
      * @returns Promise with the API response containing the requested property
+     * @throws EmptyTargetError if no id is provided
      */
     findById: async (id: string, transaction?: Transaction | string) => {
+      if (!id) {
+        throw new EmptyTargetError('findById error: Target id is empty')
+      }
       const txId = pickTransactionId(transaction)
       const path = `/properties/${id}`
       const payload = {
