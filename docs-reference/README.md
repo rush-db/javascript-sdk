@@ -155,7 +155,9 @@
 - [PaginationClause](type-aliases/PaginationClause.md)
 - [PiiFinding](type-aliases/PiiFinding.md)
 - [PiiKind](type-aliases/PiiKind.md)
+- [PointCrs](type-aliases/PointCrs.md)
 - [PointExpression](type-aliases/PointExpression.md)
+- [PointOptions](type-aliases/PointOptions.md)
 - [PointValue](type-aliases/PointValue.md)
 - [PreviewImportParams](type-aliases/PreviewImportParams.md)
 - [Property](type-aliases/Property.md)
@@ -257,6 +259,7 @@
 
 ## Functions
 
+- [distanceFrom](functions/distanceFrom.md)
 - [idToDate](functions/idToDate.md)
 - [idToTimestamp](functions/idToTimestamp.md)
 - [initSDK](functions/initSDK.md)
@@ -265,7 +268,10 @@
 - [parseConfig](functions/parseConfig.md)
 - [pickUniqFieldsFromRecord](functions/pickUniqFieldsFromRecord.md)
 - [pickUniqFieldsFromRecords](functions/pickUniqFieldsFromRecords.md)
+- [point](functions/point.md)
 - [validateInteger](functions/validateInteger.md)
+- [withinBox](functions/withinBox.md)
+- [withinRadius](functions/withinRadius.md)
 
 ## References
 

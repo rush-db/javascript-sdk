@@ -626,7 +626,10 @@ describe('spatial helpers', () => {
     useServer(() => ({ body: { success: true, data: [], total: 0 } }))
     const search: SearchQuery = {
       labels: ['CAFE'],
-      where: { location: withinRadius(point(13.405, 52.52), 2000), area: withinBox(point(13.3, 52.45), point(13.5, 52.55)) },
+      where: {
+        location: withinRadius(point(13.405, 52.52), 2000),
+        area: withinBox(point(13.3, 52.45), point(13.5, 52.55))
+      },
       orderBy: { location: distanceFrom(point(13.405, 52.52)) }
     }
     await cloudDb().records.find(search)
