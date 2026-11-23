@@ -211,8 +211,10 @@ describe.skipIf(!engineUrl)('RushDB 3.0.14 features against a standalone engine'
     // Another label may hold the value.
     await db.records.create({ label: `${USER}Other`, data: { email: 'ada@example.com' } })
 
+    // A dropped index is listed as `dropping` until the engine removes it.
     await db.indexes.delete(index.name)
-    expect((await db.indexes.find()).data.some((candidate) => candidate.name === index.name)).toBe(false)
+    const after = (await db.indexes.find()).data.find((candidate) => candidate.name === index.name)
+    expect(after === undefined || after.status === 'dropping').toBe(true)
   })
 
   it('lists and drops an ordered index', async () => {

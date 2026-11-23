@@ -282,7 +282,7 @@ try {
   if (error instanceof UniqueConstraintError) console.log(error.recordId)
 }
 
-await db.indexes.delete('USER.email.unique')
+await db.indexes.delete('USER.email.unique') // listed as `dropping` until the engine removes it
 ```
 
 Every failed request's error keeps the server's `status`, `code`, `retryable` and `details`.
